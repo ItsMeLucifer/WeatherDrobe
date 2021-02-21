@@ -16,7 +16,7 @@ WeatherDrobe's weather informations are based on [Open Weather Map API](https://
 * Current and forecast weat
 
 Currently WeatherDrobe is using following data:
-```
+```dart
 CurrentData({this.iconId, this.temperature, this.description, this.time});
   factory CurrentData.fromJson(dynamic json) {
     return CurrentData(
@@ -54,7 +54,7 @@ On the first run of application User is asked to create an account or Sign-in to
 ```
 Checking changes in authentication states during the application run (Depending on status state, relevant data will be showed on User's screen):
     
-  ```
+  ```dart
 Future<void> _onAuthStateChanged(User firebaseUser) async {
     if (firebaseUser == null) {
       status = Status.Unauthenticated;
@@ -66,7 +66,7 @@ Future<void> _onAuthStateChanged(User firebaseUser) async {
   }
 ```
 
-```
+```dart
 //Registration
 
 Future<void> register(String email, String password) async {
@@ -150,7 +150,7 @@ Clothes data to be transmitted should include following informations:
 * What part of the body this garment is designed for.
 
 The code responsible for sending data to Firestore server:
-```
+```dart
 Future<void> saveCloth(FirebaseAuth auth) {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     ClothType clothType = ClothType.values.elementAt(type);
