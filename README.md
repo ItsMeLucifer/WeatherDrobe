@@ -36,7 +36,7 @@ WeatherDrobe is using Firebase Could Firestore databese to allows users multi-de
 On the first run of application User is asked to create an account or Sign-in to an existing one. The following code is responsible for all authentication operations with Firebase server:
 
 
-```
+```dart
   //Logging in
   
   Future<void> signIn(String email, String password) async {
