@@ -107,8 +107,8 @@ The data would be stored in the following way:
 >       email: user000@example.com\
 >       userID: YBDml5hjqTbcwwidb7922UGGhU03
 >         -  **Headwear Collection**
->             -  *ID23of1newly9added321outfit2*
-    >               dir: blank_hat_template_name\
+>             -  *ID23of1newly9added321outfit2*\
+>               dir: blank_hat_template_name\
 >                   rain: false\
 >                   snow: false\
 >                   wind: false\
