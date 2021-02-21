@@ -103,16 +103,16 @@ When the User000 creates a garment with the following characteristics:
 The data would be stored in the following way:
 
 > * **Collection of Users**
->     - *User000*
->       email: user000@example.com
+>     - *User000*\
+>       email: user000@example.com\
 >       userID: YBDml5hjqTbcwwidb7922UGGhU03
 >         -  **Headwear Collection**
 >             -  *ID23of1newly9added321outfit2*
-    >               dir: blank_hat_template_name
->                   rain: false
->                   snow: false
->                   wind: false
->                   sun: true
+    >               dir: blank_hat_template_name\
+>                   rain: false\
+>                   snow: false\
+>                   wind: false\
+>                   sun: true\
 >                   temperature: 7
             
 Since it would be highly inefficient to store two variables corresponding to minimum and maximum temperature, the following assignment of ranges to corresponding words and numbers was used in the process of storing the temperature data:
