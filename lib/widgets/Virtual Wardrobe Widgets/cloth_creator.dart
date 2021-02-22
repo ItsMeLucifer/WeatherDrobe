@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weatherdrobe/main.dart';
 import 'package:weatherdrobe/widgets/Virtual%20Wardrobe%20Widgets/cloth_template_chooser.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 enum bestWeathersTemperatureForCloth {
   freezing,
@@ -58,35 +58,8 @@ class ClothCreator extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
     final favw = watch(firebaseAuth);
-
-    Future<void> _showMyDialog() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Choose a color'),
-            content: SingleChildScrollView(
-                child: Container(
-                    child: ListBody(children: <Widget>[
-              MaterialColorPicker(
-                  allowShades: false, // default true
-                  onMainColorChange: (ColorSwatch color) {
-                    // Handle main color changes
-                  },
-                  selectedColor: Colors.red)
-            ]))),
-            actions: <Widget>[
-              TextButton(
-                child: Text('Approve'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
+    void changeColor(Color color) {
+      vwvm.color = color;
     }
 
     return Scaffold(
@@ -120,7 +93,48 @@ class ClothCreator extends ConsumerWidget {
               )),
           GestureDetector(
               onTap: () {
-                _showMyDialog();
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      titlePadding: const EdgeInsets.all(5.0),
+                      contentPadding: const EdgeInsets.all(5.0),
+                      title: Text(
+                        'Pick a color',
+                        textAlign: TextAlign.center,
+                      ),
+                      content: SingleChildScrollView(
+                        child: MaterialPicker(
+                          pickerColor: vwvm.color,
+                          onColorChanged: (Color color) {
+                            vwvm.color = color;
+                          },
+                          enableLabel: true,
+                        ),
+                      ),
+                      actions: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Previously Picked Color:'),
+                            Container(
+                                width: 25,
+                                height: 25,
+                                decoration: BoxDecoration(
+                                    color: vwvm.color,
+                                    borderRadius: BorderRadius.circular(50)))
+                          ],
+                        ),
+                        FlatButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Select')),
+                      ],
+                    );
+                  },
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),

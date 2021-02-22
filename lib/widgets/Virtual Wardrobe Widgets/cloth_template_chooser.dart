@@ -122,7 +122,6 @@ class ClothTemplateChooser extends ConsumerWidget {
                 onTap: () {
                   vwvm.isTemplateChosen = true;
                   vwvm.dir = templateNames[vwvm.type][index];
-                  print(vwvm.clothTypeName);
                 },
                 child: Card(
                   child: Image.asset(

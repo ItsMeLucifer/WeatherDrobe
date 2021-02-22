@@ -73,6 +73,13 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Color _color = Colors.white;
+  Color get color => _color;
+  set color(Color value) {
+    _color = value;
+    notifyListeners();
+  }
+
   Future<void> saveCloth(FirebaseAuth auth) {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     ClothType clothType = ClothType.values.elementAt(type);
@@ -87,6 +94,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
       'sun': sun,
       'wind': wind,
       'dir': dir,
+      'color': color.toString()
     });
   }
 }

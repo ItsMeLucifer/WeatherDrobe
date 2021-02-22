@@ -113,7 +113,8 @@ The data would be stored in the following way:
 >                   snow: false\
 >                   wind: false\
 >                   sun: true\
->                   temperature: 7
+>                   temperature: 7\
+>                   color: #FF0000
             
 Since it would be highly inefficient to store two variables corresponding to minimum and maximum temperature, the following assignment of ranges to corresponding words and numbers was used in the process of storing the temperature data:
 > 0:    -∞ — -10° = Freezing 
@@ -165,6 +166,7 @@ Future<void> saveCloth(FirebaseAuth auth) {
       'sun': sun,
       'wind': wind,
       'dir': dir,
+      'color': color.toString()
     });
   }
 ```
