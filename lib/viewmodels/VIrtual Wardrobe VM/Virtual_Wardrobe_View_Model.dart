@@ -1,8 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:weatherdrobe/models/cloth.dart';
 
 enum ClothType { head, top, legs, feet }
+enum bestWeathersTemperatureForCloth {
+  freezing,
+  cold,
+  chilly,
+  brisk,
+  cool,
+  mild,
+  perfect,
+  warm,
+  hot,
+  scorching,
+  none
+}
+
+extension clothTemperatureExtension on bestWeathersTemperatureForCloth {
+  static const clothTemperatures = {
+    bestWeathersTemperatureForCloth.freezing: -10,
+    bestWeathersTemperatureForCloth.cold: 0,
+    bestWeathersTemperatureForCloth.chilly: 4,
+    bestWeathersTemperatureForCloth.brisk: 8,
+    bestWeathersTemperatureForCloth.cool: 13,
+    bestWeathersTemperatureForCloth.mild: 18,
+    bestWeathersTemperatureForCloth.perfect: 25,
+    bestWeathersTemperatureForCloth.warm: 29,
+    bestWeathersTemperatureForCloth.hot: 33,
+    bestWeathersTemperatureForCloth.scorching: 40,
+  };
+
+  int get clothTemperature => clothTemperatures[this];
+}
 
 class VirtualWardrobeViewModel extends ChangeNotifier {
   bool _snow = false;
@@ -80,10 +111,39 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> saveCloth(FirebaseAuth auth) {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-    ClothType clothType = ClothType.values.elementAt(type);
-    //users.add({'userID': userID});
+  String get getClothTypeName =>
+      ClothType.values.elementAt(actualClothType).toString().substring(
+          10, ClothType.values.elementAt(actualClothType).toString().length);
+
+  String temperature(double rating) {
+    String text;
+    if (rating < 10) {
+      text = bestWeathersTemperatureForCloth.values[rating.toInt()]
+              .toString()
+              .substring(32) +
+          " (";
+    }
+    if (rating == 0) {
+      text += "-20° — ";
+    } else if (rating < 10) {
+      text += bestWeathersTemperatureForCloth
+              .values[(rating - 1).toInt()].clothTemperature
+              .toString() +
+          "°C — ";
+    }
+    if (rating < 10) {
+      text += bestWeathersTemperatureForCloth
+              .values[rating.toInt()].clothTemperature
+              .toString() +
+          "°C)";
+    } else {
+      text = "None";
+    }
+    return "${text[0].toUpperCase()}${text.substring(1)}";
+  }
+
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  void saveCloth(FirebaseAuth auth) {
     users
         .doc(auth.currentUser.uid)
         .set({'email': auth.currentUser.email, 'userID': auth.currentUser.uid});
@@ -94,7 +154,112 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
       'sun': sun,
       'wind': wind,
       'dir': dir,
-      'color': color.toString()
+      'color': color.toString().substring(6, color.toString().length - 1)
     });
+  }
+
+  // List<QueryDocumentSnapshot> _clothes = [];
+  // List<QueryDocumentSnapshot> get clothes => _clothes;
+  // set clothes(List<QueryDocumentSnapshot> value) {
+  //   _clothes = value;
+  //   notifyListeners();
+  // }
+
+  int _actualClothType = 0;
+  int get actualClothType => _actualClothType;
+  set actualClothType(int value) {
+    _actualClothType = value;
+    notifyListeners();
+  }
+
+  List<QueryDocumentSnapshot> _headwear = [];
+  List<QueryDocumentSnapshot> get headwear => _headwear;
+  set headwear(List<QueryDocumentSnapshot> value) {
+    _headwear = value;
+    notifyListeners();
+  }
+
+  List<QueryDocumentSnapshot> _top = [];
+  List<QueryDocumentSnapshot> get top => _top;
+  set top(List<QueryDocumentSnapshot> value) {
+    _top = value;
+    notifyListeners();
+  }
+
+  List<QueryDocumentSnapshot> _legs = [];
+  List<QueryDocumentSnapshot> get legs => _legs;
+  set legs(List<QueryDocumentSnapshot> value) {
+    _legs = value;
+    notifyListeners();
+  }
+
+  List<QueryDocumentSnapshot> _feet = [];
+  List<QueryDocumentSnapshot> get feet => _feet;
+  set feet(List<QueryDocumentSnapshot> value) {
+    _feet = value;
+    notifyListeners();
+  }
+
+  DocumentSnapshot userCollections;
+  void getGarments(FirebaseAuth auth) async {
+    List<QueryDocumentSnapshot> temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('head')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    headwear = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('top')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    top = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('legs')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    legs = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('feet')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    feet = temp;
+    temp = [];
+    userCollections = await users.doc(auth.currentUser.uid).get();
+    notifyListeners();
   }
 }

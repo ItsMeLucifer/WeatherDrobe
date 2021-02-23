@@ -114,7 +114,7 @@ The data would be stored in the following way:
 >                   wind: false\
 >                   sun: true\
 >                   temperature: 7\
->                   color: Color(0xffd50000)
+>                   color: 0xffd50000
             
 Since it would be highly inefficient to store two variables corresponding to minimum and maximum temperature, the following assignment of ranges to corresponding words and numbers was used in the process of storing the temperature data:
 > 0:    -∞ — -10° = Freezing 

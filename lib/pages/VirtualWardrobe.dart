@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:weatherdrobe/widgets/Virtual%20Wardrobe%20Widgets/cloth_creator.dart';
+import 'package:weatherdrobe/widgets/Virtual%20Wardrobe%20Widgets/cloth_creator_page_view.dart';
+import 'package:weatherdrobe/widgets/Virtual%20Wardrobe%20Widgets/clothes_list.dart';
 
 class VirtualWardrobe extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
 
   void _navigateToClothCreator(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ClothCreator()));
+        context, MaterialPageRoute(builder: (context) => ClothCreatorPV()));
   }
 
   Widget build(BuildContext context) {
@@ -58,7 +60,8 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
                                   ])
                                 ]),
                             color: Colors.teal)),
-                  )
+                  ),
+                  ClothesList()
                 ],
               ),
             )));
