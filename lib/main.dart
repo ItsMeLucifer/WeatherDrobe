@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weatherdrobe/viewmodels/First Page VM/current_data_view_model.dart';
-import 'package:weatherdrobe/viewmodels/First Page VM/hourly_forecast_view_model.dart';
-import 'package:weatherdrobe/viewmodels/VIrtual%20Wardrobe%20VM/Virtual_Wardrobe_View_Model.dart';
+import 'package:weatherdrobe/viewmodels/First Page/current_data_view_model.dart';
+import 'package:weatherdrobe/viewmodels/First Page/hourly_forecast_view_model.dart';
+import 'package:weatherdrobe/viewmodels/Virtual%20Wardrobe/virtual_Wardrobe_View_Model.dart';
 import 'package:weatherdrobe/viewmodels/firebase/firebase_auth_View_Model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:weatherdrobe/utilities/wrapper.dart';

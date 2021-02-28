@@ -158,13 +158,6 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     });
   }
 
-  // List<QueryDocumentSnapshot> _clothes = [];
-  // List<QueryDocumentSnapshot> get clothes => _clothes;
-  // set clothes(List<QueryDocumentSnapshot> value) {
-  //   _clothes = value;
-  //   notifyListeners();
-  // }
-
   int _actualClothType = 0;
   int get actualClothType => _actualClothType;
   set actualClothType(int value) {

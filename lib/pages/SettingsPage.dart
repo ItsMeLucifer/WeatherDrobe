@@ -17,7 +17,7 @@ class Settings extends ConsumerWidget {
             width: 200,
             height: 50,
             decoration: BoxDecoration(
-                color: Colors.teal,
+                color: Color.fromRGBO(220, 220, 220, 1),
                 border: Border.all(color: Colors.black, width: 1),
                 borderRadius: BorderRadius.circular(5)),
             child: Center(child: Text('Sign-out')),

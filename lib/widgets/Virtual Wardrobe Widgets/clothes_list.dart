@@ -102,13 +102,13 @@ class ClothesList extends ConsumerWidget {
           ),
           //Interim solution for test purposes, code will be rewritten for optimization
           vwvm.actualClothType == 0
-              ? headwear(vwvm)
+              ? clothes(vwvm.headwear, vwvm)
               : vwvm.actualClothType == 1
-                  ? top(vwvm)
+                  ? clothes(vwvm.top, vwvm)
                   : vwvm.actualClothType == 2
-                      ? legs(vwvm)
+                      ? clothes(vwvm.legs, vwvm)
                       : vwvm.actualClothType == 3
-                          ? feet(vwvm)
+                          ? clothes(vwvm.feet, vwvm)
                           : Container()
         ],
       );
@@ -119,9 +119,8 @@ class ClothesList extends ConsumerWidget {
   }
 }
 
-Widget headwear(var vwvm) {
+Widget clothes(var array, var vwvm) {
   const String fontFamily = 'Nexa';
-  var array = vwvm.headwear;
   if (array != null) {
     return GridView.builder(
         shrinkWrap: true,
@@ -138,7 +137,7 @@ Widget headwear(var vwvm) {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       content: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
@@ -151,7 +150,7 @@ Widget headwear(var vwvm) {
                                       Color(int.parse(array[index]['color'])),
                                       BlendMode.modulate),
                                   child: Image.asset(
-                                      'images/templates/head/${array[index]["dir"]}.png'),
+                                      'images/templates/${vwvm.getClothTypeName}/${array[index]["dir"]}.png'),
                                 ),
                                 color: Colors.white),
                           ),
@@ -213,7 +212,7 @@ Widget headwear(var vwvm) {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0, top: 160),
+                            padding: const EdgeInsets.only(left: 8.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -264,196 +263,7 @@ Widget headwear(var vwvm) {
                         Color(int.parse(array[index]['color'])),
                         BlendMode.modulate),
                     child: Image.asset(
-                        'images/templates/head/${array[index]["dir"]}.png'),
-                  ),
-                  color: Colors.white),
-            ),
-          );
-        });
-  } else {
-    return Container();
-  }
-}
-
-Widget top(var vwvm) {
-  if (vwvm.top != null) {
-    return GridView.builder(
-        shrinkWrap: true,
-        primary: false,
-        padding: const EdgeInsets.all(10),
-        itemCount: vwvm.top.length,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      content: Column(
-                        children: [
-                          Container(
-                              height: 300,
-                              width: 250,
-                              child: ColorFiltered(
-                                colorFilter: ColorFilter.mode(
-                                    Color(int.parse(vwvm.top[index]['color'])),
-                                    BlendMode.modulate),
-                                child: Image.asset(
-                                    'images/templates/top/${vwvm.top[index]["dir"]}.png'),
-                              ),
-                              color: Colors.white),
-                          Text(
-                              'Temperature: ${vwvm.temperature(vwvm.top[index]["temperature"])}'),
-                          Text(
-                              'Good for following extreme weather conditions: ${vwvm.top[index]["sun"] == true ? "Sun" : ""} ${vwvm.top[index]["wind"] == true ? "Wind" : ""} ${vwvm.top[index]["rain"] == true ? "Rain" : ""} ${vwvm.top[index]["snow"] == true ? "Snow" : ""}')
-                        ],
-                      ),
-                      actions: [
-                        FlatButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK')),
-                      ],
-                    );
-                  });
-            },
-            child: Card(
-              child: Container(
-                  child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        Color(int.parse(vwvm.top[index]['color'])),
-                        BlendMode.modulate),
-                    child: Image.asset(
-                        'images/templates/top/${vwvm.top[index]["dir"]}.png'),
-                  ),
-                  color: Colors.white),
-            ),
-          );
-        });
-  } else {
-    return Container();
-  }
-}
-
-Widget legs(var vwvm) {
-  if (vwvm.legs != null) {
-    return GridView.builder(
-        shrinkWrap: true,
-        primary: false,
-        padding: const EdgeInsets.all(10),
-        itemCount: vwvm.legs.length,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      content: Column(
-                        children: [
-                          Container(
-                              height: 300,
-                              width: 250,
-                              child: ColorFiltered(
-                                colorFilter: ColorFilter.mode(
-                                    Color(int.parse(vwvm.legs[index]['color'])),
-                                    BlendMode.modulate),
-                                child: Image.asset(
-                                    'images/templates/legs/${vwvm.legs[index]["dir"]}.png'),
-                              ),
-                              color: Colors.white),
-                          Text(
-                              'Temperature: ${vwvm.temperature(vwvm.legs[index]["temperature"])}'),
-                          Text(
-                              'Good for following extreme weather conditions: ${vwvm.legs[index]["sun"] == true ? "Sun" : ""} ${vwvm.legs[index]["wind"] == true ? "Wind" : ""} ${vwvm.legs[index]["rain"] == true ? "Rain" : ""} ${vwvm.legs[index]["snow"] == true ? "Snow" : ""}')
-                        ],
-                      ),
-                      actions: [
-                        FlatButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK')),
-                      ],
-                    );
-                  });
-            },
-            child: Card(
-              child: Container(
-                  child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        Color(int.parse(vwvm.legs[index]['color'])),
-                        BlendMode.modulate),
-                    child: Image.asset(
-                        'images/templates/legs/${vwvm.legs[index]["dir"]}.png'),
-                  ),
-                  color: Colors.white),
-            ),
-          );
-        });
-  } else {
-    return Container();
-  }
-}
-
-Widget feet(var vwvm) {
-  if (vwvm.feet != null) {
-    return GridView.builder(
-        shrinkWrap: true,
-        primary: false,
-        padding: const EdgeInsets.all(10),
-        itemCount: vwvm.feet.length,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      content: Column(
-                        children: [
-                          Container(
-                              height: 300,
-                              width: 250,
-                              child: ColorFiltered(
-                                colorFilter: ColorFilter.mode(
-                                    Color(int.parse(vwvm.feet[index]['color'])),
-                                    BlendMode.modulate),
-                                child: Image.asset(
-                                    'images/templates/feet/${vwvm.feet[index]["dir"]}.png'),
-                              ),
-                              color: Colors.white),
-                          Text(
-                              'Temperature: ${vwvm.temperature(vwvm.feet[index]["temperature"])}'),
-                          Text(
-                              'Good for following extreme weather conditions: ${vwvm.feet[index]["sun"] == true ? "Sun" : ""} ${vwvm.feet[index]["wind"] == true ? "Wind" : ""} ${vwvm.feet[index]["rain"] == true ? "Rain" : ""} ${vwvm.feet[index]["snow"] == true ? "Snow" : ""}')
-                        ],
-                      ),
-                      actions: [
-                        FlatButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK')),
-                      ],
-                    );
-                  });
-            },
-            child: Card(
-              child: Container(
-                  child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        Color(int.parse(vwvm.feet[index]['color'])),
-                        BlendMode.modulate),
-                    child: Image.asset(
-                        'images/templates/feet/${vwvm.feet[index]["dir"]}.png'),
+                        'images/templates/${vwvm.getClothTypeName}/${array[index]["dir"]}.png'),
                   ),
                   color: Colors.white),
             ),

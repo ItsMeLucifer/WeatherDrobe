@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:weatherdrobe/main.dart';
-import 'package:weatherdrobe/viewmodels/First Page VM/hour_view_model.dart';
+import 'package:weatherdrobe/viewmodels/First Page/hour_view_model.dart';
 import 'package:weatherdrobe/widgets/First Page Widgets/hourly_forecast_list_display.dart';
 
 class CurrentWeatherDisplay extends ConsumerWidget {

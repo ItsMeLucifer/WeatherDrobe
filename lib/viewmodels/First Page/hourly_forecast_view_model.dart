@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weatherdrobe/services/webservice.dart';
-import 'package:weatherdrobe/viewmodels/First Page VM/hour_view_model.dart';
+import 'package:weatherdrobe/viewmodels/First Page/hour_view_model.dart';
 
 class HourlyForecastViewModel extends ChangeNotifier {
   //HourlyForecastViewModel(this._lat, this._long);

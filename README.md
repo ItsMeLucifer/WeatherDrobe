@@ -17,7 +17,7 @@ On the homepage, the user will be able to receive information such as suggested 
 
 ### *Virtual Wardrobe*
 
-In the virtual wardrobe, users can browse their own collection, which is automatically downloaded from the [Firebase server](#storing-data-on-the-server). When you click on a piece of clothing, informations about it appears on the screen. In the future we are also planning a function of editing and deleting the created clothes.
+In the virtual wardrobe, users can browse their own collection, which is automatically downloaded from the Firebase server (Check [Data Fetching](#data-fetching)). When you click on a piece of clothing, informations about it appears on the screen. In the future we are also planning a function of editing and deleting the created clothes.
 <div align='center'>
 <img src="./github/img/virtual_wardrobe%20(1).png"
      alt="Outfit Creator - Temperature"
@@ -191,6 +191,7 @@ Since it would be highly inefficient to store two variables corresponding to min
 
 The above assignment of temperature to appropriate terms was borrowed from [u/_eurostep's post on Reddit](https://www.reddit.com/r/EnglishLearning/comments/7o8rdm/the_definitive_scale_of_english_adjectives_to/) (Last access 21.02.2020).
 
+
 ### *Data sending*
 
 In WeatherDrobe, the user has the ability to add new garments to their Virtual Wardrobe, based on which the algorithm will create a clothing composition.
@@ -220,5 +221,73 @@ Future<void> saveCloth(FirebaseAuth auth) {
       'dir': dir,
       'color': color
     });
+  }
+```
+
+### *Data Fetching*
+
+On the server, the data is stored in four separated collections that correspond to head, upper body, lower body, and foot garment types. All of these collections are children of the parent document that is assigned to our account. Unfortunately, Firebase does not allow us to access the sub-collections from within the document ([DocumentSnapshot](https://firebase.google.com/docs/reference/android/com/google/firebase/firestore/DocumentSnapshot)), so we had to perform the operation four times while retrieving the data.
+
+```dart
+void getGarments(FirebaseAuth auth) async {
+    List<QueryDocumentSnapshot> temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('head')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    headwear = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('top')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    top = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('legs')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    legs = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('feet')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    feet = temp;
+    temp = [];
+    userCollections = await users.doc(auth.currentUser.uid).get();
+    notifyListeners();
   }
 ```
