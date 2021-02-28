@@ -5,7 +5,7 @@
 WeatherDrobe's purpose is to help in everyday situations in which we often don't have time to dress properly or check upcoming weather news. Did you ever have problem with time missing? This application has been created to sort it out. The Main Algorithm of WeatherDrobe will prepare for you few proposals of dressing, based on actual weather informations, whereby you will never again forget to take an umbrella ;)
 >*All screenshots presented below do not represent the final state of the product. Appearance may change in the future.*
 ### *Home Page*
-On the homepage, the user will be able to receive information such as suggested clothing, the current weather forecast, and by pressing the top banner, the hourly weather forecast. In addition, in the left column there are suggestions such as umbrella, wristwatch, etc.
+On the homepage, the user will be able to receive information such as suggested clothing, the current [weather forecast](#weather-api), and by pressing the top banner, the hourly weather forecast. In addition, in the left column there are suggestions such as umbrella, wristwatch, etc.
 <div align='center'>
 <img src="./github/img/home_screen%20(1).png"
      alt="Outfit Creator - Temperature"
