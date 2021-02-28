@@ -14,6 +14,8 @@ class ClothTemplateChooser extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
     double iconSize = 50;
+    const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
+    const Color secondaryColor = Color.fromRGBO(240, 240, 240, 1);
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [
@@ -23,7 +25,7 @@ class ClothTemplateChooser extends ConsumerWidget {
               child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Cloth Creator',
+              'Outfit Creator',
               style: TextStyle(
                   fontSize: 60,
                   fontFamily: 'Nexa',
@@ -57,48 +59,56 @@ class ClothTemplateChooser extends ConsumerWidget {
                       },
                       child: Card(
                           child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '👒',
-                          style: TextStyle(fontSize: iconSize),
-                        ),
-                      ))),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '👒',
+                              style: TextStyle(fontSize: iconSize),
+                            ),
+                          ),
+                          color:
+                              vwvm.type == 0 ? primaryColor : secondaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 1;
                       },
                       child: Card(
                           child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '👕',
-                          style: TextStyle(fontSize: iconSize),
-                        ),
-                      ))),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '👕',
+                              style: TextStyle(fontSize: iconSize),
+                            ),
+                          ),
+                          color:
+                              vwvm.type == 1 ? primaryColor : secondaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 2;
                       },
                       child: Card(
                           child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '👖',
-                          style: TextStyle(fontSize: iconSize),
-                        ),
-                      ))),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '👖',
+                              style: TextStyle(fontSize: iconSize),
+                            ),
+                          ),
+                          color:
+                              vwvm.type == 2 ? primaryColor : secondaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 3;
                       },
                       child: Card(
                           child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '👟',
-                          style: TextStyle(fontSize: iconSize),
-                        ),
-                      ))),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '👟',
+                              style: TextStyle(fontSize: iconSize),
+                            ),
+                          ),
+                          color:
+                              vwvm.type == 3 ? primaryColor : secondaryColor)),
                 ],
               ),
             ),

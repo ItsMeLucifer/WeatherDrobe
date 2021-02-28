@@ -14,6 +14,9 @@ class CurrentWeatherDisplay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final cdvm = watch(currentData);
+    const Color primaryColor = Color.fromRGBO(200, 200, 200, 1);
+    const Color textColor = Colors.black;
+    const String fontFamily = 'Nexa';
     double dividersWidth = 10;
     setJiffyLocale();
     return GestureDetector(
@@ -21,7 +24,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
       child: Stack(children: [
         Card(
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.teal[800], width: 1),
+            side: BorderSide(color: primaryColor, width: 1),
           ),
           child: Column(children: [
             Container(
@@ -33,16 +36,18 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                       Text(
                         firstCapital(Jiffy().format("EEEE").toString()),
                         style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold),
+                            color: textColor,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: fontFamily),
                       ),
                       Text(
                         Jiffy().format("d.MM").toString(),
                         style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
+                            color: textColor,
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: fontFamily),
                       ),
                     ]),
                     Container(width: 25, height: 1),
@@ -53,18 +58,20 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                           child: Text(
                             firstCapital(cdvm.description ?? "clouds"),
                             style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                                color: textColor,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: fontFamily),
                           ),
                         ),
                         Container(
                           child: Text(
                             (cdvm.temperature.toString() ?? "10.5") + "°C",
                             style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
+                                color: textColor,
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: fontFamily),
                           ),
                         ),
                       ]),
@@ -100,9 +107,14 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                   ]),
               padding: EdgeInsets.only(top: 20, bottom: 12),
             ),
-            cdvm.onTap ? HourlyForecastListDisplay() : Container(),
+            cdvm.onTap
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: HourlyForecastListDisplay(),
+                  )
+                : Container(),
           ]),
-          color: Colors.teal[800],
+          color: primaryColor,
         ),
         Padding(
             padding: const EdgeInsets.only(top: 85.0, left: 4, right: 4),
@@ -111,7 +123,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
               height: 45,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: Colors.teal[800],
+                color: primaryColor,
               ),
             )),
       ]),

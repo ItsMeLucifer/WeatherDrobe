@@ -50,7 +50,7 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/character_model.png
+    - images/
     - images/templates/head/
     - images/templates/feet/
     - images/templates/legs/

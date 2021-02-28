@@ -3,6 +3,46 @@
 ## Purpose of this app
 
 WeatherDrobe's purpose is to help in everyday situations in which we often don't have time to dress properly or check upcoming weather news. Did you ever have problem with time missing? This application has been created to sort it out. The Main Algorithm of WeatherDrobe will prepare for you few proposals of dressing, based on actual weather informations, whereby you will never again forget to take an umbrella ;)
+>*All screenshots presented below do not represent the final state of the product. Appearance may change in the future.*
+### *Home Page*
+On the homepage, the user will be able to receive information such as suggested clothing, the current weather forecast, and by pressing the top banner, the hourly weather forecast. In addition, in the left column there are suggestions such as umbrella, wristwatch, etc.
+<div align='center'>
+<img src="./github/img/home_screen%20(1).png"
+     alt="Outfit Creator - Temperature"
+     width="250" />
+<img src="./github/img/home_screen%20(2).png"
+     alt="Outfit Creator - Temperature"
+     width="250"/>
+     </div>
+
+### *Virtual Wardrobe*
+
+In the virtual wardrobe, users can browse their own collection, which is automatically downloaded from the [Firebase server](#storing-data-on-the-server). When you click on a piece of clothing, informations about it appears on the screen. In the future we are also planning a function of editing and deleting the created clothes.
+<div align='center'>
+<img src="./github/img/virtual_wardrobe%20(1).png"
+     alt="Outfit Creator - Temperature"
+     width="250" />
+<img src="./github/img/virtual_wardrobe%20(2).png"
+     alt="Outfit Creator - Temperature"
+     width="250"/>
+     </div>
+
+### *Outfit Creator*
+The following images represent the appearance of the Outfit Creator. The user can easily create new clothing by setting four attributes - template, color, temperature and additional weather conditions. After pressing the 'Save' button, the information of the newly created outfit is sent to the Firebase server. Check [FireBase Data Sending](#data-sending) for more detailed informations.
+<div align='center'>
+<img src="./github/img/outfit_creator%20(1).png"
+     alt="Outfit Creator - Temperature"
+     width="250" />
+<img src="./github/img/outfit_creator%20(2).png"
+     alt="Outfit Creator - Temperature"
+     width="250"/>
+<img src="./github/img/outfit_creator%20(3).png"
+     alt="Outfit Creator - Temperature"
+     width="250"/>
+<img src="./github/img/outfit_creator%20(4).png"
+     alt="Outfit Creator - Temperature"
+     width="250"/>
+     </div>
 
 ## Weather API
 
@@ -18,6 +58,7 @@ WeatherDrobe's weather informations are based on [Open Weather Map API](https://
 Currently WeatherDrobe is using following data:
 ```dart
 CurrentData({this.iconId, this.temperature, this.description, this.time});
+
   factory CurrentData.fromJson(dynamic json) {
     return CurrentData(
         iconId: json["weather"][0]["icon"],
@@ -25,7 +66,18 @@ CurrentData({this.iconId, this.temperature, this.description, this.time});
         description: json["weather"][0]["description"],
         time: json["dt"]);
   }
-}
+```
+```dart
+HourlyForecast({this.iconId,this.temperature,this.description,this.propabilityOfPrecipitation,this.time});
+
+  factory HourlyForecast.fromJson(Map<String, dynamic> json) {
+    return HourlyForecast(
+        iconId: json["weather"][0]["icon"],
+        temperature: json["temp"].toDouble(),
+        description: json["weather"][0]["description"],
+        propabilityOfPrecipitation: json["pop"].toDouble(),
+        time: json["dt"]);
+  }
 ```
 ## Firebase
 
@@ -91,7 +143,7 @@ Future<void> register(String email, String password) async {
     }
 }
 ```
-#### *Storing data on the server*
+### *Storing data on the server*
 
 In order to maintain clarity and speed of movement through the database, data should be entered in an appropriate manner.
 
@@ -139,7 +191,7 @@ Since it would be highly inefficient to store two variables corresponding to min
 
 The above assignment of temperature to appropriate terms was borrowed from [u/_eurostep's post on Reddit](https://www.reddit.com/r/EnglishLearning/comments/7o8rdm/the_definitive_scale_of_english_adjectives_to/) (Last access 21.02.2020).
 
-#### *Data sending*
+### *Data sending*
 
 In WeatherDrobe, the user has the ability to add new garments to their Virtual Wardrobe, based on which the algorithm will create a clothing composition.
 

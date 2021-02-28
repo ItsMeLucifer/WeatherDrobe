@@ -12,7 +12,8 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPage extends State<FirstPage> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30);
-  static const Color kolor = Colors.indigoAccent;
+  static const Color secondaryColor = Color.fromRGBO(200, 200, 200, 1);
+  static const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
   @override
   initState() {
     super.initState();
@@ -39,7 +40,7 @@ class _FirstPage extends State<FirstPage> {
         child: SmartRefresher(
             enablePullDown: true,
             enablePullUp: false,
-            header: WaterDropHeader(waterDropColor: Colors.teal),
+            header: WaterDropHeader(waterDropColor: primaryColor),
             onRefresh: _onRefresh,
             onLoading: _onLoading,
             controller: _refreshController,
@@ -59,7 +60,7 @@ class _FirstPage extends State<FirstPage> {
                               ),
                               padding: EdgeInsets.all(30),
                             ),
-                            color: kolor,
+                            color: secondaryColor,
                           ),
                           Card(
                             child: Container(
@@ -69,7 +70,7 @@ class _FirstPage extends State<FirstPage> {
                               ),
                               padding: EdgeInsets.all(30),
                             ),
-                            color: kolor,
+                            color: secondaryColor,
                           ),
                           Card(
                             child: Container(
@@ -79,7 +80,7 @@ class _FirstPage extends State<FirstPage> {
                               ),
                               padding: EdgeInsets.all(30),
                             ),
-                            color: kolor,
+                            color: secondaryColor,
                           ),
                         ],
                       ),
@@ -91,7 +92,7 @@ class _FirstPage extends State<FirstPage> {
                             height: 480,
                             child: CharacterModel(),
                           ),
-                          color: Colors.teal[600],
+                          color: primaryColor,
                         ),
                       )
                     ],

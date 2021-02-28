@@ -20,7 +20,7 @@ class ClothAdditionalConditions extends ConsumerWidget {
               child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Cloth Creator',
+              'Outfit Creator',
               style: TextStyle(
                   fontSize: 60,
                   fontFamily: 'Nexa',
@@ -42,14 +42,14 @@ class ClothAdditionalConditions extends ConsumerWidget {
         ),
         Center(
           child: Padding(
-            padding: const EdgeInsets.only(left: 9.0, bottom: 30),
+            padding: const EdgeInsets.only(left: 9, bottom: 30),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                  "Choose with what weather conditions this cloth is suitable",
+                  "Choose which weather conditions are the most suitable for this piece of clothing",
                   style: TextStyle(
                       fontSize: 15, color: textColor, fontFamily: 'Nexa'),
-                  textAlign: TextAlign.center),
+                  textAlign: TextAlign.start),
             ),
           ),
         ),
@@ -187,10 +187,7 @@ class ClothAdditionalConditions extends ConsumerWidget {
               margin: const EdgeInsets.only(top: 100),
               decoration: BoxDecoration(
                   // color: primaryColor,
-                  border: Border(
-                      top: BorderSide(color: borderColor, width: borderWidth),
-                      bottom:
-                          BorderSide(color: borderColor, width: borderWidth))),
+                  border: Border.all(color: borderColor, width: borderWidth)),
               child: Center(
                 child: Text("Save Cloth",
                     style: TextStyle(

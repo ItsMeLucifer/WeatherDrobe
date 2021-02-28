@@ -7,6 +7,7 @@ import 'package:weatherdrobe/viewmodels/VIrtual%20Wardrobe%20VM/Virtual_Wardrobe
 import 'package:weatherdrobe/viewmodels/firebase/firebase_auth_View_Model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:weatherdrobe/utilities/wrapper.dart';
+import 'package:flutter/services.dart';
 
 final currentData = ChangeNotifierProvider((_) => CurrentDataViewModel());
 // final hourlyData = FutureProvider((_) async {
@@ -20,13 +21,14 @@ final firebaseAuth =
 final virtualWardrobe =
     ChangeNotifierProvider((_) => VirtualWardrobeViewModel());
 // final firebaseAuth =
-//     ChangeNotifierProvider.autoDispose<FireBaseAuthViewModel>((ref) {
-//   return FireBaseAuthViewModel.instance();
+//     ChangeNotifierProvider.autoDispose<FireBaseAuthViewModel>((ref) {pib
 // });
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  await SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
   runApp(ProviderScope(child: MyApp()));
 }
 
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       home: Wrapper(),
     );

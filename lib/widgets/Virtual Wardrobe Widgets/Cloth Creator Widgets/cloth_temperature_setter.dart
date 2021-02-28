@@ -19,7 +19,7 @@ class ClothTemperatureSetter extends ConsumerWidget {
                 child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Cloth Creator',
+                'Outfit Creator',
                 style: TextStyle(
                     fontSize: 60,
                     fontFamily: 'Nexa',
@@ -40,14 +40,14 @@ class ClothTemperatureSetter extends ConsumerWidget {
             )),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 5, left: 9),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Choose which outside temperature is best for this cloth",
+                "What temeperature would you wear this piece of clothing in?",
                 style: TextStyle(
                     fontSize: 15, color: textColor, fontFamily: 'Nexa'),
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
               ),
             ),
           ),

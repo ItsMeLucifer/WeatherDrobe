@@ -49,12 +49,12 @@ class _BottomNaviBar extends State<BottomNaviBar> {
           ),
         ],
         currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.white70,
-        selectedItemColor: Colors.yellow,
+        unselectedItemColor: Colors.white60,
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
-        backgroundColor: Colors.teal[800],
+        backgroundColor: Colors.black,
       ),
-      backgroundColor: Colors.lightGreen[300],
+      backgroundColor: Colors.white,
     );
   }
 }

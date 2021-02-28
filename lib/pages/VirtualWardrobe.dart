@@ -14,6 +14,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
       RefreshController(initialRefresh: false);
   void _onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1000));
+
     _refreshController.refreshCompleted();
   }
 
@@ -28,6 +29,9 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
   }
 
   Widget build(BuildContext context) {
+    const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
+    const Color textColor = Colors.black;
+    const String fontFamily = "Nexa";
     return GestureDetector(
         onTap: () {
           //wyswietl material page route
@@ -35,7 +39,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
         child: SmartRefresher(
             enablePullDown: true,
             enablePullUp: false,
-            header: WaterDropHeader(waterDropColor: Colors.teal),
+            header: WaterDropHeader(waterDropColor: primaryColor),
             onRefresh: _onRefresh,
             onLoading: _onLoading,
             controller: _refreshController,
@@ -53,13 +57,38 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Row(children: [
-                                    Icon(Icons.add, color: Colors.white),
-                                    Text(" Dodaj ubranie",
+                                    Center(
+                                      child: Text("+ ",
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              color: textColor,
+                                              fontFamily: fontFamily),
+                                          textAlign: TextAlign.center),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        "New Clothing",
                                         style: TextStyle(
-                                            fontSize: 17, color: Colors.white))
+                                            fontSize: 20,
+                                            color: textColor,
+                                            fontFamily: fontFamily),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
                                   ])
                                 ]),
-                            color: Colors.teal)),
+                            color: primaryColor)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Container(
+                        child: Text(
+                      'Your Virtual Wardrobe:',
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: fontFamily,
+                          fontWeight: FontWeight.w500),
+                    )),
                   ),
                   ClothesList()
                 ],

@@ -16,7 +16,7 @@ class ClothColorPicker extends ConsumerWidget {
                 child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Cloth Creator',
+                'Outfit Creator',
                 style: TextStyle(
                     fontSize: 60,
                     fontFamily: 'Nexa',
@@ -26,7 +26,7 @@ class ClothColorPicker extends ConsumerWidget {
             )),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 5.0),
+            padding: const EdgeInsets.only(left: 7.0),
             child: Container(
                 child: Align(
               alignment: Alignment.centerLeft,
