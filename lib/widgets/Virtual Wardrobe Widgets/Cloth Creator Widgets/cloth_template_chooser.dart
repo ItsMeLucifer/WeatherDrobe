@@ -3,17 +3,18 @@ import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
 
 class ClothTemplateChooser extends ConsumerWidget {
-  final clothTemplatesAmount = 4;
+  final clothTemplatesAmount = 5;
   final templateNames = [
-    ['blank_fedora'],
-    ['blank_shirt'],
-    ['blank_pants'],
-    ['blank_shoes']
+    ['hat'],
+    ['tank-top'],
+    ['jeans'],
+    ['flip-flops'],
+    ['jumpsuit']
   ];
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
-    double iconSize = 50;
+    double iconSize = 40;
     const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
     const Color secondaryColor = Color.fromRGBO(240, 240, 240, 1);
     return Scaffold(
@@ -67,6 +68,20 @@ class ClothTemplateChooser extends ConsumerWidget {
                           ),
                           color:
                               vwvm.type == 0 ? primaryColor : secondaryColor)),
+                  GestureDetector(
+                      onTap: () {
+                        vwvm.type = 4;
+                      },
+                      child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '👗',
+                              style: TextStyle(fontSize: iconSize),
+                            ),
+                          ),
+                          color:
+                              vwvm.type == 4 ? primaryColor : secondaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 1;

@@ -11,8 +11,10 @@ class ClothesList extends ConsumerWidget {
     const Color secondaryColor = Color.fromRGBO(240, 240, 240, 1);
     const String fontFamily = 'Nexa';
     const double fontSize = 40;
+    const double talesWidth = 70;
     if (vwvm.userCollections != null && vwvm.userCollections.exists) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10.0, top: 10),
@@ -25,7 +27,7 @@ class ClothesList extends ConsumerWidget {
                   child: Card(
                     child: Container(
                         height: 50,
-                        width: 90,
+                        width: talesWidth,
                         child: Center(
                             child: Text(
                           '👒',
@@ -40,12 +42,32 @@ class ClothesList extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    vwvm.actualClothType = 4;
+                  },
+                  child: Card(
+                    child: Container(
+                        height: 50,
+                        width: talesWidth,
+                        child: Center(
+                            child: Text(
+                          '👗',
+                          style: TextStyle(
+                              fontFamily: fontFamily, fontSize: fontSize),
+                          textAlign: TextAlign.center,
+                        ))),
+                    color: vwvm.actualClothType == 4
+                        ? primaryColor
+                        : secondaryColor,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
                     vwvm.actualClothType = 1;
                   },
                   child: Card(
                       child: Container(
                           height: 50,
-                          width: 90,
+                          width: talesWidth,
                           child: Center(
                               child: Text(
                             '👕',
@@ -64,7 +86,7 @@ class ClothesList extends ConsumerWidget {
                   child: Card(
                     child: Container(
                         height: 50,
-                        width: 90,
+                        width: talesWidth,
                         child: Center(
                             child: Text(
                           '👖',
@@ -84,7 +106,7 @@ class ClothesList extends ConsumerWidget {
                   child: Card(
                     child: Container(
                         height: 50,
-                        width: 90,
+                        width: talesWidth,
                         child: Center(
                             child: Text(
                           '👟',
@@ -104,12 +126,14 @@ class ClothesList extends ConsumerWidget {
           vwvm.actualClothType == 0
               ? clothes(vwvm.headwear, vwvm)
               : vwvm.actualClothType == 1
-                  ? clothes(vwvm.top, vwvm)
+                  ? clothes(vwvm.tops, vwvm)
                   : vwvm.actualClothType == 2
-                      ? clothes(vwvm.legs, vwvm)
+                      ? clothes(vwvm.bottoms, vwvm)
                       : vwvm.actualClothType == 3
-                          ? clothes(vwvm.feet, vwvm)
-                          : Container()
+                          ? clothes(vwvm.footwear, vwvm)
+                          : vwvm.actualClothType == 4
+                              ? clothes(vwvm.costumes, vwvm)
+                              : Container()
         ],
       );
     } else {
@@ -121,7 +145,7 @@ class ClothesList extends ConsumerWidget {
 
 Widget clothes(var array, var vwvm) {
   const String fontFamily = 'Nexa';
-  if (array != null) {
+  if (array != null || array.length != 0) {
     return GridView.builder(
         shrinkWrap: true,
         primary: false,
@@ -144,7 +168,7 @@ Widget clothes(var array, var vwvm) {
                             padding: const EdgeInsets.only(left: 16.0),
                             child: Container(
                                 height: 300,
-                                width: 250,
+                                width: 251,
                                 child: ColorFiltered(
                                   colorFilter: ColorFilter.mode(
                                       Color(int.parse(array[index]['color'])),

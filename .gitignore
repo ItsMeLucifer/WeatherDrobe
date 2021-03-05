@@ -31,7 +31,7 @@
 .pub/
 /build/
 
-#Firebase related
+# Firebase related
 
 android/app/google-services.json
 
@@ -43,3 +43,6 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+# Graphic drafts
+images/icon_pack

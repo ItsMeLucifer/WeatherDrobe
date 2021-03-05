@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherdrobe/models/cloth.dart';
 
-enum ClothType { head, top, legs, feet }
+enum ClothType { headwear, tops, bottoms, footwear, costumes }
 enum bestWeathersTemperatureForCloth {
   freezing,
   cold,
@@ -172,24 +171,31 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<QueryDocumentSnapshot> _top = [];
-  List<QueryDocumentSnapshot> get top => _top;
-  set top(List<QueryDocumentSnapshot> value) {
-    _top = value;
+  List<QueryDocumentSnapshot> _tops = [];
+  List<QueryDocumentSnapshot> get tops => _tops;
+  set tops(List<QueryDocumentSnapshot> value) {
+    _tops = value;
     notifyListeners();
   }
 
-  List<QueryDocumentSnapshot> _legs = [];
-  List<QueryDocumentSnapshot> get legs => _legs;
-  set legs(List<QueryDocumentSnapshot> value) {
-    _legs = value;
+  List<QueryDocumentSnapshot> _bottoms = [];
+  List<QueryDocumentSnapshot> get bottoms => _bottoms;
+  set bottoms(List<QueryDocumentSnapshot> value) {
+    _bottoms = value;
     notifyListeners();
   }
 
-  List<QueryDocumentSnapshot> _feet = [];
-  List<QueryDocumentSnapshot> get feet => _feet;
-  set feet(List<QueryDocumentSnapshot> value) {
-    _feet = value;
+  List<QueryDocumentSnapshot> _footwear = [];
+  List<QueryDocumentSnapshot> get footwear => _footwear;
+  set footwear(List<QueryDocumentSnapshot> value) {
+    _footwear = value;
+    notifyListeners();
+  }
+
+  List<QueryDocumentSnapshot> _costumes = [];
+  List<QueryDocumentSnapshot> get costumes => _costumes;
+  set costumes(List<QueryDocumentSnapshot> value) {
+    _costumes = value;
     notifyListeners();
   }
 
@@ -198,7 +204,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     List<QueryDocumentSnapshot> temp = [];
     await users
         .doc(auth.currentUser.uid)
-        .collection('head')
+        .collection('headwear')
         .get()
         .then((QuerySnapshot querySnapshot) => {
               if (querySnapshot.size > 0)
@@ -212,7 +218,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     temp = [];
     await users
         .doc(auth.currentUser.uid)
-        .collection('top')
+        .collection('tops')
         .get()
         .then((QuerySnapshot querySnapshot) => {
               if (querySnapshot.size > 0)
@@ -222,11 +228,11 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
                   })
                 }
             });
-    top = temp;
+    tops = temp;
     temp = [];
     await users
         .doc(auth.currentUser.uid)
-        .collection('legs')
+        .collection('bottoms')
         .get()
         .then((QuerySnapshot querySnapshot) => {
               if (querySnapshot.size > 0)
@@ -236,11 +242,11 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
                   })
                 }
             });
-    legs = temp;
+    bottoms = temp;
     temp = [];
     await users
         .doc(auth.currentUser.uid)
-        .collection('feet')
+        .collection('footwear')
         .get()
         .then((QuerySnapshot querySnapshot) => {
               if (querySnapshot.size > 0)
@@ -250,7 +256,21 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
                   })
                 }
             });
-    feet = temp;
+    footwear = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('costumes')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    costumes = temp;
     temp = [];
     userCollections = await users.doc(auth.currentUser.uid).get();
     notifyListeners();

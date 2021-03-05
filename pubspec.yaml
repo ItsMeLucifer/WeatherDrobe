@@ -60,10 +60,11 @@ flutter:
   assets:
     - images/
     - images/icon_wd.png
-    - images/templates/head/
-    - images/templates/feet/
-    - images/templates/legs/
-    - images/templates/top/
+    - images/templates/headwear/
+    - images/templates/footwear/
+    - images/templates/bottoms/
+    - images/templates/tops/
+    - images/templates/costumes/
     #   - images/a_dot_ham.jpeg
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.
