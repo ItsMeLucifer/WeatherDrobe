@@ -3,14 +3,6 @@ import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
 
 class ClothTemplateChooser extends ConsumerWidget {
-  final clothTemplatesAmount = 5;
-  final templateNames = [
-    ['hat'],
-    ['tank-top'],
-    ['jeans'],
-    ['flip-flops'],
-    ['jumpsuit']
-  ];
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
@@ -129,27 +121,29 @@ class ClothTemplateChooser extends ConsumerWidget {
             ),
           ),
         ),
-        Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: GridView.builder(
-                shrinkWrap: true,
-                primary: false,
-                padding: const EdgeInsets.all(10),
-                itemCount: templateNames[vwvm.type].length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      vwvm.isTemplateChosen = true;
-                      vwvm.dir = templateNames[vwvm.type][index];
-                    },
-                    child: Card(
-                      child: Image.asset(
-                          'images/templates/${vwvm.clothTypeName}/${templateNames[vwvm.type][index]}.png'),
-                    ),
-                  );
-                })),
+        SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: GridView.builder(
+                  shrinkWrap: true,
+                  primary: false,
+                  padding: const EdgeInsets.all(10),
+                  itemCount: vwvm.templateNames[vwvm.type].length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        vwvm.isTemplateChosen = true;
+                        vwvm.dir = vwvm.templateNames[vwvm.type][index];
+                      },
+                      child: Card(
+                        child: Image.asset(
+                            'images/templates/${vwvm.clothTypeName}/${vwvm.templateNames[vwvm.type][index]}.png'),
+                      ),
+                    );
+                  })),
+        ),
       ]),
     ));
   }

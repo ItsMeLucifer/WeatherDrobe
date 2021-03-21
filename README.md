@@ -5,7 +5,7 @@
 WeatherDrobe's purpose is to help in everyday situations in which we often don't have time to dress properly or check upcoming weather news. Did you ever have problem with time missing? This application has been created to sort it out. The Main Algorithm of WeatherDrobe will prepare for you few proposals of dressing, based on actual weather informations, whereby you will never again forget to take an umbrella ;)
 >*All screenshots presented below do not represent the final state of the product. Appearance may change in the future.*
 ### *Home Page*
-On the homepage, the user will be able to receive information such as suggested clothing, the current [weather forecast](#weather-api), and by pressing the top banner, the hourly weather forecast. In addition, in the left column there are suggestions such as umbrella, wristwatch, etc.
+On the homepage, the user will be able to receive information such as suggested clothing, the current [weather forecast](#weather-api), and by pressing the top banner, the hourly weather forecast. In addition, in the left column there are suggestions such as umbrella, wristwatch, etc. *Do you like the look of this app?* [*Check Graphic Attribution!*](#graphic-attribution)
 <div align='center'>
 <img src="./github/img/home_screen%20(1).png"
      alt="Outfit Creator - Temperature"
@@ -14,6 +14,8 @@ On the homepage, the user will be able to receive information such as suggested 
      alt="Outfit Creator - Temperature"
      width="250"/>
      </div>
+
+
 
 ### *Virtual Wardrobe*
 
@@ -294,3 +296,10 @@ void getGarments(FirebaseAuth auth) async {
     notifyListeners();
   }
 ```
+### Graphic Attribution
+
+In the application, apart from using the icons available as standard in flutter, and the usual emoji - I also used icons made available on the internet for free use. Below I present all the information about the authors of the graphics I used for this project.
+
+- [Umbrella Icon used in App Logo](https://pixabay.com/pl/illustrations/sylwetka-cz%C5%82owieka-parasol-deszcz-5351473/)
+- [Clothing templates](https://www.flaticon.com/packs/beautiful-clothes?word=clothes) made by 'Freepik' from flaticon.com
+- [Face Detection Icon](https://www.flaticon.com/free-icon/face-detection_2706938?term=face&page=1&position=18&page=1&position=18&related_id=2706938&origin=search)  used in Character Model made by 'Freepik' from flaticon.com

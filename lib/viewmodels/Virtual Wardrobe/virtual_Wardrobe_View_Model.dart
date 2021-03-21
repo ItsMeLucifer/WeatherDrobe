@@ -275,4 +275,87 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     userCollections = await users.doc(auth.currentUser.uid).get();
     notifyListeners();
   }
+
+  final templateNames = [
+    ['hat', 'knit-hat-with-pom-pom', 'men-hat', 'winter-hat'],
+    [
+      'tank-top',
+      'chiffon-suffle-blouse',
+      'collarless-cotton-shirt',
+      'cotton-cardigan',
+      'denim-jacket',
+      'cotton-polo-shirt',
+      'denim-jacket',
+      'denim-shirt',
+      'formal-shirt',
+      'henley-shirt',
+      'hooded-jacket',
+      'jersey-blazer',
+      'leather-biker-jacket',
+      'long-sleeves-t-shirt',
+      'nylon-jacket',
+      'oxford-wave-blazer',
+      'padded-vest',
+      'sweater',
+      't-shirt-with-design',
+      'tank-top',
+      'trench-coat',
+      'v-neck-shirt'
+    ],
+    [
+      'jeans',
+      'boyfriend-low-jean',
+      'chino-shorts',
+      'chinos-pants',
+      'circle-skirt',
+      'denim-shorts',
+      'flare-pants',
+      'harem-pants',
+      'leggins',
+      'oxford-wave-suit-pants',
+      'pants',
+      'pegged-pants',
+      'peplum-skirt-1',
+      'peplum-skirt',
+      'slim-fit-pants',
+      'slit-skirt',
+      'sweatpants',
+      'tulle-skirt'
+    ],
+    [
+      'flip-flops',
+      'ankle-boots',
+      'ballets-flats',
+      'flat-shoes',
+      'gladiator-sandal',
+      'high-heel',
+      'high-heels',
+      'leather-chelsea-boots',
+      'leather-derby-shoe',
+      'leather-shoes',
+      'loafer',
+      'platform-sandals',
+      'rain-boots',
+      'sleepers',
+      'sneaker',
+      'sneakers',
+      'wool-boots'
+    ],
+    [
+      'jumpsuit',
+      'chiffon-dress',
+      'cocktail-dress',
+      'draped-top',
+      'drees',
+      'dress-with-butterfly-sleeves',
+      'dress',
+      'jersey-wrap-dress',
+      'long-bandeau-dress',
+      'long-sleeveless-dress',
+      'lyocell-shirt-dress',
+      'off-the-shoulder-dress',
+      'one-shoulder-dress',
+      'peplum-top'
+    ]
+  ];
 }

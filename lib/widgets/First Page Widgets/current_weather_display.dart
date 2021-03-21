@@ -17,7 +17,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
     const Color primaryColor = Color.fromRGBO(200, 200, 200, 1);
     const Color textColor = Colors.black;
     const String fontFamily = 'Nexa';
-    double dividersWidth = 10;
+    double dividersWidth = 5;
     setJiffyLocale();
     return GestureDetector(
       onTap: () => cdvm.onTap = cdvm.onTap ? false : true,
@@ -50,7 +50,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                             fontFamily: fontFamily),
                       ),
                     ]),
-                    Container(width: 25, height: 1),
+                    Container(width: 20, height: 1),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Column(children: [
@@ -79,7 +79,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 0.0),
                       child: Container(
-                        width: 60,
+                        width: 50,
                         height: 60,
                         child: (cdvm.iconId != null
                                         ? cdvm.iconId.substring(
