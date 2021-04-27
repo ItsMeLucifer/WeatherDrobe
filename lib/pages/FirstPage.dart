@@ -36,69 +36,71 @@ class _FirstPage extends State<FirstPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: SmartRefresher(
-            enablePullDown: true,
-            enablePullUp: false,
-            header: WaterDropHeader(waterDropColor: primaryColor),
-            onRefresh: _onRefresh,
-            onLoading: _onLoading,
-            controller: _refreshController,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  CurrentWeatherDisplay(),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Card(
-                            child: Container(
-                              child: Text(
-                                '⌚',
-                                style: optionStyle,
+    return SafeArea(
+      child: Container(
+          child: SmartRefresher(
+              enablePullDown: true,
+              enablePullUp: false,
+              header: WaterDropHeader(waterDropColor: primaryColor),
+              onRefresh: _onRefresh,
+              onLoading: _onLoading,
+              controller: _refreshController,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CurrentWeatherDisplay(),
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Card(
+                              child: Container(
+                                child: Text(
+                                  '⌚',
+                                  style: optionStyle,
+                                ),
+                                padding: EdgeInsets.all(30),
                               ),
-                              padding: EdgeInsets.all(30),
+                              color: secondaryColor,
                             ),
-                            color: secondaryColor,
-                          ),
-                          Card(
-                            child: Container(
-                              child: Text(
-                                '🌂',
-                                style: optionStyle,
+                            Card(
+                              child: Container(
+                                child: Text(
+                                  '🌂',
+                                  style: optionStyle,
+                                ),
+                                padding: EdgeInsets.all(30),
                               ),
-                              padding: EdgeInsets.all(30),
+                              color: secondaryColor,
                             ),
-                            color: secondaryColor,
-                          ),
-                          Card(
-                            child: Container(
-                              child: Text(
-                                '💍',
-                                style: optionStyle,
+                            Card(
+                              child: Container(
+                                child: Text(
+                                  '💍',
+                                  style: optionStyle,
+                                ),
+                                padding: EdgeInsets.all(30),
                               ),
-                              padding: EdgeInsets.all(30),
+                              color: secondaryColor,
                             ),
-                            color: secondaryColor,
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0),
-                        child: Card(
-                          child: Container(
-                            width: 297,
-                            height: 480,
-                            child: CharacterModel(),
-                          ),
-                          color: primaryColor,
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )));
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Card(
+                            child: Container(
+                              width: 275,
+                              height: 480,
+                              child: CharacterModel(),
+                            ),
+                            color: primaryColor,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ))),
+    );
   }
 }

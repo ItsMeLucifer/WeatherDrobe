@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weatherdrobe/viewmodels/First Page/current_data_view_model.dart';
 import 'package:weatherdrobe/viewmodels/First Page/hourly_forecast_view_model.dart';
+import 'package:weatherdrobe/viewmodels/First%20Page/clothing_chooser.dart';
 import 'package:weatherdrobe/viewmodels/Virtual%20Wardrobe/virtual_Wardrobe_View_Model.dart';
 import 'package:weatherdrobe/viewmodels/firebase/firebase_auth_View_Model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:weatherdrobe/utilities/wrapper.dart';
 import 'package:flutter/services.dart';
+import 'package:weatherdrobe/viewmodels/tools.dart';
 
 final currentData = ChangeNotifierProvider((_) => CurrentDataViewModel());
 // final hourlyData = FutureProvider((_) async {
@@ -20,6 +22,8 @@ final firebaseAuth =
     ChangeNotifierProvider((_) => FireBaseAuthViewModel.instance());
 final virtualWardrobe =
     ChangeNotifierProvider((_) => VirtualWardrobeViewModel());
+final clothingChooser = ChangeNotifierProvider((_) => ClothingChooser());
+final toolsVM = ChangeNotifierProvider((_) => Tools());
 // final firebaseAuth =
 //     ChangeNotifierProvider.autoDispose<FireBaseAuthViewModel>((ref) {pib
 // });

@@ -11,7 +11,7 @@ class ClothesList extends ConsumerWidget {
     const Color secondaryColor = Color.fromRGBO(240, 240, 240, 1);
     const String fontFamily = 'Nexa';
     const double fontSize = 40;
-    const double talesWidth = 70;
+    const double talesWidth = 65;
     if (vwvm.userCollections != null && vwvm.userCollections.exists) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -6,7 +6,7 @@ import 'package:weatherdrobe/viewmodels/First Page/hour_view_model.dart';
 class HourlyForecastViewModel extends ChangeNotifier {
   //HourlyForecastViewModel(this._lat, this._long);
   List<String> ikony = List<String>();
-  List<HourViewModel> _hours;
+  List<HourViewModel> _hours = [];
   List<HourViewModel> get hours => _hours;
   set hours(List<HourViewModel> value) {
     _hours = value;

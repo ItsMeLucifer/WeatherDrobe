@@ -45,7 +45,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
                 onTap: () => _navigateToClothCreator(context),
                 child: Card(
                     child: Container(
-                        width: 400,
+                        width: 390,
                         height: 100,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

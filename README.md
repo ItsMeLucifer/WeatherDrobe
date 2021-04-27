@@ -303,3 +303,4 @@ In the application, apart from using the icons available as standard in flutter,
 - [Umbrella Icon used in App Logo](https://pixabay.com/pl/illustrations/sylwetka-cz%C5%82owieka-parasol-deszcz-5351473/)
 - [Clothing templates](https://www.flaticon.com/packs/beautiful-clothes?word=clothes) made by 'Freepik' from flaticon.com
 - [Face Detection Icon](https://www.flaticon.com/free-icon/face-detection_2706938?term=face&page=1&position=18&page=1&position=18&related_id=2706938&origin=search)  used in Character Model made by 'Freepik' from flaticon.com
+- [Model Graphic](https://www.vecteezy.com/vector-art/133891-free-cartoon-fat-and-slim-woman-and-man-vector) used as Character model, made by xiayamoon from vecteezy.com

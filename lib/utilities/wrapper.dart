@@ -11,6 +11,9 @@ class Wrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final favm = watch(firebaseAuth);
+    final tools = watch(toolsVM);
+    tools.screenWidth = MediaQuery.of(context).size.width;
+    tools.screenHeight = MediaQuery.of(context).size.height;
     switch (favm.status) {
       case Status.Authenticated:
         return BottomNaviBar();
