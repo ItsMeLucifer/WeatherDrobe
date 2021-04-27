@@ -124,12 +124,12 @@ class CharacterModel extends ConsumerWidget {
           //TOP
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(top: 115.0),
+                  padding: const EdgeInsets.only(top: 103.0),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                        width: 90,
-                        height: 90,
+                        width: 170,
+                        height: 170,
                         child: ColorFiltered(
                             colorFilter: ColorFilter.mode(
                                 new Color(
