@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
 import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
 
@@ -57,16 +56,16 @@ class CharacterModel extends ConsumerWidget {
                                     cc.proposals[0].headwear['color'])),
                                 BlendMode.modulate),
                             child: Image.asset(
-                                'images/templates/headwear/${cc.proposals[0].headwear['dir']}.png'))),
+                                'images/templates/headwear/men-hat.png'))),
                   ),
                 )
               : Container(),
           //LEFT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(left: 145.0),
+                  padding: const EdgeInsets.only(bottom: 35, left: 90),
                   child: Align(
-                    alignment: Alignment.bottomLeft,
+                    alignment: Alignment.bottomCenter,
                     child: Container(
                         width: 70,
                         height: 70,
@@ -78,7 +77,7 @@ class CharacterModel extends ConsumerWidget {
                                       cc.proposals[0].footwear['color'])),
                                   BlendMode.modulate),
                               child: Image.asset(
-                                  'images/templates/footwear/${cc.proposals[0].footwear["dir"]}.png')),
+                                  'images/templates/footwear/${cc.proposals[0].footwear['dir']}.png')),
                         )),
                   ),
                 )
@@ -86,26 +85,29 @@ class CharacterModel extends ConsumerWidget {
           //RIGHT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(right: 75.0),
+                  padding: const EdgeInsets.only(bottom: 36, left: 140),
                   child: Align(
-                    alignment: Alignment.bottomRight,
+                    alignment: Alignment.bottomCenter,
                     child: Container(
                         width: 70,
                         height: 70,
-                        child: ColorFiltered(
-                            colorFilter: ColorFilter.mode(
-                                new Color(int.parse(
-                                    cc.proposals[0].footwear['color'])),
-                                BlendMode.modulate),
-                            child: Image.asset(
-                                'images/templates/footwear/${cc.proposals[0].footwear["dir"]}.png'))),
+                        child: Transform(
+                          transform: Matrix4.rotationY(math.pi),
+                          child: ColorFiltered(
+                              colorFilter: ColorFilter.mode(
+                                  new Color(int.parse(
+                                      cc.proposals[0].footwear['color'])),
+                                  BlendMode.modulate),
+                              child: Image.asset(
+                                  'images/templates/footwear/${cc.proposals[0].footwear['dir']}.png')),
+                        )),
                   ),
                 )
               : Container(),
           //BOTTOM
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 115.0),
+                  padding: const EdgeInsets.only(bottom: 110.0),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -142,8 +144,8 @@ class CharacterModel extends ConsumerWidget {
               : Container(),
           cc.notEnoughData
               ? Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text('Please add more clothing to the database'))
+                  alignment: Alignment.bottomLeft,
+                  child: Icon(Icons.error_outline))
               : Container()
         ]),
       );

@@ -296,6 +296,9 @@ void getGarments(FirebaseAuth auth) async {
     notifyListeners();
   }
 ```
+### Algorithm
+In the app, the most important factor is the algorithm that suggests clothes based on weather conditions. Below is a simplified flowchart of the clothing suggestion and display. In the diagram, the current temperature represents the median temperature for the next X hours (for now it's 15 hours).
+![Clothing Proposal Algorithm Schema](./github/img/Clothing_Proposal_Algorithm.png)
 ### Graphic Attribution
 
 In the application, apart from using the icons available as standard in flutter, and the usual emoji - I also used icons made available on the internet for free use. Below I present all the information about the authors of the graphics I used for this project.
