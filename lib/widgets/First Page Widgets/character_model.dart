@@ -25,8 +25,10 @@ class CharacterModel extends ConsumerWidget {
           vwvm.footwear,
           vwvm.costumes,
           tools.calculateTheMedian(temperatures),
-          [false, false, false, false]);
+          [false, false, false, false],
+          false);
     }
+    print(cc.amountOfFreeClothing);
     if (vwvm.userCollections != null && vwvm.userCollections.exists) {
       return SafeArea(
         child: Stack(children: [
@@ -52,11 +54,12 @@ class CharacterModel extends ConsumerWidget {
                         height: 90,
                         child: ColorFiltered(
                             colorFilter: ColorFilter.mode(
-                                new Color(int.parse(
-                                    cc.proposals[0].headwear['color'])),
+                                new Color(int.parse(cc
+                                    .proposals[cc.currentModelIndex]
+                                    .headwear['color'])),
                                 BlendMode.modulate),
                             child: Image.asset(
-                                'images/templates/headwear/men-hat.png'))),
+                                'images/templates/headwear/${cc.proposals[cc.currentModelIndex].headwear['dir']}.png'))),
                   ),
                 )
               : Container(),
@@ -73,11 +76,12 @@ class CharacterModel extends ConsumerWidget {
                           transform: Matrix4.rotationY(math.pi),
                           child: ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                  new Color(int.parse(
-                                      cc.proposals[0].footwear['color'])),
+                                  new Color(int.parse(cc
+                                      .proposals[cc.currentModelIndex]
+                                      .footwear['color'])),
                                   BlendMode.modulate),
                               child: Image.asset(
-                                  'images/templates/footwear/${cc.proposals[0].footwear['dir']}.png')),
+                                  'images/templates/footwear/${cc.proposals[cc.currentModelIndex].footwear['dir']}.png')),
                         )),
                   ),
                 )
@@ -95,11 +99,12 @@ class CharacterModel extends ConsumerWidget {
                           transform: Matrix4.rotationY(math.pi),
                           child: ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                  new Color(int.parse(
-                                      cc.proposals[0].footwear['color'])),
+                                  new Color(int.parse(cc
+                                      .proposals[cc.currentModelIndex]
+                                      .footwear['color'])),
                                   BlendMode.modulate),
                               child: Image.asset(
-                                  'images/templates/footwear/${cc.proposals[0].footwear['dir']}.png')),
+                                  'images/templates/footwear/${cc.proposals[cc.currentModelIndex].footwear['dir']}.png')),
                         )),
                   ),
                 )
@@ -115,11 +120,12 @@ class CharacterModel extends ConsumerWidget {
                         height: 160,
                         child: ColorFiltered(
                             colorFilter: ColorFilter.mode(
-                                new Color(
-                                    int.parse(cc.proposals[0].bottom['color'])),
+                                new Color(int.parse(cc
+                                    .proposals[cc.currentModelIndex]
+                                    .bottom['color'])),
                                 BlendMode.modulate),
                             child: Image.asset(
-                                'images/templates/bottoms/${cc.proposals[0].bottom["dir"]}.png'))),
+                                'images/templates/bottoms/${cc.proposals[cc.currentModelIndex].bottom["dir"]}.png'))),
                   ),
                 )
               : Container(),
@@ -134,14 +140,53 @@ class CharacterModel extends ConsumerWidget {
                         height: 170,
                         child: ColorFiltered(
                             colorFilter: ColorFilter.mode(
-                                new Color(
-                                    int.parse(cc.proposals[0].top['color'])),
+                                new Color(int.parse(cc
+                                    .proposals[cc.currentModelIndex]
+                                    .top['color'])),
                                 BlendMode.modulate),
                             child: Image.asset(
-                                'images/templates/tops/${cc.proposals[0].top["dir"]}.png'))),
+                                'images/templates/tops/${cc.proposals[cc.currentModelIndex].top["dir"]}.png'))),
                   ),
                 )
               : Container(),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                onTap: () {
+                  if (cc.currentModelIndex > 0) {
+                    cc.currentModelIndex--;
+                  }
+                },
+                child: Container(
+                  height: 300,
+                  width: 70,
+                  child: Icon(Icons.arrow_back_ios,
+                      color: cc.currentModelIndex > 0
+                          ? Colors.black
+                          : Colors.grey),
+                ),
+              )),
+          Align(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
+                onTap: () {
+                  if (cc.currentModelIndex < cc.proposals.length - 1) {
+                    cc.currentModelIndex++;
+                  }
+                  if (cc.amountOfFreeClothing > 0) {
+                    //CREATE NEW MODELS, BUT IN THE FUNCTION USE PREF_LISTS NOT LISTS FROM THE FIREBASE
+                    cc.currentModelIndex++;
+                  }
+                },
+                child: Container(
+                    height: 300,
+                    width: 70,
+                    child: Icon(Icons.arrow_forward_ios,
+                        color: cc.currentModelIndex < cc.proposals.length - 1 ||
+                                cc.amountOfFreeClothing > 0
+                            ? Colors.black
+                            : Colors.grey)),
+              )),
           cc.notEnoughData
               ? Align(
                   alignment: Alignment.bottomLeft,

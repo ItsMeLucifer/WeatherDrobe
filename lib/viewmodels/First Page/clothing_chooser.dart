@@ -38,6 +38,19 @@ class ClothingChooser extends ChangeNotifier {
   List<Clothing> proposals = [];
   bool _notEnoughData = false;
   bool get notEnoughData => _notEnoughData;
+  List<QueryDocumentSnapshot> _prefHeadwear = [];
+  List<QueryDocumentSnapshot> _prefCostumes = [];
+  List<QueryDocumentSnapshot> _prefFootwear = [];
+  List<QueryDocumentSnapshot> _prefTops = [];
+  List<QueryDocumentSnapshot> _prefBottoms = [];
+  int amountOfFreeClothing = 0;
+  int _currentModelIndex = 0;
+  int get currentModelIndex => _currentModelIndex;
+  set currentModelIndex(int value) {
+    _currentModelIndex = value;
+    notifyListeners();
+  }
+
   void chooseClothing(
       List<QueryDocumentSnapshot> headwear,
       List<QueryDocumentSnapshot> tops,
@@ -45,69 +58,108 @@ class ClothingChooser extends ChangeNotifier {
       List<QueryDocumentSnapshot> footwear,
       List<QueryDocumentSnapshot> costumes,
       double allDayAverageTemperature,
-      List<bool> additionalConditions) {
-    List<QueryDocumentSnapshot> prefHeadwear = headwear
-        .where((hat) =>
-            (bestWeathersTemperatureForCloth
-                        .values[hat['temperature'].toInt()].clothTemperature -
-                    allDayAverageTemperature)
-                .abs() <
-            10)
-        .toList();
-    List<QueryDocumentSnapshot> prefCostumes = costumes
-        .where((costume) =>
-            (bestWeathersTemperatureForCloth
-                        .values[costume['temperature'].toInt()]
-                        .clothTemperature -
-                    allDayAverageTemperature)
-                .abs() <
-            10)
-        .toList();
-    List<QueryDocumentSnapshot> prefFootwear = footwear
-        .where((shoes) =>
-            (bestWeathersTemperatureForCloth
-                        .values[shoes['temperature'].toInt()].clothTemperature -
-                    allDayAverageTemperature)
-                .abs() <
-            10)
-        .toList();
-    List<QueryDocumentSnapshot> prefTops = tops
-        .where((top) =>
-            (bestWeathersTemperatureForCloth
-                        .values[top['temperature'].toInt()].clothTemperature -
-                    allDayAverageTemperature)
-                .abs() <
-            10)
-        .toList();
-    List<QueryDocumentSnapshot> prefBottoms = bottoms
-        .where((bottom) =>
-            (bestWeathersTemperatureForCloth
-                        .values[bottom['temperature'].toInt()]
-                        .clothTemperature -
-                    allDayAverageTemperature)
-                .abs() <
-            10)
-        .toList();
-    if (prefCostumes.isEmpty) {
-      if (prefHeadwear.isEmpty ||
-          prefTops.isEmpty ||
-          prefBottoms.isEmpty ||
-          prefFootwear.isEmpty) {
-        _notEnoughData = true;
-      } else {
-        proposals.add(new Clothing(prefHeadwear[0], prefTops[0], prefBottoms[0],
-            prefFootwear[0], false));
-      }
-    } else {
-      if (prefHeadwear.isNotEmpty && prefFootwear.isNotEmpty) {
-        proposals.add(new Clothing(
-            prefHeadwear[0], prefCostumes[0], null, prefFootwear[0], true));
-      } else {
-        _notEnoughData = true;
-      }
+      List<bool> additionalConditions,
+      bool getMoreModels) {
+    if (!getMoreModels) {
+      if (proposals.isNotEmpty) return;
+      _prefHeadwear = headwear
+          .where((hat) =>
+              (bestWeathersTemperatureForCloth
+                          .values[hat['temperature'].toInt()].clothTemperature -
+                      allDayAverageTemperature)
+                  .abs() <
+              10)
+          .toList();
+      _prefCostumes = costumes
+          .where((costume) =>
+              (bestWeathersTemperatureForCloth
+                          .values[costume['temperature'].toInt()]
+                          .clothTemperature -
+                      allDayAverageTemperature)
+                  .abs() <
+              10)
+          .toList();
+      _prefFootwear = footwear
+          .where((shoes) =>
+              (bestWeathersTemperatureForCloth
+                          .values[shoes['temperature'].toInt()]
+                          .clothTemperature -
+                      allDayAverageTemperature)
+                  .abs() <
+              10)
+          .toList();
+      _prefTops = tops
+          .where((top) =>
+              (bestWeathersTemperatureForCloth
+                          .values[top['temperature'].toInt()].clothTemperature -
+                      allDayAverageTemperature)
+                  .abs() <
+              10)
+          .toList();
+      _prefBottoms = bottoms
+          .where((bottom) =>
+              (bestWeathersTemperatureForCloth
+                          .values[bottom['temperature'].toInt()]
+                          .clothTemperature -
+                      allDayAverageTemperature)
+                  .abs() <
+              10)
+          .toList();
+      print('prefss: ' + _prefBottoms[0]['dir'] + _prefBottoms[1]['dir']);
     }
-    proposals.add(
-        new Clothing(headwear[0], tops[0], bottoms[0], footwear[0], false));
+    amountOfFreeClothing = _pickMin([
+      _prefTops.length,
+      _prefBottoms.length,
+      _prefFootwear.length,
+      _prefHeadwear.length,
+    ]);
+    int _amountOfModels = 0;
+    while (amountOfFreeClothing > 0) {
+      proposals.add(_createModel());
+      amountOfFreeClothing--;
+      _amountOfModels++;
+      if (_amountOfModels > 2) break;
+    }
+    print('diff' + proposals[0].bottom['dir'] + proposals[1].bottom['dir']);
     notifyListeners();
+  }
+
+  int _pickMin(List<int> array) {
+    array.sort((a, b) => a - b);
+    return array[0];
+  }
+
+  Clothing _createModel() {
+    List<QueryDocumentSnapshot> temporaryVault = [];
+    if (_prefCostumes.isNotEmpty) {
+      temporaryVault = [_prefHeadwear[0], _prefCostumes[0], _prefFootwear[0]];
+      _prefHeadwear.remove(0);
+      _prefCostumes.remove(0);
+      _prefFootwear.remove(0);
+      print('COSTUME');
+      return new Clothing(
+          temporaryVault[0], temporaryVault[1], null, temporaryVault[2], true);
+    }
+    temporaryVault = [
+      _prefHeadwear[0],
+      _prefTops[0],
+      _prefBottoms[0],
+      _prefFootwear[0]
+    ];
+    print('added: ' +
+        _prefHeadwear[0]['dir'] +
+        ' ' +
+        _prefTops[0]['dir'] +
+        ' ' +
+        _prefBottoms[0]['dir'] +
+        ' ' +
+        _prefFootwear[0]['dir']);
+    _prefHeadwear.remove(0);
+    _prefTops.remove(0);
+    _prefBottoms.remove(0);
+    _prefFootwear.remove(0);
+
+    return new Clothing(temporaryVault[0], temporaryVault[1], temporaryVault[2],
+        temporaryVault[3], false);
   }
 }

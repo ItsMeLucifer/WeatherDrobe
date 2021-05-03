@@ -37,7 +37,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                         firstCapital(Jiffy().format("EEEE").toString()),
                         style: TextStyle(
                             color: textColor,
-                            fontSize: 32,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                             fontFamily: fontFamily),
                       ),
@@ -50,7 +50,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                             fontFamily: fontFamily),
                       ),
                     ]),
-                    Container(width: 20, height: 1),
+                    Container(width: 10, height: 1),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Column(children: [
@@ -69,7 +69,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                             (cdvm.temperature.toString() ?? "10.5") + "°C",
                             style: TextStyle(
                                 color: textColor,
-                                fontSize: 32,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: fontFamily),
                           ),
