@@ -296,9 +296,31 @@ void getGarments(FirebaseAuth auth) async {
     notifyListeners();
   }
 ```
-### Algorithm
-In the app, the most important factor is the algorithm that suggests clothes based on weather conditions. Below is a simplified flowchart of the clothing suggestion and display. In the diagram, the current temperature represents the median temperature for the next X hours (for now it's 15 hours).
+## Algorithm
+In the app, the most important factor is the algorithm that suggests clothes based on weather conditions. Below is a simplified flowchart of the clothing suggestion and display. In the diagram, the current temperature represents the median temperature for the next X hours (for now it's 10 hours).
 ![Clothing Proposal Algorithm Schema](./github/img/Clothing_Proposal_Algorithm.png)
+### Creating a Model
+When creating a new Clothing object, the program checks what weather conditions will occur in the next X hours. To do this, the weather ID that OpeWeatherMap passes to us via its API is checked. The weather ID is a three-digit code that describes the exact weather phenomenon. There are seven main groups of weather conditions, which are subdivided into minor, more accurate weather descriptions. Below We present the main weather groups [Full description of Weather Groups](https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2)
+
+| Weather Group | Description  |
+| ------------- | ------------ |
+| 2XX           | Thunderstorm |
+| 3XX           | Drizzle      |
+| 5XX           | Rain         |
+| 6XX           | Snow         |
+| 7XX           | Atmosphere   |
+| 800           | Clear Sky    |
+| 80X           | Clouds       |
+
+Weatherdrobe details four types of weather phenomena: Rain, Snow, Strong Wind and Strong Sun, so the application analyses the received data from the OpenWeatherMap server as follows:
+| Weather Condition | ID          |
+| ----------------- | ----------- |
+| Rain              | [200 - 531] |
+| Snow              | [600 - 622] |
+| Wind              | 771, 781    |
+| Sun               | 800         |
+
+When creating a model, the algorithm will prioritise those garments that had compatibility with a given weather condition ticked during creation. In this way, on a rainy day, the algorithm will suggest a jacket first and clothes that are only suitable because of the temperature will appear in the next models.
 ### Graphic Attribution
 
 In the application, apart from using the icons available as standard in flutter, and the usual emoji - I also used icons made available on the internet for free use. Below I present all the information about the authors of the graphics I used for this project.

@@ -24,4 +24,8 @@ class HourViewModel {
   int get time {
     return hourly.time;
   }
+
+  int get weatherId {
+    return hourly.weatherId;
+  }
 }

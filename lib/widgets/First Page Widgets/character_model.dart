@@ -12,12 +12,20 @@ class CharacterModel extends ConsumerWidget {
     final favm = watch(firebaseAuth);
     final tools = watch(toolsVM);
     List<double> temperatures = List<double>();
-
+    List<double> weatherIds = List<double>();
     if (vwvm.headwear.isNotEmpty &&
         vwvm.tops.isNotEmpty &&
         vwvm.bottoms.isNotEmpty &&
         vwvm.footwear.isNotEmpty) {
-      hfvm.hours.forEach((hour) => temperatures.add(hour.temperature));
+      int tempCounter = 0;
+      hfvm.hours.forEach((hour) => {
+            tempCounter++,
+            if (tempCounter < 10)
+              {
+                temperatures.add(hour.temperature),
+                weatherIds.add(hour.weatherId.toDouble())
+              }
+          });
       cc.chooseClothing(
           vwvm.headwear,
           vwvm.tops,
@@ -25,10 +33,9 @@ class CharacterModel extends ConsumerWidget {
           vwvm.footwear,
           vwvm.costumes,
           tools.calculateTheMedian(temperatures),
-          [false, false, false, false],
+          tools.calculateTheMedian(weatherIds).toInt(),
           false);
     }
-    print(cc.amountOfFreeClothing);
     if (vwvm.userCollections != null && vwvm.userCollections.exists) {
       return SafeArea(
         child: Stack(children: [
@@ -44,6 +51,13 @@ class CharacterModel extends ConsumerWidget {
                         'images/character_model/male_character_model.png'))),
           ),
           //HEADWEAR
+          Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                    Text('${cc.currentModelIndex + 1}/${cc.proposals.length}'),
+              )),
           cc.proposals.isNotEmpty
               ? Padding(
                   padding: const EdgeInsets.only(top: 15.0),
@@ -155,6 +169,7 @@ class CharacterModel extends ConsumerWidget {
                 onTap: () {
                   if (cc.currentModelIndex > 0) {
                     cc.currentModelIndex--;
+                    print('INDEX: ' + cc.currentModelIndex.toString());
                   }
                 },
                 child: Container(
@@ -172,10 +187,12 @@ class CharacterModel extends ConsumerWidget {
                 onTap: () {
                   if (cc.currentModelIndex < cc.proposals.length - 1) {
                     cc.currentModelIndex++;
-                  }
-                  if (cc.amountOfFreeClothing > 0) {
+                  } else if (cc.amountOfFreeClothing > 0) {
                     //CREATE NEW MODELS, BUT IN THE FUNCTION USE PREF_LISTS NOT LISTS FROM THE FIREBASE
+                    cc.chooseClothing(
+                        null, null, null, null, null, null, null, true);
                     cc.currentModelIndex++;
+                    print('INDEX: ' + cc.currentModelIndex.toString());
                   }
                 },
                 child: Container(

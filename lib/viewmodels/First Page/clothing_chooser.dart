@@ -51,6 +51,12 @@ class ClothingChooser extends ChangeNotifier {
     notifyListeners();
   }
 
+  Map<String, bool> _additionalConditions = {
+    'Rain': false,
+    'Snow': false,
+    'Wind': false,
+    'Sun': false
+  };
   void chooseClothing(
       List<QueryDocumentSnapshot> headwear,
       List<QueryDocumentSnapshot> tops,
@@ -58,10 +64,12 @@ class ClothingChooser extends ChangeNotifier {
       List<QueryDocumentSnapshot> footwear,
       List<QueryDocumentSnapshot> costumes,
       double allDayAverageTemperature,
-      List<bool> additionalConditions,
+      int additionalConditions,
+      //rain snow wind sun
       bool getMoreModels) {
     if (!getMoreModels) {
       if (proposals.isNotEmpty) return;
+      _additionalConditions = _checkAdditionalConditions(additionalConditions);
       _prefHeadwear = headwear
           .where((hat) =>
               (bestWeathersTemperatureForCloth
@@ -105,7 +113,6 @@ class ClothingChooser extends ChangeNotifier {
                   .abs() <
               10)
           .toList();
-      print('prefss: ' + _prefBottoms[0]['dir'] + _prefBottoms[1]['dir']);
     }
     amountOfFreeClothing = _pickMin([
       _prefTops.length,
@@ -120,7 +127,6 @@ class ClothingChooser extends ChangeNotifier {
       _amountOfModels++;
       if (_amountOfModels > 2) break;
     }
-    print('diff' + proposals[0].bottom['dir'] + proposals[1].bottom['dir']);
     notifyListeners();
   }
 
@@ -129,36 +135,97 @@ class ClothingChooser extends ChangeNotifier {
     return array[0];
   }
 
+//RAIN: 200 - 531
+//SNOW: 600 - 622
+//WIND: 781, 771
+//SUN: 800
+  Map<String, bool> _checkAdditionalConditions(int additionalConditions) {
+    if (200 <= additionalConditions && additionalConditions <= 531) {
+      //return {"Rain": true, "Snow": false, "Wind": false, "Sun": false};
+      return {"rain": true};
+    }
+    if (600 <= additionalConditions && additionalConditions <= 622) {
+      return {"snow": true};
+    }
+    if (additionalConditions == 781 && additionalConditions == 771) {
+      return {"wind": true};
+    }
+    if (additionalConditions == 800) {
+      return {"sun": true};
+    }
+    return {};
+  }
+
   Clothing _createModel() {
     List<QueryDocumentSnapshot> temporaryVault = [];
+    Map<String, int> prefIndex = {
+      'Headwear': 0,
+      'Tops': 0,
+      'Bottoms': 0,
+      'Footwear': 0,
+      'Costumes': 0
+    };
+    if (_additionalConditions.isNotEmpty) {
+      _additionalConditions.forEach((key, value) {
+        int counter = 0;
+        _prefHeadwear.forEach((headwear) {
+          if (headwear['$key'] == true) {
+            prefIndex['Headwear'] = counter;
+          }
+          counter++;
+        });
+        counter = 0;
+        _prefTops.forEach((top) {
+          if (top['$key'] == true) {
+            prefIndex['Tops'] = counter;
+          }
+          counter++;
+        });
+        counter = 0;
+        _prefBottoms.forEach((bottom) {
+          if (bottom['$key'] == true) {
+            prefIndex['Bottoms'] = counter;
+          }
+          counter++;
+        });
+        counter = 0;
+        _prefFootwear.forEach((footwear) {
+          if (footwear['$key'] == true) {
+            prefIndex['Footwear'] = counter;
+          }
+          counter++;
+        });
+        counter = 0;
+        _prefCostumes.forEach((costume) {
+          if (costume['$key'] == true) {
+            prefIndex['Costumes'] = counter;
+          }
+          counter++;
+        });
+      });
+    }
     if (_prefCostumes.isNotEmpty) {
-      temporaryVault = [_prefHeadwear[0], _prefCostumes[0], _prefFootwear[0]];
-      _prefHeadwear.remove(0);
-      _prefCostumes.remove(0);
-      _prefFootwear.remove(0);
-      print('COSTUME');
+      temporaryVault = [
+        _prefHeadwear[prefIndex['Headwear']],
+        _prefCostumes[prefIndex['Costumes']],
+        _prefFootwear[prefIndex['Footwear']]
+      ];
+      _prefHeadwear.remove(prefIndex['Headwear']);
+      _prefCostumes.remove(prefIndex['Costumes']);
+      _prefFootwear.remove(prefIndex['Footwear']);
       return new Clothing(
           temporaryVault[0], temporaryVault[1], null, temporaryVault[2], true);
     }
     temporaryVault = [
-      _prefHeadwear[0],
-      _prefTops[0],
-      _prefBottoms[0],
-      _prefFootwear[0]
+      _prefHeadwear[prefIndex['Headwear']],
+      _prefTops[prefIndex['Tops']],
+      _prefBottoms[prefIndex['Bottoms']],
+      _prefFootwear[prefIndex['Footwear']]
     ];
-    print('added: ' +
-        _prefHeadwear[0]['dir'] +
-        ' ' +
-        _prefTops[0]['dir'] +
-        ' ' +
-        _prefBottoms[0]['dir'] +
-        ' ' +
-        _prefFootwear[0]['dir']);
-    _prefHeadwear.remove(0);
-    _prefTops.remove(0);
-    _prefBottoms.remove(0);
-    _prefFootwear.remove(0);
-
+    _prefHeadwear.removeAt(prefIndex['Headwear']);
+    _prefTops.removeAt(prefIndex['Tops']);
+    _prefBottoms.removeAt(prefIndex['Bottoms']);
+    _prefFootwear.removeAt(prefIndex['Footwear']);
     return new Clothing(temporaryVault[0], temporaryVault[1], temporaryVault[2],
         temporaryVault[3], false);
   }
