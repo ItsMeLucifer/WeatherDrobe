@@ -133,7 +133,7 @@ class ClothesList extends ConsumerWidget {
   }
 }
 
-Widget clothes(var array, ScopedReader watch) {
+Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch) {
   const String fontFamily = 'Nexa';
   final vwvm = watch(virtualWardrobe);
   final favm = watch(firebaseAuth);
@@ -234,20 +234,10 @@ Widget clothes(var array, ScopedReader watch) {
                               children: <Widget>[
                                 FlatButton(
                                     onPressed: () {
-                                      //EDIT FIREBASE CLOTHING
-                                    },
-                                    child: Text(
-                                      'Edit',
-                                      style: TextStyle(
-                                          fontFamily: fontFamily,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey),
-                                    )),
-                                FlatButton(
-                                    onPressed: () {
                                       Navigator.of(context).pop();
                                       vwvm.deleteGarment(
                                           array[index].id, favm.auth);
+                                      vwvm.getGarments(favm.auth);
                                       //DELETE CLOTHING FROM FIREBASE
                                     },
                                     child: Text(
