@@ -164,6 +164,14 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<QueryDocumentSnapshot> getCurrentGarmentsList() {
+    if (actualClothType == 0) return headwear;
+    if (actualClothType == 1) return tops;
+    if (actualClothType == 2) return bottoms;
+    if (actualClothType == 3) return footwear;
+    if (actualClothType == 4) return costumes;
+  }
+
   List<QueryDocumentSnapshot> _headwear = [];
   List<QueryDocumentSnapshot> get headwear => _headwear;
   set headwear(List<QueryDocumentSnapshot> value) {
@@ -274,6 +282,15 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     temp = [];
     userCollections = await users.doc(auth.currentUser.uid).get();
     notifyListeners();
+  }
+
+  void deleteGarment(String documentId, FirebaseAuth auth) async {
+    print("DocumentID: " + documentId);
+    await users
+        .doc(auth.currentUser.uid)
+        .collection(getClothTypeName)
+        .doc(documentId)
+        .delete();
   }
 
   final templateNames = [

@@ -32,7 +32,7 @@ class CharacterModel extends ConsumerWidget {
           vwvm.bottoms,
           vwvm.footwear,
           vwvm.costumes,
-          tools.calculateTheMedian(temperatures),
+          10,
           tools.calculateTheMedian(weatherIds).toInt(),
           false);
     }

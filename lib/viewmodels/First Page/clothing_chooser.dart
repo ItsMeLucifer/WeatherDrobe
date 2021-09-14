@@ -140,6 +140,7 @@ class ClothingChooser extends ChangeNotifier {
 //WIND: 781, 771
 //SUN: 800
   Map<String, bool> _checkAdditionalConditions(int additionalConditions) {
+    //poprawic na const wartosci
     if (200 <= additionalConditions && additionalConditions <= 531) {
       //return {"Rain": true, "Snow": false, "Wind": false, "Sun": false};
       return {"rain": true};

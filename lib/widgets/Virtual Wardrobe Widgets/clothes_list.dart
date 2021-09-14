@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ClothesList extends ConsumerWidget {
   @override
@@ -122,18 +123,7 @@ class ClothesList extends ConsumerWidget {
               ],
             ),
           ),
-          //Interim solution for test purposes, code will be rewritten for optimization
-          vwvm.actualClothType == 0
-              ? clothes(vwvm.headwear, vwvm)
-              : vwvm.actualClothType == 1
-                  ? clothes(vwvm.tops, vwvm)
-                  : vwvm.actualClothType == 2
-                      ? clothes(vwvm.bottoms, vwvm)
-                      : vwvm.actualClothType == 3
-                          ? clothes(vwvm.footwear, vwvm)
-                          : vwvm.actualClothType == 4
-                              ? clothes(vwvm.costumes, vwvm)
-                              : Container()
+          clothes(vwvm.getCurrentGarmentsList(), watch)
         ],
       );
     } else {
@@ -143,8 +133,10 @@ class ClothesList extends ConsumerWidget {
   }
 }
 
-Widget clothes(var array, var vwvm) {
+Widget clothes(var array, ScopedReader watch) {
   const String fontFamily = 'Nexa';
+  final vwvm = watch(virtualWardrobe);
+  final favm = watch(firebaseAuth);
   if (array != null || array.length != 0) {
     return GridView.builder(
         shrinkWrap: true,
@@ -253,6 +245,9 @@ Widget clothes(var array, var vwvm) {
                                     )),
                                 FlatButton(
                                     onPressed: () {
+                                      Navigator.of(context).pop();
+                                      vwvm.deleteGarment(
+                                          array[index].id, favm.auth);
                                       //DELETE CLOTHING FROM FIREBASE
                                     },
                                     child: Text(
@@ -260,7 +255,7 @@ Widget clothes(var array, var vwvm) {
                                       style: TextStyle(
                                           fontFamily: fontFamily,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.grey),
+                                          color: Colors.black),
                                     )),
                                 FlatButton(
                                     onPressed: () {
