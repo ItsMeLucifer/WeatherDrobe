@@ -8,9 +8,7 @@ class ClothesList extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
     final favm = watch(firebaseAuth);
-    const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
-    const Color secondaryColor = Color.fromRGBO(240, 240, 240, 1);
-    const String fontFamily = 'Nexa';
+    final tools = watch(toolsVM);
     const double fontSize = 40;
     const double talesWidth = 65;
     if (vwvm.userCollections != null && vwvm.userCollections.exists) {
@@ -33,12 +31,12 @@ class ClothesList extends ConsumerWidget {
                             child: Text(
                           '👒',
                           style: TextStyle(
-                              fontFamily: fontFamily, fontSize: fontSize),
+                              fontFamily: tools.fontFamily, fontSize: fontSize),
                           textAlign: TextAlign.center,
                         ))),
                     color: vwvm.actualClothType == 0
-                        ? primaryColor
-                        : secondaryColor,
+                        ? tools.secondaryColor
+                        : tools.tetriaryColor,
                   ),
                 ),
                 GestureDetector(
@@ -53,12 +51,12 @@ class ClothesList extends ConsumerWidget {
                             child: Text(
                           '👗',
                           style: TextStyle(
-                              fontFamily: fontFamily, fontSize: fontSize),
+                              fontFamily: tools.fontFamily, fontSize: fontSize),
                           textAlign: TextAlign.center,
                         ))),
                     color: vwvm.actualClothType == 4
-                        ? primaryColor
-                        : secondaryColor,
+                        ? tools.secondaryColor
+                        : tools.tetriaryColor,
                   ),
                 ),
                 GestureDetector(
@@ -73,12 +71,13 @@ class ClothesList extends ConsumerWidget {
                               child: Text(
                             '👕',
                             style: TextStyle(
-                                fontFamily: fontFamily, fontSize: fontSize),
+                                fontFamily: tools.fontFamily,
+                                fontSize: fontSize),
                             textAlign: TextAlign.center,
                           ))),
                       color: vwvm.actualClothType == 1
-                          ? primaryColor
-                          : secondaryColor),
+                          ? tools.secondaryColor
+                          : tools.tetriaryColor),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -92,12 +91,12 @@ class ClothesList extends ConsumerWidget {
                             child: Text(
                           '👖',
                           style: TextStyle(
-                              fontFamily: fontFamily, fontSize: fontSize),
+                              fontFamily: tools.fontFamily, fontSize: fontSize),
                           textAlign: TextAlign.center,
                         ))),
                     color: vwvm.actualClothType == 2
-                        ? primaryColor
-                        : secondaryColor,
+                        ? tools.secondaryColor
+                        : tools.tetriaryColor,
                   ),
                 ),
                 GestureDetector(
@@ -112,12 +111,12 @@ class ClothesList extends ConsumerWidget {
                             child: Text(
                           '👟',
                           style: TextStyle(
-                              fontFamily: fontFamily, fontSize: fontSize),
+                              fontFamily: tools.fontFamily, fontSize: fontSize),
                           textAlign: TextAlign.center,
                         ))),
                     color: vwvm.actualClothType == 3
-                        ? primaryColor
-                        : secondaryColor,
+                        ? tools.secondaryColor
+                        : tools.tetriaryColor,
                   ),
                 ),
               ],

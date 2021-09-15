@@ -10,8 +10,7 @@ class HourlyForecastListDisplay extends ConsumerWidget {
     final hfvm = context.read(hourlyData);
     hfvm.hours = fixingAList(hfvm.hours);
     hfvm.icons = fixingAList(hfvm.icons);
-    const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
-    const Color textColor = Colors.black;
+    final tools = watch(toolsVM);
     return Container(
       child: ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -41,9 +40,9 @@ class HourlyForecastListDisplay extends ConsumerWidget {
                   "" +
                       Jiffy(jiffy).format("HH:mm").toString() +
                       " 🕒    ${cutTheTemperature(hour.temperature)}°C🌡️    ${fixedPropPercents(hour.propability)}% ☔       ${firstCapital(hour.description)}",
-                  style: TextStyle(fontSize: 14, color: textColor)),
+                  style: TextStyle(fontSize: 14, color: tools.textColor)),
             ),
-            color: primaryColor,
+            color: tools.secondaryColor,
           );
         },
       ),

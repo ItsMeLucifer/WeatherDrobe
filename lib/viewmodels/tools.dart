@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Tools extends ChangeNotifier {
   double calculateTheMedian(List<double> hours) {
@@ -10,7 +11,17 @@ class Tools extends ChangeNotifier {
         return hours[hours.length ~/ 2];
       }
     }
+    return 0.0;
   }
+
+  //Kosmetyka
+  Color get primaryColor => Color.fromRGBO(200, 200, 200, 1);
+  Color get secondaryColor => Color.fromRGBO(220, 220, 220, 1);
+  Color get tetriaryColor => Color.fromRGBO(240, 240, 240, 1);
+  Color get textColor => Colors.black;
+  String get fontFamily => 'Nexa';
+  //--Cloth Creator
+  Color get borderColor => Color.fromRGBO(72, 67, 73, 0.3);
 
   double _screenWidth;
   double get screenWidth => _screenWidth;

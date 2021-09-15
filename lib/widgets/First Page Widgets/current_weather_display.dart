@@ -14,9 +14,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final cdvm = watch(currentData);
-    const Color primaryColor = Color.fromRGBO(200, 200, 200, 1);
-    const Color textColor = Colors.black;
-    const String fontFamily = 'Nexa';
+    final tools = watch(toolsVM);
     double dividersWidth = 5;
     setJiffyLocale();
     return GestureDetector(
@@ -24,7 +22,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
       child: Stack(children: [
         Card(
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: primaryColor, width: 1),
+            side: BorderSide(color: tools.primaryColor, width: 1),
           ),
           child: Column(children: [
             Container(
@@ -36,18 +34,18 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                       Text(
                         firstCapital(Jiffy().format("EEEE").toString()),
                         style: TextStyle(
-                            color: textColor,
+                            color: tools.textColor,
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            fontFamily: fontFamily),
+                            fontFamily: tools.fontFamily),
                       ),
                       Text(
                         Jiffy().format("d.MM").toString(),
                         style: TextStyle(
-                            color: textColor,
+                            color: tools.textColor,
                             fontSize: 27,
                             fontWeight: FontWeight.bold,
-                            fontFamily: fontFamily),
+                            fontFamily: tools.fontFamily),
                       ),
                     ]),
                     Container(width: 10, height: 1),
@@ -58,20 +56,20 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                           child: Text(
                             firstCapital(cdvm.description ?? "clouds"),
                             style: TextStyle(
-                                color: textColor,
+                                color: tools.textColor,
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: fontFamily),
+                                fontFamily: tools.fontFamily),
                           ),
                         ),
                         Container(
                           child: Text(
                             (cdvm.temperature.toString() ?? "10.5") + "°C",
                             style: TextStyle(
-                                color: textColor,
+                                color: tools.textColor,
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: fontFamily),
+                                fontFamily: tools.fontFamily),
                           ),
                         ),
                       ]),
@@ -114,7 +112,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                   )
                 : Container(),
           ]),
-          color: primaryColor,
+          color: tools.primaryColor,
         ),
         Padding(
             padding: const EdgeInsets.only(top: 85.0, left: 4, right: 4),
@@ -123,7 +121,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
               height: 45,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: primaryColor,
+                color: tools.primaryColor,
               ),
             )),
       ]),

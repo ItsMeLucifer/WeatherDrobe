@@ -7,6 +7,7 @@ class ClothColorPicker extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
+    final tools = watch(toolsVM);
     return Scaffold(
       body: Column(
         children: [
@@ -19,7 +20,7 @@ class ClothColorPicker extends ConsumerWidget {
                 'Outfit Creator',
                 style: TextStyle(
                     fontSize: 60,
-                    fontFamily: 'Nexa',
+                    fontFamily: tools.fontFamily,
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.left,
               ),
@@ -32,7 +33,7 @@ class ClothColorPicker extends ConsumerWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Color',
-                style: TextStyle(fontSize: 30, fontFamily: 'Nexa'),
+                style: TextStyle(fontSize: 30, fontFamily: tools.fontFamily),
               ),
             )),
           ),

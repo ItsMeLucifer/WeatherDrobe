@@ -6,10 +6,9 @@ class ClothTemperatureSetter extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
-    Color textColor = Colors.black;
-    // Color secondaryColor = Color.fromRGBO(0, 121, 140, 1);
-    Color secondaryColor = Colors.black;
-    Color thirdColor = Color.fromRGBO(81, 163, 163, 0.5);
+    final tools = watch(toolsVM);
+    Color activeSliderColor = Colors.black;
+    Color inactiveSliderColor = Color.fromRGBO(81, 163, 163, 0.5);
     return Scaffold(
       body: Column(
         children: [
@@ -46,7 +45,7 @@ class ClothTemperatureSetter extends ConsumerWidget {
               child: Text(
                 "What temeperature would you wear this piece of clothing in?",
                 style: TextStyle(
-                    fontSize: 15, color: textColor, fontFamily: 'Nexa'),
+                    fontSize: 15, color: tools.textColor, fontFamily: 'Nexa'),
                 textAlign: TextAlign.start,
               ),
             ),
@@ -57,7 +56,7 @@ class ClothTemperatureSetter extends ConsumerWidget {
                 child: Text(vwvm.temperature(vwvm.temperatureRating),
                     style: TextStyle(
                         fontSize: 20,
-                        color: textColor,
+                        color: tools.textColor,
                         fontWeight: FontWeight.bold))),
           ),
           Slider(
@@ -65,8 +64,8 @@ class ClothTemperatureSetter extends ConsumerWidget {
             min: 0,
             max: 10,
             divisions: 10,
-            activeColor: secondaryColor,
-            inactiveColor: thirdColor,
+            activeColor: activeSliderColor,
+            inactiveColor: inactiveSliderColor,
             onChanged: (double value) {
               vwvm.temperatureRating = value;
             },

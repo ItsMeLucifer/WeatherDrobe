@@ -62,8 +62,8 @@ class CurrentDataViewModel extends ChangeNotifier {
   Future<void> getCurrentPosition() async {
     Position _currentPosition = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    // lat = _currentPosition.latitude;
-    // long = _currentPosition.longitude;
+    lat = _currentPosition.latitude;
+    long = _currentPosition.longitude;
     lat = 54.519974;
     long = 18.551115;
     fetchCurrentData();

@@ -7,10 +7,9 @@ class ClothAdditionalConditions extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
     final favm = watch(firebaseAuth);
-    Color primaryColor = Color.fromRGBO(72, 67, 73, 0.5);
-    Color borderColor = Color.fromRGBO(72, 67, 73, 0.3);
-    Color buttonTextColor = Colors.white;
-    Color textColor = Colors.black;
+    final tools = watch(toolsVM);
+    // Color primaryColor = Color.fromRGBO(72, 67, 73, 0.5);
+    // Color buttonTextColor = Colors.white;
     double borderWidth = 3;
     return Scaffold(
       body: Column(children: [
@@ -48,7 +47,7 @@ class ClothAdditionalConditions extends ConsumerWidget {
               child: Text(
                   "Choose which weather conditions are the most suitable for this piece of clothing",
                   style: TextStyle(
-                      fontSize: 15, color: textColor, fontFamily: 'Nexa'),
+                      fontSize: 15, color: tools.textColor, fontFamily: 'Nexa'),
                   textAlign: TextAlign.start),
             ),
           ),
@@ -187,7 +186,8 @@ class ClothAdditionalConditions extends ConsumerWidget {
               margin: const EdgeInsets.only(top: 100),
               decoration: BoxDecoration(
                   // color: primaryColor,
-                  border: Border.all(color: borderColor, width: borderWidth)),
+                  border:
+                      Border.all(color: tools.borderColor, width: borderWidth)),
               child: Center(
                 child: Text("Save Cloth",
                     style: TextStyle(

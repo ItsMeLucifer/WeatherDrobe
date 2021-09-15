@@ -6,9 +6,8 @@ class ClothTemplateChooser extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
+    final tools = watch(toolsVM);
     double iconSize = 40;
-    const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
-    const Color secondaryColor = Color.fromRGBO(240, 240, 240, 1);
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [
@@ -21,7 +20,7 @@ class ClothTemplateChooser extends ConsumerWidget {
               'Outfit Creator',
               style: TextStyle(
                   fontSize: 60,
-                  fontFamily: 'Nexa',
+                  fontFamily: tools.fontFamily,
                   fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
@@ -34,7 +33,7 @@ class ClothTemplateChooser extends ConsumerWidget {
             alignment: Alignment.centerLeft,
             child: Text(
               'Template',
-              style: TextStyle(fontSize: 30, fontFamily: 'Nexa'),
+              style: TextStyle(fontSize: 30, fontFamily: tools.fontFamily),
             ),
           )),
         ),
@@ -58,8 +57,9 @@ class ClothTemplateChooser extends ConsumerWidget {
                               style: TextStyle(fontSize: iconSize),
                             ),
                           ),
-                          color:
-                              vwvm.type == 0 ? primaryColor : secondaryColor)),
+                          color: vwvm.type == 0
+                              ? tools.secondaryColor
+                              : tools.tetriaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 4;
@@ -72,8 +72,9 @@ class ClothTemplateChooser extends ConsumerWidget {
                               style: TextStyle(fontSize: iconSize),
                             ),
                           ),
-                          color:
-                              vwvm.type == 4 ? primaryColor : secondaryColor)),
+                          color: vwvm.type == 4
+                              ? tools.secondaryColor
+                              : tools.tetriaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 1;
@@ -86,8 +87,9 @@ class ClothTemplateChooser extends ConsumerWidget {
                               style: TextStyle(fontSize: iconSize),
                             ),
                           ),
-                          color:
-                              vwvm.type == 1 ? primaryColor : secondaryColor)),
+                          color: vwvm.type == 1
+                              ? tools.secondaryColor
+                              : tools.tetriaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 2;
@@ -100,8 +102,9 @@ class ClothTemplateChooser extends ConsumerWidget {
                               style: TextStyle(fontSize: iconSize),
                             ),
                           ),
-                          color:
-                              vwvm.type == 2 ? primaryColor : secondaryColor)),
+                          color: vwvm.type == 2
+                              ? tools.secondaryColor
+                              : tools.tetriaryColor)),
                   GestureDetector(
                       onTap: () {
                         vwvm.type = 3;
@@ -114,8 +117,9 @@ class ClothTemplateChooser extends ConsumerWidget {
                               style: TextStyle(fontSize: iconSize),
                             ),
                           ),
-                          color:
-                              vwvm.type == 3 ? primaryColor : secondaryColor)),
+                          color: vwvm.type == 3
+                              ? tools.secondaryColor
+                              : tools.tetriaryColor)),
                 ],
               ),
             ),

@@ -13,8 +13,6 @@ class BottomNaviBar extends StatefulWidget {
 
 class _BottomNaviBar extends State<BottomNaviBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     FirstPage(),
     VirtualWardrobe(),

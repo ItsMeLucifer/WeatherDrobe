@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weatherdrobe/viewmodels/First Page/current_data_view_model.dart';
@@ -31,7 +30,7 @@ final toolsVM = ChangeNotifierProvider((_) => Tools());
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  //FirebaseFirestore firestore = FirebaseFirestore.instance;
   await SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
   runApp(ProviderScope(child: MyApp()));
 }

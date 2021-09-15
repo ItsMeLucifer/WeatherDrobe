@@ -169,7 +169,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     if (actualClothType == 1) return tops;
     if (actualClothType == 2) return bottoms;
     if (actualClothType == 3) return footwear;
-    if (actualClothType == 4) return costumes;
+    return costumes;
   }
 
   List<QueryDocumentSnapshot> _headwear = [];
