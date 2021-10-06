@@ -80,12 +80,12 @@ class CharacterModel extends ConsumerWidget {
           //LEFT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 35, left: 90),
+                  padding: const EdgeInsets.only(bottom: 50, left: 35),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                        width: 70,
-                        height: 70,
+                        width: 45,
+                        height: 45,
                         child: Transform(
                           transform: Matrix4.rotationY(math.pi),
                           child: ColorFiltered(
@@ -103,12 +103,12 @@ class CharacterModel extends ConsumerWidget {
           //RIGHT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 36, left: 140),
+                  padding: const EdgeInsets.only(bottom: 50, left: 95),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                        width: 70,
-                        height: 70,
+                        width: 45,
+                        height: 45,
                         child: Transform(
                           transform: Matrix4.rotationY(math.pi),
                           child: ColorFiltered(
