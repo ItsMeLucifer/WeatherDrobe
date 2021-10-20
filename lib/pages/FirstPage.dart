@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:weatherdrobe/main.dart';
@@ -25,6 +26,7 @@ class _FirstPage extends State<FirstPage> {
       RefreshController(initialRefresh: false);
 
   void _onRefresh() async {
+    Phoenix.rebirth(context);
     await Future.delayed(Duration(milliseconds: 1000));
     _refreshController.refreshCompleted();
   }

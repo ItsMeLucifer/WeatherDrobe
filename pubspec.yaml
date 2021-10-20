@@ -21,14 +21,15 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
   build_runner: ^1.10.11
   cloud_firestore: ^0.16.0
   cupertino_icons: ^1.0.0
   firebase_auth: ^0.20.0+1
   firebase_core: ^0.7.0
+  flutter:
+    sdk: flutter
   flutter_colorpicker: ^0.3.5
+  flutter_phoenix: ^0.1.0
   flutter_riverpod: ^0.12.1
   geolocator: ^6.1.9
   http: ^0.12.2
@@ -38,9 +39,9 @@ dependencies:
   pull_to_refresh: ^1.6.3
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.8.1
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.8.1
 
 flutter_icons:
   image_path: "images/icon_wd.png"

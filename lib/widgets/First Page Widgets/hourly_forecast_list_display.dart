@@ -7,10 +7,9 @@ import 'package:weatherdrobe/main.dart';
 class HourlyForecastListDisplay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final hfvm = context.read(hourlyData);
-    hfvm.hours = fixingAList(hfvm.hours);
-    hfvm.icons = fixingAList(hfvm.icons);
+    final hfvm = watch(hourlyData);
     final tools = watch(toolsVM);
+    print(hfvm.hours[0].hourly.time.toString());
     return Container(
       child: ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -18,7 +17,7 @@ class HourlyForecastListDisplay extends ConsumerWidget {
         itemCount: hfvm.hours.length > 15 ? 15 : hfvm.hours.length,
         itemBuilder: (context, index) {
           final hour = hfvm.hours[index];
-          var jiffy = Jiffy.unix(hour.time).add(hours: 1);
+          var jiffy = Jiffy.unix(hour.time);
           return Card(
             child: ListTile(
               trailing: Container(
@@ -66,14 +65,5 @@ class HourlyForecastListDisplay extends ConsumerWidget {
 
   String firstCapital(String s) {
     return ("${s[0].toUpperCase()}${s.substring(1)}");
-  }
-
-  List<dynamic> fixingAList(List<dynamic> list) {
-    List<dynamic> lista = list;
-    lista.removeAt(0);
-    for (int i = 0; i < lista.length - 1; i++) {
-      lista[i] = lista[i + 1];
-    }
-    return lista;
   }
 }

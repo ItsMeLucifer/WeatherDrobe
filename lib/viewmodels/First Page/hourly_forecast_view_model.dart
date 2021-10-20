@@ -39,8 +39,8 @@ class HourlyForecastViewModel extends ChangeNotifier {
         desiredAccuracy: LocationAccuracy.high);
     lat = _currentPosition.latitude;
     long = _currentPosition.longitude;
-    lat = 54.519974;
-    long = 18.551115;
+    //lat = 54.519974;
+    //long = 18.551115;
     getHourlyData();
   }
 
@@ -57,5 +57,22 @@ class HourlyForecastViewModel extends ChangeNotifier {
       ikony.add(resultFromWebservice);
     });
     icons = ikony;
+    print("HOURLY UNIX: " + hours[0].hourly.time.toString());
+    hours.remove(0);
+    icons.remove(0);
+  }
+
+  List<double> temperatures = [];
+  List<double> weatherIds = [];
+  void getTemperaturesAndWeatherIds(int amount) {
+    int tempCounter = 0;
+    hours.forEach((hour) => {
+          tempCounter++,
+          if (tempCounter < amount)
+            {
+              temperatures.add(hour.temperature),
+              weatherIds.add(hour.weatherId.toDouble())
+            }
+        });
   }
 }

@@ -136,6 +136,9 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch) {
   const String fontFamily = 'Nexa';
   final vwvm = watch(virtualWardrobe);
   final favm = watch(firebaseAuth);
+  // final cc = watch(clothingChooser);
+  // final tools = watch(toolsVM);
+  // final hfvm = watch(hourlyData);
   if (array != null || array.length != 0) {
     return GridView.builder(
         shrinkWrap: true,
@@ -237,6 +240,20 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch) {
                                       vwvm.deleteGarment(
                                           array[index].id, favm.auth);
                                       vwvm.getGarments(favm.auth);
+                                      vwvm.userCollections = null;
+                                      // cc.proposals = [];
+                                      // cc.chooseClothing(
+                                      //     vwvm.headwear,
+                                      //     vwvm.tops,
+                                      //     vwvm.bottoms,
+                                      //     vwvm.footwear,
+                                      //     vwvm.costumes,
+                                      //     10,
+                                      //     tools
+                                      //         .calculateTheMedian(
+                                      //             hfvm.weatherIds)
+                                      //         .toInt(),
+                                      //     false);
                                       //DELETE CLOTHING FROM FIREBASE
                                     },
                                     child: Text(

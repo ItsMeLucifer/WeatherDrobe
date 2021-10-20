@@ -8,24 +8,14 @@ class CharacterModel extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
     final cc = watch(clothingChooser);
-    final hfvm = watch(hourlyData);
     final favm = watch(firebaseAuth);
+    final hfvm = watch(hourlyData);
     final tools = watch(toolsVM);
-    List<double> temperatures = List<double>();
-    List<double> weatherIds = List<double>();
     if (vwvm.headwear.isNotEmpty &&
         vwvm.tops.isNotEmpty &&
         vwvm.bottoms.isNotEmpty &&
         vwvm.footwear.isNotEmpty) {
-      int tempCounter = 0;
-      hfvm.hours.forEach((hour) => {
-            tempCounter++,
-            if (tempCounter < 10)
-              {
-                temperatures.add(hour.temperature),
-                weatherIds.add(hour.weatherId.toDouble())
-              }
-          });
+      hfvm.getTemperaturesAndWeatherIds(10);
       cc.chooseClothing(
           vwvm.headwear,
           vwvm.tops,
@@ -33,7 +23,7 @@ class CharacterModel extends ConsumerWidget {
           vwvm.footwear,
           vwvm.costumes,
           10,
-          tools.calculateTheMedian(weatherIds).toInt(),
+          tools.calculateTheMedian(hfvm.weatherIds).toInt(),
           false);
     }
     if (vwvm.userCollections != null && vwvm.userCollections.exists) {
@@ -80,7 +70,7 @@ class CharacterModel extends ConsumerWidget {
           //LEFT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 50, left: 35),
+                  padding: const EdgeInsets.only(bottom: 63, left: 35),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -103,7 +93,7 @@ class CharacterModel extends ConsumerWidget {
           //RIGHT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 50, left: 95),
+                  padding: const EdgeInsets.only(bottom: 63, left: 95),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -169,7 +159,6 @@ class CharacterModel extends ConsumerWidget {
                 onTap: () {
                   if (cc.currentModelIndex > 0) {
                     cc.currentModelIndex--;
-                    print('INDEX: ' + cc.currentModelIndex.toString());
                   }
                 },
                 child: Container(
@@ -192,7 +181,6 @@ class CharacterModel extends ConsumerWidget {
                     cc.chooseClothing(
                         null, null, null, null, null, null, null, true);
                     cc.currentModelIndex++;
-                    print('INDEX: ' + cc.currentModelIndex.toString());
                   }
                 },
                 child: Container(

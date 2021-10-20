@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weatherdrobe/viewmodels/First Page/current_data_view_model.dart';
 import 'package:weatherdrobe/viewmodels/First Page/hourly_forecast_view_model.dart';
@@ -32,7 +33,10 @@ void main() async {
   await Firebase.initializeApp();
   //FirebaseFirestore firestore = FirebaseFirestore.instance;
   await SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-  runApp(ProviderScope(child: MyApp()));
+  runApp(ProviderScope(
+      child: Phoenix(
+    child: MyApp(),
+  )));
 }
 
 class MyApp extends StatelessWidget {
