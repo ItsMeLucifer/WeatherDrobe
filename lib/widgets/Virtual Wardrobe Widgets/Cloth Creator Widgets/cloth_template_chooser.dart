@@ -140,6 +140,9 @@ class ClothTemplateChooser extends ConsumerWidget {
                       onTap: () {
                         vwvm.isTemplateChosen = true;
                         vwvm.dir = vwvm.templateNames[vwvm.type][index];
+                        tools.controller.nextPage(
+                            duration: Duration(milliseconds: 400),
+                            curve: Curves.easeIn);
                       },
                       child: Card(
                         child: Image.asset(

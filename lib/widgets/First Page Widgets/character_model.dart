@@ -11,10 +11,13 @@ class CharacterModel extends ConsumerWidget {
     final favm = watch(firebaseAuth);
     final hfvm = watch(hourlyData);
     final tools = watch(toolsVM);
-    if (vwvm.headwear.isNotEmpty &&
-        vwvm.tops.isNotEmpty &&
-        vwvm.bottoms.isNotEmpty &&
-        vwvm.footwear.isNotEmpty) {
+    if ((vwvm.headwear.isNotEmpty &&
+            vwvm.tops.isNotEmpty &&
+            vwvm.bottoms.isNotEmpty &&
+            vwvm.footwear.isNotEmpty) ||
+        (vwvm.headwear.isNotEmpty &&
+            vwvm.costumes.isNotEmpty &&
+            vwvm.footwear.isNotEmpty)) {
       hfvm.getTemperaturesAndWeatherIds(10);
       cc.chooseClothing(
           vwvm.headwear,
@@ -37,8 +40,9 @@ class CharacterModel extends ConsumerWidget {
                 child: Container(
                     width: 300,
                     height: 400,
-                    child: Image.asset(
-                        'images/character_model/male_character_model.png'))),
+                    child: Image.asset(vwvm.characterModelSex == "Male"
+                        ? 'images/character_model/male_character_model.png'
+                        : 'images/character_model/female_character_model.png'))),
           ),
           //HEADWEAR
           Align(
@@ -70,7 +74,7 @@ class CharacterModel extends ConsumerWidget {
           //LEFT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 63, left: 35),
+                  padding: const EdgeInsets.only(bottom: 60, left: 35),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -93,7 +97,7 @@ class CharacterModel extends ConsumerWidget {
           //RIGHT SHOE
           cc.proposals.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.only(bottom: 63, left: 95),
+                  padding: const EdgeInsets.only(bottom: 60, left: 95),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(

@@ -57,7 +57,6 @@ class HourlyForecastViewModel extends ChangeNotifier {
       ikony.add(resultFromWebservice);
     });
     icons = ikony;
-    print("HOURLY UNIX: " + hours[0].hourly.time.toString());
     hours.remove(0);
     icons.remove(0);
   }

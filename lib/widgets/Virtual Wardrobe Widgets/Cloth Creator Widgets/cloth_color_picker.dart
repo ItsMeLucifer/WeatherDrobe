@@ -41,6 +41,8 @@ class ClothColorPicker extends ConsumerWidget {
             pickerColor: vwvm.color,
             onColorChanged: (Color color) {
               vwvm.color = color;
+              tools.controller.nextPage(
+                  duration: Duration(milliseconds: 400), curve: Curves.easeIn);
             },
             enableLabel: true,
           ),

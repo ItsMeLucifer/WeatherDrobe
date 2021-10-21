@@ -178,6 +178,7 @@ class ClothAdditionalConditions extends ConsumerWidget {
           onTap: () {
             vwvm.saveCloth(favm.auth);
             vwvm.getGarments(favm.auth);
+            tools.controller.jumpToPage(0);
             Navigator.pop(context);
           },
           child: Container(

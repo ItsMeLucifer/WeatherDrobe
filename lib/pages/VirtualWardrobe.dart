@@ -32,7 +32,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
     const Color textColor = Colors.black;
     const String fontFamily = "Nexa";
     return SmartRefresher(
-        enablePullDown: true,
+        enablePullDown: false,
         enablePullUp: false,
         header: WaterDropHeader(waterDropColor: primaryColor),
         onRefresh: _onRefresh,

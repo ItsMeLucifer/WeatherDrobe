@@ -8,15 +8,15 @@ import 'package:weatherdrobe/widgets/First Page Widgets/hourly_forecast_list_dis
 
 class CurrentWeatherDisplay extends ConsumerWidget {
   Future<void> setJiffyLocale() async {
-    await Jiffy.locale("en");
+    await Jiffy.locale("en_US");
   }
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final cdvm = watch(currentData);
     final tools = watch(toolsVM);
-    double dividersWidth = 5;
     setJiffyLocale();
+    print("description: " + cdvm.description);
     return GestureDetector(
       onTap: () => cdvm.onTap = cdvm.onTap ? false : true,
       child: Stack(children: [
@@ -29,7 +29,6 @@ class CurrentWeatherDisplay extends ConsumerWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(width: dividersWidth, height: 1),
                     Column(children: [
                       Text(
                         firstCapital(Jiffy().format("EEEE").toString()),
@@ -48,13 +47,13 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                             fontFamily: tools.fontFamily),
                       ),
                     ]),
-                    Container(width: 10, height: 1),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Column(children: [
                         Container(
                           child: Text(
-                            firstCapital(cdvm.description ?? "clouds"),
+                            //firstCapital(cdvm.description ?? "clouds"),
+                            fixDescription(cdvm.description ?? "clouds"),
                             style: TextStyle(
                                 color: tools.textColor,
                                 fontSize: 22,
@@ -101,7 +100,6 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                                     "http://openweathermap.org/img/wn/03d.png")),
                       ),
                     ),
-                    Container(width: dividersWidth, height: 1),
                   ]),
               padding: EdgeInsets.only(top: 20, bottom: 12),
             ),
@@ -134,6 +132,15 @@ class CurrentWeatherDisplay extends ConsumerWidget {
   }
 
   String firstCapital(String s) {
+    return ("${s[0].toUpperCase()}${s.substring(1)}");
+  }
+
+  String fixDescription(String s) {
+    if (s.length > 18) {
+      var splitted = s.split(" ");
+      s = splitted[splitted.length - 2] + " " + splitted[splitted.length - 1];
+      if (s.length > 18) s = splitted[splitted.length - 1];
+    }
     return ("${s[0].toUpperCase()}${s.substring(1)}");
   }
 

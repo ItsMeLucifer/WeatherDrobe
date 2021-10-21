@@ -14,7 +14,7 @@ class Tools extends ChangeNotifier {
     return 0.0;
   }
 
-  //Kosmetyka
+  //Cosmetics
   Color get primaryColor => Color.fromRGBO(200, 200, 200, 1);
   Color get secondaryColor => Color.fromRGBO(220, 220, 220, 1);
   Color get tetriaryColor => Color.fromRGBO(240, 240, 240, 1);
@@ -36,4 +36,16 @@ class Tools extends ChangeNotifier {
     _screenHeight = value;
     notifyListeners();
   }
+
+  //Cloth Creator
+  int _pageNumber = 0;
+  int get pageNumber => _pageNumber;
+  set pageNumber(int value) {
+    _pageNumber = value;
+    notifyListeners();
+  }
+
+  final controller = PageController(
+    initialPage: 0,
+  );
 }

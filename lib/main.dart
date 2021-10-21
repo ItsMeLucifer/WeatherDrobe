@@ -8,7 +8,7 @@ import 'package:weatherdrobe/viewmodels/Virtual%20Wardrobe/virtual_Wardrobe_View
 import 'package:weatherdrobe/viewmodels/firebase/firebase_auth_View_Model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:weatherdrobe/utilities/wrapper.dart';
-import 'package:flutter/services.dart';
+import 'package:weatherdrobe/viewmodels/Settings%20Page/settings_view_model.dart';
 import 'package:weatherdrobe/viewmodels/tools.dart';
 
 final currentData = ChangeNotifierProvider((_) => CurrentDataViewModel());
@@ -24,6 +24,7 @@ final virtualWardrobe =
     ChangeNotifierProvider((_) => VirtualWardrobeViewModel());
 final clothingChooser = ChangeNotifierProvider((_) => ClothingChooser());
 final toolsVM = ChangeNotifierProvider((_) => Tools());
+final settingsVM = ChangeNotifierProvider((_) => SettingsViewModel());
 // final firebaseAuth =
 //     ChangeNotifierProvider.autoDispose<FireBaseAuthViewModel>((ref) {pib
 // });
@@ -32,9 +33,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   //FirebaseFirestore firestore = FirebaseFirestore.instance;
-  await SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-  runApp(ProviderScope(
-      child: Phoenix(
+  // await SystemChrome.setEnabledSystemUIOverlays(
+  //     [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  runApp(Phoenix(
+      child: ProviderScope(
     child: MyApp(),
   )));
 }

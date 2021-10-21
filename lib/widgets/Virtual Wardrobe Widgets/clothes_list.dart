@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 class ClothesList extends ConsumerWidget {
   @override
@@ -122,7 +123,7 @@ class ClothesList extends ConsumerWidget {
               ],
             ),
           ),
-          clothes(vwvm.getCurrentGarmentsList(), watch)
+          clothes(vwvm.getCurrentGarmentsList(), watch, context)
         ],
       );
     } else {
@@ -132,13 +133,15 @@ class ClothesList extends ConsumerWidget {
   }
 }
 
-Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch) {
+Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
+    BuildContext context) {
   const String fontFamily = 'Nexa';
   final vwvm = watch(virtualWardrobe);
   final favm = watch(firebaseAuth);
   // final cc = watch(clothingChooser);
   // final tools = watch(toolsVM);
   // final hfvm = watch(hourlyData);
+
   if (array != null || array.length != 0) {
     return GridView.builder(
         shrinkWrap: true,
@@ -254,6 +257,10 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch) {
                                       //             hfvm.weatherIds)
                                       //         .toInt(),
                                       //     false);
+
+                                      // Czasowe rozwiązanie, trzeba sprawić aby character model się update'ował po kliknięciu tego przycisku
+                                      //Phoenix.rebirth(context);
+
                                       //DELETE CLOTHING FROM FIREBASE
                                     },
                                     child: Text(
