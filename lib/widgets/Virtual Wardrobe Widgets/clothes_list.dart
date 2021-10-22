@@ -138,7 +138,7 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
   final vwvm = watch(virtualWardrobe);
   final favm = watch(firebaseAuth);
   // final cc = watch(clothingChooser);
-  // final tools = watch(toolsVM);
+  final tools = watch(toolsVM);
   // final hfvm = watch(hourlyData);
 
   if (array != null || array.length != 0) {
@@ -172,7 +172,7 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
                                   child: Image.asset(
                                       'images/templates/${vwvm.getClothTypeName}/${array[index]["dir"]}.png'),
                                 ),
-                                color: Colors.white),
+                                color: Color.fromRGBO(0, 0, 0, 0)),
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -180,14 +180,17 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
                             children: [
                               Text(
                                 'Temperature: ',
-                                style: TextStyle(fontFamily: fontFamily),
+                                style: TextStyle(
+                                    fontFamily: tools.fontFamily,
+                                    color: tools.textColor),
                                 textAlign: TextAlign.start,
                               ),
                               Text(
                                 '${vwvm.temperature(array[index]["temperature"])}',
                                 style: TextStyle(
-                                    fontFamily: fontFamily,
-                                    fontWeight: FontWeight.bold),
+                                    fontFamily: tools.fontFamily,
+                                    fontWeight: FontWeight.bold,
+                                    color: tools.textColor),
                                 textAlign: TextAlign.start,
                               ),
                               array[index]["sun"] == true ||
@@ -197,36 +200,40 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
                                   ? Text(
                                       'Good for following weather conditions: ',
                                       style: TextStyle(
-                                        fontFamily: fontFamily,
-                                      ),
+                                          fontFamily: tools.fontFamily,
+                                          color: tools.textColor),
                                       textAlign: TextAlign.start)
                                   : Container(),
                               array[index]["sun"] == true
                                   ? Text('• Sun',
                                       style: TextStyle(
-                                          fontFamily: fontFamily,
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: tools.fontFamily,
+                                          fontWeight: FontWeight.bold,
+                                          color: tools.textColor),
                                       textAlign: TextAlign.start)
                                   : Container(),
                               array[index]["wind"] == true
                                   ? Text('• Wind',
                                       style: TextStyle(
-                                          fontFamily: fontFamily,
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: tools.fontFamily,
+                                          fontWeight: FontWeight.bold,
+                                          color: tools.textColor),
                                       textAlign: TextAlign.start)
                                   : Container(),
                               array[index]["rain"] == true
                                   ? Text('• Rain',
                                       style: TextStyle(
-                                          fontFamily: fontFamily,
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: tools.fontFamily,
+                                          fontWeight: FontWeight.bold,
+                                          color: tools.textColor),
                                       textAlign: TextAlign.start)
                                   : Container(),
                               array[index]["snow"] == true
                                   ? Text('• Snow',
                                       style: TextStyle(
-                                          fontFamily: fontFamily,
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: tools.fontFamily,
+                                          fontWeight: FontWeight.bold,
+                                          color: tools.textColor),
                                       textAlign: TextAlign.center)
                                   : Container(),
                             ],
@@ -265,9 +272,9 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
                                     child: Text(
                                       'Delete',
                                       style: TextStyle(
-                                          fontFamily: fontFamily,
+                                          fontFamily: tools.fontFamily,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.black),
+                                          color: tools.textColor),
                                     )),
                                 FlatButton(
                                     onPressed: () {
@@ -276,28 +283,30 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
                                     child: Text(
                                       'OK',
                                       style: TextStyle(
-                                          fontFamily: fontFamily,
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: tools.fontFamily,
+                                          fontWeight: FontWeight.bold,
+                                          color: tools.textColor),
                                     )),
                               ],
                             ),
                           )
                         ],
                       ),
+                      backgroundColor: tools.quaternaryColor,
                     );
                   });
             },
             child: Card(
-              child: Container(
-                  child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        Color(int.parse(array[index]['color'])),
-                        BlendMode.modulate),
-                    child: Image.asset(
-                        'images/templates/${vwvm.getClothTypeName}/${array[index]["dir"]}.png'),
-                  ),
-                  color: Colors.white),
-            ),
+                child: Container(
+                    child: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                          Color(int.parse(array[index]['color'])),
+                          BlendMode.modulate),
+                      child: Image.asset(
+                          'images/templates/${vwvm.getClothTypeName}/${array[index]["dir"]}.png'),
+                    ),
+                    color: Color.fromRGBO(0, 0, 0, 0)),
+                color: Color.fromRGBO(0, 0, 0, 0)),
           );
         });
   } else {

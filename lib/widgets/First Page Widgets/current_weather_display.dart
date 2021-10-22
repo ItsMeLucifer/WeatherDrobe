@@ -20,107 +20,96 @@ class CurrentWeatherDisplay extends ConsumerWidget {
       onTap: () => cdvm.onTap = cdvm.onTap ? false : true,
       child: Stack(children: [
         Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: tools.primaryColor, width: 1),
-          ),
-          child: Column(children: [
-            Container(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(children: [
-                      Text(
-                        firstCapital(Jiffy().format("EEEE").toString()),
-                        style: TextStyle(
-                            color: tools.textColor,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: tools.fontFamily),
-                      ),
-                      Text(
-                        Jiffy().format("d.MM").toString(),
-                        style: TextStyle(
-                            color: tools.textColor,
-                            fontSize: 27,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: tools.fontFamily),
-                      ),
-                    ]),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Column(children: [
-                        Container(
-                          child: Text(
-                            //firstCapital(cdvm.description ?? "clouds"),
-                            fixDescription(cdvm.description ?? "clouds"),
-                            style: TextStyle(
-                                color: tools.textColor,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: tools.fontFamily),
-                          ),
+          child: Container(
+            child: Column(children: [
+              Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(children: [
+                        Text(
+                          firstCapital(Jiffy().format("EEEE").toString()),
+                          style: TextStyle(
+                              color: tools.textColor,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: tools.fontFamily),
                         ),
-                        Container(
-                          child: Text(
-                            (cdvm.temperature.toString() ?? "10.5") + "°C",
-                            style: TextStyle(
-                                color: tools.textColor,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: tools.fontFamily),
-                          ),
+                        Text(
+                          Jiffy().format("d.MM").toString(),
+                          style: TextStyle(
+                              color: tools.textColor,
+                              fontSize: 27,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: tools.fontFamily),
                         ),
                       ]),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 0.0),
-                      child: Container(
-                        width: 50,
-                        height: 60,
-                        child: (cdvm.iconId != null
-                                        ? cdvm.iconId.substring(
-                                            0, cdvm.iconId.length - 1)
-                                        : "5") ==
-                                    "13" ||
-                                (cdvm.iconId != null
-                                        ? cdvm.iconId.substring(
-                                            0, cdvm.iconId.length - 1)
-                                        : "5") ==
-                                    "50"
-                            ? ColorFiltered(
-                                colorFilter: ColorFilter.mode(
-                                    Colors.black, BlendMode.modulate),
-                                child: Image(
-                                    image: NetworkImage(cdvm.iconUrl ??
-                                        "http://openweathermap.org/img/wn/03d.png")),
-                              )
-                            : Image(
-                                image: NetworkImage(cdvm.iconUrl ??
-                                    "http://openweathermap.org/img/wn/03d.png")),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Column(children: [
+                          Container(
+                            child: Text(
+                              //firstCapital(cdvm.description ?? "clouds"),
+                              fixDescription(cdvm.description ?? "clouds"),
+                              style: TextStyle(
+                                  color: tools.textColor,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: tools.fontFamily),
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              (cdvm.temperature.toString() ?? "10.5") + "°C",
+                              style: TextStyle(
+                                  color: tools.textColor,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: tools.fontFamily),
+                            ),
+                          ),
+                        ]),
                       ),
-                    ),
-                  ]),
-              padding: EdgeInsets.only(top: 20, bottom: 12),
-            ),
-            cdvm.onTap
-                ? Padding(
-                    padding: const EdgeInsets.only(top: 30.0),
-                    child: HourlyForecastListDisplay(),
-                  )
-                : Container(),
-          ]),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 0.0),
+                        child: Container(
+                          width: 50,
+                          height: 60,
+                          child: (cdvm.iconId != null
+                                          ? cdvm.iconId.substring(
+                                              0, cdvm.iconId.length - 1)
+                                          : "5") ==
+                                      "13" ||
+                                  (cdvm.iconId != null
+                                          ? cdvm.iconId.substring(
+                                              0, cdvm.iconId.length - 1)
+                                          : "5") ==
+                                      "50"
+                              ? ColorFiltered(
+                                  colorFilter: ColorFilter.mode(
+                                      Colors.black, BlendMode.modulate),
+                                  child: Image(
+                                      image: NetworkImage(cdvm.iconUrl ??
+                                          "http://openweathermap.org/img/wn/03d.png")),
+                                )
+                              : Image(
+                                  image: NetworkImage(cdvm.iconUrl ??
+                                      "http://openweathermap.org/img/wn/03d.png")),
+                        ),
+                      ),
+                    ]),
+                padding: EdgeInsets.only(top: 20, bottom: 12),
+              ),
+              cdvm.onTap
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 30.0),
+                      child: HourlyForecastListDisplay(),
+                    )
+                  : Container(),
+            ]),
+          ),
           color: tools.primaryColor,
         ),
-        Padding(
-            padding: const EdgeInsets.only(top: 85.0, left: 4, right: 4),
-            child: Container(
-              width: 500,
-              height: 45,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: tools.primaryColor,
-              ),
-            )),
       ]),
     );
   }

@@ -16,10 +16,16 @@ class Tools extends ChangeNotifier {
   }
 
   //Cosmetics
-  Color get primaryColor => Color.fromRGBO(200, 200, 200, 1);
-  Color get secondaryColor => Color.fromRGBO(220, 220, 220, 1);
-  Color get tetriaryColor => Color.fromRGBO(240, 240, 240, 1);
-  Color get textColor => Colors.black;
+  //Color get primaryColor => Color.fromRGBO(200, 200, 200, 1);
+  Color get primaryColor => Color.fromRGBO(0, 0, 0, 0.2);
+  //Color get secondaryColor => Color.fromRGBO(220, 220, 220, 1);
+  Color get secondaryColor => Color.fromRGBO(0, 0, 0, 0.05);
+  //Color get tetriaryColor => Color.fromRGBO(240, 240, 240, 1);
+  Color get tetriaryColor => Color.fromRGBO(0, 0, 0, 0.3);
+  Color get quaternaryColor => Color.fromRGBO(0, 0, 0, 0.5);
+  //Color get quinaryColor => Color.fromRGBO(0, 0, 0, 0.5);
+  Color get disabledColor => Color.fromRGBO(255, 200, 200, 0.5);
+  Color get textColor => Colors.white;
   String get fontFamily => 'Nexa';
   TextStyle get optionStyle => TextStyle(fontSize: 30);
   //--Cloth Creator

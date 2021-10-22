@@ -13,7 +13,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPage extends State<FirstPage> {
-  static const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
+  static const Color primaryColor = Color.fromRGBO(0, 0, 0, 0.5);
   @override
   initState() {
     super.initState();
@@ -56,15 +56,8 @@ class _FirstPage extends State<FirstPage> {
                         SuggestedAccessories(),
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
-                          child: Card(
-                            child: Container(
-                              width: 275,
-                              height: 480,
-                              child: CharacterModel(),
-                            ),
-                            color: primaryColor,
-                          ),
-                        )
+                          child: CharacterModel(),
+                        ),
                       ],
                     ),
                   ],
