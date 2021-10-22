@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 class ClothesList extends ConsumerWidget {
   @override

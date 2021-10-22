@@ -12,11 +12,6 @@ import 'package:weatherdrobe/viewmodels/Settings%20Page/settings_view_model.dart
 import 'package:weatherdrobe/viewmodels/tools.dart';
 
 final currentData = ChangeNotifierProvider((_) => CurrentDataViewModel());
-// final hourlyData = FutureProvider((_) async {
-//   final lat = _.watch(currentData).lat;
-//   final long = _.watch(currentData).long;
-//   return HourlyForecastViewModel(lat ?? 54.516640, long ?? 18.550909);
-// });
 final hourlyData = ChangeNotifierProvider((_) => HourlyForecastViewModel());
 final firebaseAuth =
     ChangeNotifierProvider((_) => FireBaseAuthViewModel.instance());
@@ -25,16 +20,10 @@ final virtualWardrobe =
 final clothingChooser = ChangeNotifierProvider((_) => ClothingChooser());
 final toolsVM = ChangeNotifierProvider((_) => Tools());
 final settingsVM = ChangeNotifierProvider((_) => SettingsViewModel());
-// final firebaseAuth =
-//     ChangeNotifierProvider.autoDispose<FireBaseAuthViewModel>((ref) {pib
-// });
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  //FirebaseFirestore firestore = FirebaseFirestore.instance;
-  // await SystemChrome.setEnabledSystemUIOverlays(
-  //     [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   runApp(Phoenix(
       child: ProviderScope(
     child: MyApp(),
@@ -51,28 +40,4 @@ class MyApp extends StatelessWidget {
       home: Wrapper(),
     );
   }
-  // Widget build(BuildContext context) {
-  //   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-  //   return FutureBuilder(
-  //     // Initialize FlutterFire:
-  //     future: _initialization,
-  //     builder: (context, snapshot) {
-  //       // Check for errors
-  //       if (snapshot.hasError) {
-  //         return Scaffold(body: Text('Something went wrong'));
-  //       }
-
-  //       // Once complete, show your application
-  //       if (snapshot.connectionState == ConnectionState.done) {
-  //         return MaterialApp(
-  //           title: _title,
-  //           home: Wrapper(),
-  //         );
-  //       }
-
-  //       // Otherwise, show something whilst waiting for initialization to complete
-  //       return Scaffold(body: Text('Loading...'));
-  //     },
-  //   );
-  // }
 }

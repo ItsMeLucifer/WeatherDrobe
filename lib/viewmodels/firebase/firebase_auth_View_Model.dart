@@ -17,7 +17,7 @@ class FireBaseAuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  User _user;
+  //User _user;
   Future<void> signIn(String email, String password) async {
     try {
       userCredential = await _auth.signInWithEmailAndPassword(
@@ -35,7 +35,7 @@ class FireBaseAuthViewModel extends ChangeNotifier {
     if (firebaseUser == null) {
       status = Status.Unauthenticated;
     } else {
-      _user = firebaseUser;
+      //_user = firebaseUser;
       status = Status.Authenticated;
     }
     notifyListeners();

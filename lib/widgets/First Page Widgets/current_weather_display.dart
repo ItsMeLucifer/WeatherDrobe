@@ -16,7 +16,6 @@ class CurrentWeatherDisplay extends ConsumerWidget {
     final cdvm = watch(currentData);
     final tools = watch(toolsVM);
     setJiffyLocale();
-    print("description: " + cdvm.description);
     return GestureDetector(
       onTap: () => cdvm.onTap = cdvm.onTap ? false : true,
       child: Stack(children: [
