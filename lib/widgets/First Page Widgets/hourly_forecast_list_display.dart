@@ -17,7 +17,6 @@ class HourlyForecastListDisplay extends ConsumerWidget {
         itemCount: hfvm.hours.length > 15 ? 15 : hfvm.hours.length,
         itemBuilder: (context, index) {
           final hour = hfvm.hours[index];
-          var jiffy = Jiffy.unix(hour.time);
           return Card(
             child: ListTile(
               trailing: Container(
@@ -37,8 +36,8 @@ class HourlyForecastListDisplay extends ConsumerWidget {
                               "http://openweathermap.org/img/wn/03d.png"))),
               title: Text(
                   "" +
-                      Jiffy(jiffy).format("HH:mm").toString() +
-                      " 🕒    ${cutTheTemperature(hour.temperature)}°C🌡️    ${fixedPropPercents(hour.propability)}% ☔       ${firstCapital(hour.description)}",
+                      tools.unixToLocalTimeConverter(hour.time) +
+                      " 🕒    ${cutTheTemperature(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability)}% ☔       ${firstCapital(hour.description)}",
                   style: TextStyle(fontSize: 14, color: tools.textColor)),
             ),
             color: tools.secondaryColor,
@@ -46,17 +45,6 @@ class HourlyForecastListDisplay extends ConsumerWidget {
         },
       ),
     );
-  }
-
-  String fixedPropPercents(double prop) {
-    prop *= 100;
-    String result = prop.toStringAsFixed(0);
-    if (result.length == 1) {
-      return ("    " + result);
-    } else if (result.length == 2) {
-      return ("  " + result);
-    }
-    return result;
   }
 
   String cutTheTemperature(double temperature) {

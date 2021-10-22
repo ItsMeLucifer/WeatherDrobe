@@ -5,6 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:weatherdrobe/main.dart';
 import 'package:weatherdrobe/widgets/First Page Widgets/character_model.dart';
 import 'package:weatherdrobe/widgets/First Page Widgets/current_weather_display.dart';
+import 'package:weatherdrobe/widgets/First%20Page%20Widgets/suggested_accessories.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -12,8 +13,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPage extends State<FirstPage> {
-  static const TextStyle optionStyle = TextStyle(fontSize: 30);
-  static const Color secondaryColor = Color.fromRGBO(200, 200, 200, 1);
   static const Color primaryColor = Color.fromRGBO(220, 220, 220, 1);
   @override
   initState() {
@@ -52,41 +51,9 @@ class _FirstPage extends State<FirstPage> {
                   children: [
                     CurrentWeatherDisplay(),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          children: [
-                            Card(
-                              child: Container(
-                                child: Text(
-                                  '⌚',
-                                  style: optionStyle,
-                                ),
-                                padding: EdgeInsets.all(30),
-                              ),
-                              color: secondaryColor,
-                            ),
-                            Card(
-                              child: Container(
-                                child: Text(
-                                  '🌂',
-                                  style: optionStyle,
-                                ),
-                                padding: EdgeInsets.all(30),
-                              ),
-                              color: secondaryColor,
-                            ),
-                            Card(
-                              child: Container(
-                                child: Text(
-                                  '💍',
-                                  style: optionStyle,
-                                ),
-                                padding: EdgeInsets.all(30),
-                              ),
-                              color: secondaryColor,
-                            ),
-                          ],
-                        ),
+                        SuggestedAccessories(),
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Card(

@@ -59,6 +59,7 @@ class HourlyForecastViewModel extends ChangeNotifier {
     icons = ikony;
     hours.remove(0);
     icons.remove(0);
+    getFirstHourWithHighPropabilityOfPrecipitation();
   }
 
   List<double> temperatures = [];
@@ -73,5 +74,27 @@ class HourlyForecastViewModel extends ChangeNotifier {
               weatherIds.add(hour.weatherId.toDouble())
             }
         });
+  }
+
+  //ACCESSORIES PROPOSAL
+  HourViewModel _firstHourWithRain;
+  HourViewModel get firstHourWithRain => _firstHourWithRain;
+
+  double _averageProbabilityOfPrecipitation;
+  double get averageProbabilityOfPrecipitation =>
+      _averageProbabilityOfPrecipitation;
+
+  void getFirstHourWithHighPropabilityOfPrecipitation() {
+    int amountOfHoursToCheck = 15;
+    double probOfPrecip = 0;
+    bool gotAnHour = false;
+    for (int i = 0; i < amountOfHoursToCheck; i++) {
+      probOfPrecip += hours[i].propability;
+      if (hours[i].propability > 0.25 && !gotAnHour) {
+        _firstHourWithRain = hours[i];
+        gotAnHour = true;
+      }
+    }
+    _averageProbabilityOfPrecipitation = probOfPrecip / amountOfHoursToCheck;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 
 class Tools extends ChangeNotifier {
   double calculateTheMedian(List<double> hours) {
@@ -20,6 +21,7 @@ class Tools extends ChangeNotifier {
   Color get tetriaryColor => Color.fromRGBO(240, 240, 240, 1);
   Color get textColor => Colors.black;
   String get fontFamily => 'Nexa';
+  TextStyle get optionStyle => TextStyle(fontSize: 30);
   //--Cloth Creator
   Color get borderColor => Color.fromRGBO(72, 67, 73, 0.3);
 
@@ -35,6 +37,21 @@ class Tools extends ChangeNotifier {
   set screenHeight(double value) {
     _screenHeight = value;
     notifyListeners();
+  }
+
+  String fixedPropPercents(double prop) {
+    prop *= 100;
+    String result = prop.toStringAsFixed(0);
+    if (result.length == 1) {
+      return ("    " + result);
+    } else if (result.length == 2) {
+      return ("  " + result);
+    }
+    return result;
+  }
+
+  String unixToLocalTimeConverter(int unix) {
+    return Jiffy(Jiffy.unix(unix)).format("HH:mm").toString();
   }
 
   //Cloth Creator
