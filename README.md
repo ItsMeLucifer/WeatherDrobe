@@ -326,8 +326,11 @@ When creating a model, the algorithm will prioritise those garments that had com
 In the application, apart from using the icons available as standard in flutter, and the usual emoji - I also used icons made available on the internet for free use. Below I present all the information about the authors of the graphics I used for this project.
 
 - [Umbrella Icon used in App Logo](https://pixabay.com/pl/illustrations/sylwetka-cz%C5%82owieka-parasol-deszcz-5351473/)
-- [Clothing templates](https://www.flaticon.com/packs/beautiful-clothes?word=clothes) made by 'Freepik' from flaticon.com
-- [Face Detection Icon](https://www.flaticon.com/free-icon/face-detection_2706938?term=face&page=1&position=18&page=1&position=18&related_id=2706938&origin=search)  used in Character Model made by 'Freepik' from flaticon.com
-- [Model Graphic](https://www.vecteezy.com/vector-art/133891-free-cartoon-fat-and-slim-woman-and-man-vector) used as Character model, made by xiayamoon from vecteezy.com
-- [Scarf Icon](https://www.flaticon.com/premium-icon/scarf_1175640?term=scarf&page=1&position=18&page=1&position=18&related_id=1175640&origin=search) made by 'Freepik' from flaticon.com
-- [Gloves Icon][(https://www.flaticon.com/premium-icon/scarf_1175640?term=scarf&page=1&position=18&page=1&position=18&related_id=1175640&origin=search](https://www.flaticon.com/premium-icon/winter-gloves_5173853?term=winter%20gloves&related_id=5173853)) made by 'dreamicons' from flaticon.com
+- [Clothing templates](https://www.flaticon.com/packs/beautiful-clothes?word=clothes) made by 'Freepik' from Flaticon
+- [Face Detection Icon](https://www.flaticon.com/free-icon/face-detection_2706938?term=face&page=1&position=18&page=1&position=18&related_id=2706938&origin=search)  used in Character Model made by 'Freepik' from Flaticon
+- [Model Graphic](https://www.vecteezy.com/vector-art/133891-free-cartoon-fat-and-slim-woman-and-man-vector) used as Character model, made by xiayamoon from Vecteezy
+- [Scarf Icon](https://www.flaticon.com/premium-icon/scarf_1175640?term=scarf&page=1&position=18&page=1&position=18&related_id=1175640&origin=search) made by 'Freepik' from Flaticon
+- [Gloves Icon](https://www.flaticon.com/premium-icon/winter-gloves_5173853?term=winter%20gloves&related_id=5173853) made by 'dreamicons' from Flaticon
+- [Umbrella Icon](https://www.flaticon.com/free-icon/umbrella_949816?term=umbrella&page=1&position=11&page=1&position=11&related_id=949816&origin=search) made by 'dreamicons' from Flaticon
+- [Mannequin Graphic](https://www.freepik.com/free-vector/clothes-modeling-flat-illustration-with-fashion-designers-developing-new-models-cloth_14662516.htm#page=1&query=mannequin&position=39&from_view=search) made by 'macrovector' from Freepik
+- [Wardrobe Background Image](https://www.freepik.com/free-vector/wardrobe-cloakroom-interior-realistic_6173733.htm#page=1&query=wardrobe&position=33&from_view=search) made by 'macrovector' from Freepik

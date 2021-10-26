@@ -65,6 +65,7 @@ flutter:
     - images/templates/costumes/
     - images/character_model/
     - images/background.png
+    - images/background2.png
     - images/icons/
     #   - images/a_dot_ham.jpeg
     # An image asset can refer to one or more resolution-specific "variants", see

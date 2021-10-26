@@ -34,22 +34,31 @@ class CharacterModel extends ConsumerWidget {
         color: tools.secondaryColor,
         child: Container(
           width: 275,
-          height: 480,
+          height: 550,
           child: SafeArea(
             child: Stack(children: [
               //CHARACTER MODEL
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 40.0),
+              //   child: Align(
+              //       alignment: Alignment.topCenter,
+              //       child: Container(
+              //           width: 300,
+              //           height: 400,
+              //           child: Image.asset(vwvm.characterModelSex == "Male"
+              //               ? 'images/character_model/male_character_model.png'
+              //               : 'images/character_model/female_character_model.png'))),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(top: 40.0),
+                padding: const EdgeInsets.only(top: 100.0),
                 child: Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                        width: 300,
+                        width: 200,
                         height: 400,
-                        child: Image.asset(vwvm.characterModelSex == "Male"
-                            ? 'images/character_model/male_character_model.png'
-                            : 'images/character_model/female_character_model.png'))),
+                        child: Image.asset('images/icons/mannequin.png'))),
               ),
-              //HEADWEAR
+              //COUNTER
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -62,9 +71,10 @@ class CharacterModel extends ConsumerWidget {
                           fontWeight: FontWeight.bold),
                     ),
                   )),
+              //HEADWEAR
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
+                      padding: const EdgeInsets.only(top: 60.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -84,12 +94,12 @@ class CharacterModel extends ConsumerWidget {
               //LEFT SHOE
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(bottom: 60, left: 35),
+                      padding: const EdgeInsets.only(bottom: 27, left: 170),
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-                            width: 45,
-                            height: 45,
+                            width: 55,
+                            height: 55,
                             child: Transform(
                               transform: Matrix4.rotationY(math.pi),
                               child: ColorFiltered(
@@ -107,12 +117,12 @@ class CharacterModel extends ConsumerWidget {
               //RIGHT SHOE
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(bottom: 60, left: 95),
+                      padding: const EdgeInsets.only(bottom: 27, left: 210),
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-                            width: 45,
-                            height: 45,
+                            width: 55,
+                            height: 55,
                             child: Transform(
                               transform: Matrix4.rotationY(math.pi),
                               child: ColorFiltered(
@@ -130,12 +140,12 @@ class CharacterModel extends ConsumerWidget {
               //BOTTOM
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(bottom: 110.0),
+                      padding: const EdgeInsets.only(bottom: 100.0),
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-                            width: 160,
-                            height: 160,
+                            width: 195,
+                            height: 195,
                             child: ColorFiltered(
                                 colorFilter: ColorFilter.mode(
                                     new Color(int.parse(cc
@@ -150,12 +160,12 @@ class CharacterModel extends ConsumerWidget {
               //TOP
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(top: 103.0),
+                      padding: const EdgeInsets.only(left: 0, top: 127.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
-                            width: 170,
-                            height: 170,
+                            width: 205,
+                            height: 205,
                             child: ColorFiltered(
                                 colorFilter: ColorFilter.mode(
                                     new Color(int.parse(cc

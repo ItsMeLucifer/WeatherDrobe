@@ -31,7 +31,7 @@ class _BottomNaviBar extends State<BottomNaviBar> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/background.png"),
+            image: AssetImage("images/background2.png"),
             fit: BoxFit.cover,
           ),
         ),
