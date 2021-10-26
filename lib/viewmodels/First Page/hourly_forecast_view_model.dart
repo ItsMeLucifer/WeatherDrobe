@@ -80,21 +80,46 @@ class HourlyForecastViewModel extends ChangeNotifier {
   HourViewModel _firstHourWithRain;
   HourViewModel get firstHourWithRain => _firstHourWithRain;
 
+  HourViewModel _firstHourForHat;
+  HourViewModel get firstHourForHat => _firstHourForHat;
+
+  HourViewModel _firstHourForGloves;
+  HourViewModel get firstHourForGloves => _firstHourForGloves;
+
+  HourViewModel _firstHourForScarf;
+  HourViewModel get firstHourForScarf => _firstHourForScarf;
+
   double _averageProbabilityOfPrecipitation;
   double get averageProbabilityOfPrecipitation =>
       _averageProbabilityOfPrecipitation;
 
+  double _averageTemperature;
+  double get averageTemperature => _averageTemperature;
+
+  double _averageWindSpeed;
+  double get averageWindSpeed => _averageWindSpeed;
+
   void getFirstHourWithHighPropabilityOfPrecipitation() {
     int amountOfHoursToCheck = 15;
     double probOfPrecip = 0;
-    bool gotAnHour = false;
+    double sumOfTemperatures = 0;
+    double sumOfWindSpeed = 0;
+    bool test = false;
     for (int i = 0; i < amountOfHoursToCheck; i++) {
       probOfPrecip += hours[i].propability;
-      if (hours[i].propability > 0.25 && !gotAnHour) {
-        _firstHourWithRain = hours[i];
-        gotAnHour = true;
-      }
+      sumOfTemperatures += hours[i].temperature;
+      sumOfWindSpeed += hours[i].windSpeed;
+      if (hours[i].propability > 0.25 && firstHourWithRain == null ||
+          test && firstHourWithRain == null) _firstHourWithRain = hours[i];
+      if (hours[i].temperature < 10 && firstHourForHat == null ||
+          test && firstHourForHat == null) _firstHourForHat = hours[i];
+      if (hours[i].temperature < 0 && firstHourForGloves == null ||
+          test && firstHourForGloves == null) _firstHourForGloves = hours[i];
+      if (hours[i].windSpeed > 10 && firstHourForScarf == null ||
+          test && firstHourForScarf == null) _firstHourForScarf = hours[i];
     }
     _averageProbabilityOfPrecipitation = probOfPrecip / amountOfHoursToCheck;
+    _averageTemperature = sumOfTemperatures / amountOfHoursToCheck;
+    _averageWindSpeed = sumOfWindSpeed / amountOfHoursToCheck;
   }
 }

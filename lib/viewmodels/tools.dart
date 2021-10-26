@@ -45,9 +45,10 @@ class Tools extends ChangeNotifier {
     notifyListeners();
   }
 
-  String fixedPropPercents(double prop) {
+  String fixedPropPercents(double prop, bool withSpaces) {
     prop *= 100;
     String result = prop.toStringAsFixed(0);
+    if (!withSpaces) return result;
     if (result.length == 1) {
       return ("    " + result);
     } else if (result.length == 2) {

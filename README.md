@@ -329,3 +329,5 @@ In the application, apart from using the icons available as standard in flutter,
 - [Clothing templates](https://www.flaticon.com/packs/beautiful-clothes?word=clothes) made by 'Freepik' from flaticon.com
 - [Face Detection Icon](https://www.flaticon.com/free-icon/face-detection_2706938?term=face&page=1&position=18&page=1&position=18&related_id=2706938&origin=search)  used in Character Model made by 'Freepik' from flaticon.com
 - [Model Graphic](https://www.vecteezy.com/vector-art/133891-free-cartoon-fat-and-slim-woman-and-man-vector) used as Character model, made by xiayamoon from vecteezy.com
+- [Scarf Icon](https://www.flaticon.com/premium-icon/scarf_1175640?term=scarf&page=1&position=18&page=1&position=18&related_id=1175640&origin=search) made by 'Freepik' from flaticon.com
+- [Gloves Icon][(https://www.flaticon.com/premium-icon/scarf_1175640?term=scarf&page=1&position=18&page=1&position=18&related_id=1175640&origin=search](https://www.flaticon.com/premium-icon/winter-gloves_5173853?term=winter%20gloves&related_id=5173853)) made by 'dreamicons' from flaticon.com

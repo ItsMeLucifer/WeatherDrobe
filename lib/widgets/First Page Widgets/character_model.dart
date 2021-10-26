@@ -55,7 +55,12 @@ class CharacterModel extends ConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                        '${cc.currentModelIndex + 1}/${cc.proposals.length}'),
+                      '${cc.currentModelIndex + 1}/${cc.proposals.length}',
+                      style: TextStyle(
+                          fontFamily: tools.fontFamily,
+                          color: tools.textColor,
+                          fontWeight: FontWeight.bold),
+                    ),
                   )),
               cc.proposals.isNotEmpty
                   ? Padding(

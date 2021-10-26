@@ -28,4 +28,8 @@ class HourViewModel {
   int get weatherId {
     return hourly.weatherId;
   }
+
+  double get windSpeed {
+    return hourly.windSpeed;
+  }
 }

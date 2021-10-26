@@ -5,6 +5,7 @@ class HourlyForecast {
   final double propabilityOfPrecipitation;
   final int time;
   final int weatherId;
+  final double windSpeed;
 
   HourlyForecast(
       {this.iconId,
@@ -12,7 +13,8 @@ class HourlyForecast {
       this.description,
       this.propabilityOfPrecipitation,
       this.time,
-      this.weatherId});
+      this.weatherId,
+      this.windSpeed});
 
   factory HourlyForecast.fromJson(Map<String, dynamic> json) {
     return HourlyForecast(
@@ -21,6 +23,7 @@ class HourlyForecast {
         description: json["weather"][0]["description"],
         propabilityOfPrecipitation: json["pop"].toDouble(),
         time: json["dt"],
-        weatherId: json["weather"][0]["id"]);
+        weatherId: json["weather"][0]["id"],
+        windSpeed: json["wind_speed"].toDouble());
   }
 }
