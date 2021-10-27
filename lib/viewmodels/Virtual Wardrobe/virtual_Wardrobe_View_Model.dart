@@ -35,13 +35,6 @@ extension clothTemperatureExtension on bestWeathersTemperatureForCloth {
 }
 
 class VirtualWardrobeViewModel extends ChangeNotifier {
-  String _characterModelSex = "Male";
-  String get characterModelSex => _characterModelSex;
-  set characterModelSex(String value) {
-    _characterModelSex = value;
-    notifyListeners();
-  }
-
   bool _snow = false;
   bool get snow => _snow;
   set snow(bool value) {

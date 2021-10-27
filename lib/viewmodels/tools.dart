@@ -17,20 +17,38 @@ class Tools extends ChangeNotifier {
 
   //Cosmetics
   //Color get primaryColor => Color.fromRGBO(200, 200, 200, 1);
-  Color get primaryColor => Color.fromRGBO(0, 0, 0, 0.2);
+  Color get primaryColor => Color.fromRGBO(0, 0, 0, 0.6);
   //Color get secondaryColor => Color.fromRGBO(220, 220, 220, 1);
-  Color get secondaryColor => Color.fromRGBO(0, 0, 0, 0.2);
+  Color get secondaryColor => Color.fromRGBO(0, 0, 0, 0.4);
   //Color get tetriaryColor => Color.fromRGBO(240, 240, 240, 1);
   Color get tetriaryColor => Color.fromRGBO(0, 0, 0, 0.3);
-  Color get quaternaryColor => Color.fromRGBO(0, 0, 0, 0.5);
+  Color get quaternaryColor => Color.fromRGBO(0, 0, 0, 0.25);
   //Color get quinaryColor => Color.fromRGBO(0, 0, 0, 0.5);
+  Color get disabledText => Color.fromRGBO(255, 255, 255, 0.5);
   Color get disabledColor => Color.fromRGBO(255, 200, 200, 0.5);
   Color get textColor => Colors.white;
   String get fontFamily => 'Nexa';
   TextStyle get optionStyle => TextStyle(fontSize: 30);
   //--Cloth Creator
   Color get borderColor => Color.fromRGBO(72, 67, 73, 0.3);
-
+  dynamic get outline => [
+        Shadow(
+            // bottomLeft
+            offset: Offset(-1, -1),
+            color: Colors.black),
+        Shadow(
+            // bottomRight
+            offset: Offset(1, -1),
+            color: Colors.black),
+        Shadow(
+            // topRight
+            offset: Offset(1, 1),
+            color: Colors.black),
+        Shadow(
+            // topLeft
+            offset: Offset(-1, 1),
+            color: Colors.black),
+      ];
   double _screenWidth;
   double get screenWidth => _screenWidth;
   set screenWidth(double value) {

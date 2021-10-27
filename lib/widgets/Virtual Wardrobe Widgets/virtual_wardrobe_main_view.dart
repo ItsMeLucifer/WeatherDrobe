@@ -16,54 +16,64 @@ class VirtualWardrobeMainView extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final tools = watch(toolsVM);
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () => _navigateToClothCreator(context),
-            child: Card(
-                child: Container(
-                  width: 390,
-                  height: 100,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(children: [
-                          Center(
-                            child: Text("+ ",
+      child: SafeArea(
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () => _navigateToClothCreator(context),
+              child: Card(
+                  child: Container(
+                    width: 390,
+                    height: 100,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(children: [
+                            Center(
+                              child: Text("+ ",
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      color: tools.textColor,
+                                      fontFamily: tools.fontFamily),
+                                  textAlign: TextAlign.center),
+                            ),
+                            Center(
+                              child: Text(
+                                "New Clothing",
                                 style: TextStyle(
-                                    fontSize: 30,
+                                    fontSize: 20,
                                     color: tools.textColor,
                                     fontFamily: tools.fontFamily),
-                                textAlign: TextAlign.center),
-                          ),
-                          Center(
-                            child: Text(
-                              "New Clothing",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: tools.textColor,
-                                  fontFamily: tools.fontFamily),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ])
-                      ]),
-                ),
-                color: tools.quaternaryColor),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Container(
-                child: Text(
-              'Your Virtual Wardrobe:',
-              style: TextStyle(
-                  fontSize: 25,
-                  fontFamily: tools.fontFamily,
-                  fontWeight: FontWeight.w500),
-            )),
-          ),
-          ClothesList()
-        ],
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ])
+                        ]),
+                  ),
+                  color: tools.primaryColor),
+            ),
+            Card(
+              color: tools.quaternaryColor,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Container(
+                        child: Text(
+                      'Your Virtual Wardrobe:',
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: tools.fontFamily,
+                          fontWeight: FontWeight.w500,
+                          color: tools.textColor),
+                    )),
+                  ),
+                  ClothesList()
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

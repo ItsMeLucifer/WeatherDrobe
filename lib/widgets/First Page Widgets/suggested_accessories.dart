@@ -9,6 +9,7 @@ class SuggestedAccessories extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final tools = watch(toolsVM);
     final hfvm = watch(hourlyData);
+    final Color tilesColor = tools.primaryColor;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -57,7 +58,7 @@ class SuggestedAccessories extends ConsumerWidget {
                         child: Image.asset('images/icons/umbrella.png')),
                   ),
                 ]),
-                color: tools.quaternaryColor,
+                color: tilesColor,
               )
             : Container(),
         //HAT
@@ -109,7 +110,7 @@ class SuggestedAccessories extends ConsumerWidget {
                     ),
                   )
                 ]),
-                color: tools.quaternaryColor,
+                color: tilesColor,
               )
             : Container(),
         //GLOVES
@@ -145,7 +146,7 @@ class SuggestedAccessories extends ConsumerWidget {
                     ),
                   )
                 ]),
-                color: tools.quaternaryColor,
+                color: tilesColor,
               )
             : Container(),
         //SCARF
@@ -196,7 +197,7 @@ class SuggestedAccessories extends ConsumerWidget {
                     ),
                   )
                 ]),
-                color: tools.quaternaryColor,
+                color: tilesColor,
               )
             : Container(),
       ],

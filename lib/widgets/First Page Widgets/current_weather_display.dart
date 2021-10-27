@@ -49,7 +49,6 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                         child: Column(children: [
                           Container(
                             child: Text(
-                              //firstCapital(cdvm.description ?? "clouds"),
                               fixDescription(cdvm.description ?? "clouds"),
                               style: TextStyle(
                                   color: tools.textColor,
@@ -60,7 +59,10 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                           ),
                           Container(
                             child: Text(
-                              (cdvm.temperature.toString() ?? "10.5") + "°C",
+                              (cdvm.temperature != null
+                                      ? cdvm.temperature.toStringAsFixed(1)
+                                      : "10.5") +
+                                  "°C",
                               style: TextStyle(
                                   color: tools.textColor,
                                   fontSize: 30,
