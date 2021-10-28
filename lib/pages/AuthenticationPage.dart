@@ -11,17 +11,20 @@ class AuthenticationPage extends ConsumerWidget {
     passwordController.clear();
     final favm = watch(firebaseAuth);
     final tools = watch(toolsVM);
+    final Color backColor = tools.primaryColor;
+
     return Scaffold(
         body: Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/background2.png"),
-          fit: BoxFit.cover,
-        ),
+            image: AssetImage("images/background2.png"),
+            alignment: Alignment.topCenter,
+            fit: BoxFit.none,
+            scale: 5.3),
       ),
       child: Center(
         child: Card(
-          color: tools.secondaryColor,
+          color: backColor,
           child: Container(
             height: 210,
             width: 210,

@@ -31,9 +31,10 @@ class _BottomNaviBar extends State<BottomNaviBar> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/background2.png"),
-            fit: BoxFit.cover,
-          ),
+              image: AssetImage("images/background2.png"),
+              alignment: Alignment.topCenter,
+              fit: BoxFit.none,
+              scale: 5.3),
         ),
         child: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
