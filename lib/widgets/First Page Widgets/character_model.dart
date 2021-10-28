@@ -62,7 +62,7 @@ class CharacterModel extends ConsumerWidget {
               //HEADWEAR
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(top: 60.0),
+                      padding: const EdgeInsets.only(top: 60.0, right: 3),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -150,7 +150,7 @@ class CharacterModel extends ConsumerWidget {
               cc.proposals.isNotEmpty &&
                       !cc.proposals[cc.currentModelIndex].isCostume
                   ? Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 127.0),
+                      padding: const EdgeInsets.only(left: 0, top: 135.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -171,12 +171,12 @@ class CharacterModel extends ConsumerWidget {
               cc.proposals.isNotEmpty &&
                       cc.proposals[cc.currentModelIndex].isCostume
                   ? Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 127.0),
+                      padding: const EdgeInsets.only(left: 0, top: 145.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
-                            width: 205,
-                            height: 205,
+                            width: 250,
+                            height: 250,
                             child: ColorFiltered(
                                 colorFilter: ColorFilter.mode(
                                     new Color(int.parse(cc

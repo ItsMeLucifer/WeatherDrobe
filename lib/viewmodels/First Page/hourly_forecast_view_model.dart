@@ -105,6 +105,7 @@ class HourlyForecastViewModel extends ChangeNotifier {
     double sumOfTemperatures = 0;
     double sumOfWindSpeed = 0;
     bool test = true;
+    print("GETTING DATA FOR ACCESSORIES");
     for (int i = 0; i < amountOfHoursToCheck; i++) {
       probOfPrecip += hours[i].propability;
       sumOfTemperatures += hours[i].temperature;

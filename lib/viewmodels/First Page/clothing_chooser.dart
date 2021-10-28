@@ -116,18 +116,15 @@ class ClothingChooser extends ChangeNotifier {
           .toList();
     }
     amountOfFreeClothing = _pickMin([
-      _prefTops.length,
+      _prefTops.length + _prefCostumes.length,
       _prefBottoms.length,
       _prefFootwear.length,
       _prefHeadwear.length,
     ]);
-    int _amountOfFreeCostumes = _prefCostumes.length;
-    print("PREFCOSTUMES: " + _prefCostumes.length.toString());
     int _amountOfModels = 0;
     while (amountOfFreeClothing > 0) {
       proposals.add(_createModel());
       amountOfFreeClothing--;
-      _amountOfFreeCostumes--;
       _amountOfModels++;
       if (_amountOfModels > 2) break;
     }

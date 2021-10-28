@@ -10,6 +10,7 @@ class SuggestedAccessories extends ConsumerWidget {
     final tools = watch(toolsVM);
     final hfvm = watch(hourlyData);
     final Color tilesColor = tools.primaryColor;
+    //hfvm.getFirstHourWithHighPropabilityOfPrecipitation();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
