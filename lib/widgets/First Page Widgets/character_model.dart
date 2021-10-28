@@ -38,7 +38,7 @@ class CharacterModel extends ConsumerWidget {
           child: SafeArea(
             child: Stack(children: [
               Padding(
-                padding: const EdgeInsets.only(top: 100.0),
+                padding: const EdgeInsets.only(top: 135.0),
                 child: Align(
                     alignment: Alignment.topCenter,
                     child: Container(
@@ -62,7 +62,7 @@ class CharacterModel extends ConsumerWidget {
               //HEADWEAR
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(top: 60.0, right: 3),
+                      padding: const EdgeInsets.only(top: 95.0, right: 3),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -82,7 +82,7 @@ class CharacterModel extends ConsumerWidget {
               //LEFT SHOE
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(bottom: 27, left: 170),
+                      padding: const EdgeInsets.only(bottom: 27, left: 190),
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
@@ -105,7 +105,7 @@ class CharacterModel extends ConsumerWidget {
               //RIGHT SHOE
               cc.proposals.isNotEmpty
                   ? Padding(
-                      padding: const EdgeInsets.only(bottom: 27, left: 210),
+                      padding: const EdgeInsets.only(bottom: 27, left: 220),
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
@@ -129,7 +129,7 @@ class CharacterModel extends ConsumerWidget {
               cc.proposals.isNotEmpty &&
                       !cc.proposals[cc.currentModelIndex].isCostume
                   ? Padding(
-                      padding: const EdgeInsets.only(bottom: 100.0),
+                      padding: const EdgeInsets.only(bottom: 65.0),
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
@@ -150,7 +150,7 @@ class CharacterModel extends ConsumerWidget {
               cc.proposals.isNotEmpty &&
                       !cc.proposals[cc.currentModelIndex].isCostume
                   ? Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 135.0),
+                      padding: const EdgeInsets.only(left: 0, top: 170.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -171,7 +171,7 @@ class CharacterModel extends ConsumerWidget {
               cc.proposals.isNotEmpty &&
                       cc.proposals[cc.currentModelIndex].isCostume
                   ? Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 145.0),
+                      padding: const EdgeInsets.only(left: 0, top: 180.0),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(

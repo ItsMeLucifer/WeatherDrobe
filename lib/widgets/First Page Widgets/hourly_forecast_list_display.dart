@@ -34,7 +34,7 @@ class HourlyForecastListDisplay extends ConsumerWidget {
                           image: NetworkImage(hfvm.icons[index] ??
                               "http://openweathermap.org/img/wn/03d.png"))),
               title: Text(
-                  //DODAĆ ROW, ROZBIĆ PONIŻSZY TEKST NA POJEDYNCZE KOMPONENTY, ABY MAINAXISALIGMENT DZIALAL
+                  //STWORZYC FUNKCJE, KTORA USTAWI DLUGOSC WEATHER DESCRIPTION ZAWSZENA TAKĄ SAMĄ(dodajac spacje i ewentualnie usuwajac slowa).
                   "" +
                       tools.unixToLocalTimeConverter(hour.time) +
                       " 🕒    ${cutTheTemperature(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔       ${firstCapital(hour.description)}",

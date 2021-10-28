@@ -34,7 +34,7 @@ class _BottomNaviBar extends State<BottomNaviBar> {
               image: AssetImage("images/background2.png"),
               alignment: Alignment.topCenter,
               fit: BoxFit.none,
-              scale: 5.3),
+              scale: 5.4),
         ),
         child: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
