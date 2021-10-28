@@ -47,7 +47,9 @@ class ClothAdditionalConditions extends ConsumerWidget {
               child: Text(
                   "Choose which weather conditions are the most suitable for this piece of clothing",
                   style: TextStyle(
-                      fontSize: 15, color: tools.textColor, fontFamily: 'Nexa'),
+                      fontSize: 15,
+                      color: tools.textSecondaryColor,
+                      fontFamily: 'Nexa'),
                   textAlign: TextAlign.start),
             ),
           ),
@@ -192,7 +194,9 @@ class ClothAdditionalConditions extends ConsumerWidget {
               child: Center(
                 child: Text("Save Cloth",
                     style: TextStyle(
-                        fontSize: 15, color: Colors.black, fontFamily: 'Nexa')),
+                        fontSize: 15,
+                        color: tools.textSecondaryColor,
+                        fontFamily: 'Nexa')),
               )),
         )
       ]),

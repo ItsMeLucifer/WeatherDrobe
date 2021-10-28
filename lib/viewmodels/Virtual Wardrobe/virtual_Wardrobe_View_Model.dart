@@ -254,20 +254,6 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     temp = [];
     await users
         .doc(auth.currentUser.uid)
-        .collection('footwear')
-        .get()
-        .then((QuerySnapshot querySnapshot) => {
-              if (querySnapshot.size > 0)
-                {
-                  querySnapshot.docs.forEach((doc) {
-                    temp.add(doc);
-                  })
-                }
-            });
-    footwear = temp;
-    temp = [];
-    await users
-        .doc(auth.currentUser.uid)
         .collection('costumes')
         .get()
         .then((QuerySnapshot querySnapshot) => {
@@ -279,6 +265,20 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
                 }
             });
     costumes = temp;
+    temp = [];
+    await users
+        .doc(auth.currentUser.uid)
+        .collection('footwear')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              if (querySnapshot.size > 0)
+                {
+                  querySnapshot.docs.forEach((doc) {
+                    temp.add(doc);
+                  })
+                }
+            });
+    footwear = temp;
     temp = [];
     userCollections = await users.doc(auth.currentUser.uid).get();
     notifyListeners();

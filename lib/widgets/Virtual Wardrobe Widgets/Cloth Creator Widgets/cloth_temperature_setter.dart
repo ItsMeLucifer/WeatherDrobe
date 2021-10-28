@@ -45,7 +45,9 @@ class ClothTemperatureSetter extends ConsumerWidget {
               child: Text(
                 "What temeperature would you wear this piece of clothing in?",
                 style: TextStyle(
-                    fontSize: 15, color: tools.textColor, fontFamily: 'Nexa'),
+                    fontSize: 15,
+                    color: tools.textSecondaryColor,
+                    fontFamily: 'Nexa'),
                 textAlign: TextAlign.start,
               ),
             ),
@@ -56,7 +58,7 @@ class ClothTemperatureSetter extends ConsumerWidget {
                 child: Text(vwvm.temperature(vwvm.temperatureRating),
                     style: TextStyle(
                         fontSize: 20,
-                        color: tools.textColor,
+                        color: tools.textSecondaryColor,
                         fontWeight: FontWeight.bold))),
           ),
           Slider(

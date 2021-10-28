@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherdrobe/models/clothing.dart';
+import 'dart:math';
 
 enum ClothType { headwear, tops, bottoms, footwear, costumes }
 enum bestWeathersTemperatureForCloth {
@@ -120,10 +121,13 @@ class ClothingChooser extends ChangeNotifier {
       _prefFootwear.length,
       _prefHeadwear.length,
     ]);
+    int _amountOfFreeCostumes = _prefCostumes.length;
+    print("PREFCOSTUMES: " + _prefCostumes.length.toString());
     int _amountOfModels = 0;
     while (amountOfFreeClothing > 0) {
       proposals.add(_createModel());
       amountOfFreeClothing--;
+      _amountOfFreeCostumes--;
       _amountOfModels++;
       if (_amountOfModels > 2) break;
     }
@@ -159,12 +163,17 @@ class ClothingChooser extends ChangeNotifier {
 
   Clothing _createModel() {
     List<QueryDocumentSnapshot> temporaryVault = [];
+    Random random = new Random();
     Map<String, int> prefIndex = {
-      'Headwear': 0,
-      'Tops': 0,
-      'Bottoms': 0,
-      'Footwear': 0,
-      'Costumes': 0
+      'Headwear':
+          _prefHeadwear.length > 0 ? random.nextInt(_prefHeadwear.length) : 0,
+      'Tops': _prefTops.length > 0 ? random.nextInt(_prefTops.length) : 0,
+      'Bottoms':
+          _prefBottoms.length > 0 ? random.nextInt(_prefBottoms.length) : 0,
+      'Footwear':
+          _prefFootwear.length > 0 ? random.nextInt(_prefFootwear.length) : 0,
+      'Costumes':
+          _prefCostumes.length > 0 ? random.nextInt(_prefCostumes.length) : 0
     };
     if (_additionalConditions.isNotEmpty) {
       _additionalConditions.forEach((key, value) {
@@ -211,9 +220,9 @@ class ClothingChooser extends ChangeNotifier {
         _prefCostumes[prefIndex['Costumes']],
         _prefFootwear[prefIndex['Footwear']]
       ];
-      _prefHeadwear.remove(prefIndex['Headwear']);
-      _prefCostumes.remove(prefIndex['Costumes']);
-      _prefFootwear.remove(prefIndex['Footwear']);
+      _prefHeadwear.removeAt(prefIndex['Headwear']);
+      _prefCostumes.removeAt(prefIndex['Costumes']);
+      _prefFootwear.removeAt(prefIndex['Footwear']);
       return new Clothing(
           temporaryVault[0], temporaryVault[1], null, temporaryVault[2], true);
     }

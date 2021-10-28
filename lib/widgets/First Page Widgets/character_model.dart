@@ -37,18 +37,6 @@ class CharacterModel extends ConsumerWidget {
           height: 550,
           child: SafeArea(
             child: Stack(children: [
-              //CHARACTER MODEL
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 40.0),
-              //   child: Align(
-              //       alignment: Alignment.topCenter,
-              //       child: Container(
-              //           width: 300,
-              //           height: 400,
-              //           child: Image.asset(vwvm.characterModelSex == "Male"
-              //               ? 'images/character_model/male_character_model.png'
-              //               : 'images/character_model/female_character_model.png'))),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 100.0),
                 child: Align(
@@ -138,7 +126,8 @@ class CharacterModel extends ConsumerWidget {
                     )
                   : Container(),
               //BOTTOM
-              cc.proposals.isNotEmpty
+              cc.proposals.isNotEmpty &&
+                      !cc.proposals[cc.currentModelIndex].isCostume
                   ? Padding(
                       padding: const EdgeInsets.only(bottom: 100.0),
                       child: Align(
@@ -158,7 +147,8 @@ class CharacterModel extends ConsumerWidget {
                     )
                   : Container(),
               //TOP
-              cc.proposals.isNotEmpty
+              cc.proposals.isNotEmpty &&
+                      !cc.proposals[cc.currentModelIndex].isCostume
                   ? Padding(
                       padding: const EdgeInsets.only(left: 0, top: 127.0),
                       child: Align(
@@ -174,6 +164,27 @@ class CharacterModel extends ConsumerWidget {
                                     BlendMode.modulate),
                                 child: Image.asset(
                                     'images/templates/tops/${cc.proposals[cc.currentModelIndex].top["dir"]}.png'))),
+                      ),
+                    )
+                  : Container(),
+              //COSTUME
+              cc.proposals.isNotEmpty &&
+                      cc.proposals[cc.currentModelIndex].isCostume
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 0, top: 127.0),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                            width: 205,
+                            height: 205,
+                            child: ColorFiltered(
+                                colorFilter: ColorFilter.mode(
+                                    new Color(int.parse(cc
+                                        .proposals[cc.currentModelIndex]
+                                        .top['color'])),
+                                    BlendMode.modulate),
+                                child: Image.asset(
+                                    'images/templates/costumes/${cc.proposals[cc.currentModelIndex].top["dir"]}.png'))),
                       ),
                     )
                   : Container(),
