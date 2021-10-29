@@ -28,7 +28,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                     children: [
                       Column(children: [
                         Text(
-                          firstCapital(Jiffy().format("EEEE").toString()),
+                          tools.firstCapital(Jiffy().format("EEEE").toString()),
                           style: TextStyle(
                               color: tools.textColor,
                               fontSize: 30,
@@ -49,7 +49,8 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                         child: Column(children: [
                           Container(
                             child: Text(
-                              fixDescription(cdvm.description ?? "clouds"),
+                              tools.fixDescription(
+                                  cdvm.description ?? "clouds", 18),
                               style: TextStyle(
                                   color: tools.textColor,
                                   fontSize: 22,
@@ -121,24 +122,10 @@ class CurrentWeatherDisplay extends ConsumerWidget {
     return HourlyForecastListDisplay();
   }
 
-  String firstCapital(String s) {
-    return ("${s[0].toUpperCase()}${s.substring(1)}");
-  }
-
-  String fixDescription(String s) {
-    if (s.length > 18) {
-      var splitted = s.split(" ");
-      s = splitted[splitted.length - 2] + " " + splitted[splitted.length - 1];
-      if (s.length > 18) s = splitted[splitted.length - 1];
-    }
-    return ("${s[0].toUpperCase()}${s.substring(1)}");
-  }
-
   String fixedPropPercents(List<HourViewModel> prop) {
     String result;
     for (int i = 0; i < prop.length; i++) {
-      double temp = 0;
-      if (prop[i].propability > temp) {
+      if (prop[i].propability > 0) {
         result = (prop[i].propability * 100).toStringAsFixed(0);
       }
     }

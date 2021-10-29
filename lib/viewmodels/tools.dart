@@ -76,8 +76,41 @@ class Tools extends ChangeNotifier {
     return result;
   }
 
+  String fixDescription(String s, int length) {
+    if (s.length > length) {
+      var splitted = s.split(" ");
+      s = splitted[splitted.length - 2] + " " + splitted[splitted.length - 1];
+      if (s.length > length) s = splitted[splitted.length - 1];
+    }
+    return ("${s[0].toUpperCase()}${s.substring(1)}");
+  }
+
+  String setStringLengthToConstantValue(String s, int constantValue) {
+    if (s.length > constantValue) {
+      var splitted = s.split(" ");
+      s = splitted[splitted.length - 1];
+    }
+    s = firstCapital(s);
+    while (s.length <= constantValue) {
+      s = "  " + s;
+    }
+    return s;
+  }
+
+  String firstCapital(String s) {
+    return ("${s[0].toUpperCase()}${s.substring(1)}");
+  }
+
   String unixToLocalTimeConverter(int unix) {
     return Jiffy(Jiffy.unix(unix)).format("HH:mm").toString();
+  }
+
+  String fixTemperatureDisplay(double temperature) {
+    String temp = temperature.toStringAsFixed(0);
+    if (temp.length != 2) {
+      return "  " + temp;
+    }
+    return temp;
   }
 
   //Cloth Creator

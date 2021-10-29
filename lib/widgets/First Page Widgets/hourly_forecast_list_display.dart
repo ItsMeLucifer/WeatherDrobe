@@ -8,7 +8,6 @@ class HourlyForecastListDisplay extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final hfvm = watch(hourlyData);
     final tools = watch(toolsVM);
-    print(hfvm.hours[0].hourly.time.toString());
     return Container(
       child: ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -37,7 +36,7 @@ class HourlyForecastListDisplay extends ConsumerWidget {
                   //STWORZYC FUNKCJE, KTORA USTAWI DLUGOSC WEATHER DESCRIPTION ZAWSZENA TAKĄ SAMĄ(dodajac spacje i ewentualnie usuwajac slowa).
                   "" +
                       tools.unixToLocalTimeConverter(hour.time) +
-                      " 🕒    ${cutTheTemperature(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔       ${firstCapital(hour.description)}",
+                      " 🕒    ${tools.fixTemperatureDisplay(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔${tools.setStringLengthToConstantValue(hour.description, 15)}",
                   style: TextStyle(fontSize: 14, color: tools.textColor)),
             ),
             color: tools.secondaryColor,
@@ -45,13 +44,5 @@ class HourlyForecastListDisplay extends ConsumerWidget {
         },
       ),
     );
-  }
-
-  String cutTheTemperature(double temperature) {
-    return temperature.toStringAsFixed(0);
-  }
-
-  String firstCapital(String s) {
-    return ("${s[0].toUpperCase()}${s.substring(1)}");
   }
 }
