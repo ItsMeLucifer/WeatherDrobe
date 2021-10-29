@@ -36,7 +36,7 @@ class ClothesList extends ConsumerWidget {
                         ))),
                     color: vwvm.actualClothType == 0
                         ? tools.secondaryColor
-                        : tools.tetriaryColor,
+                        : tools.quinaryColor,
                   ),
                 ),
                 GestureDetector(
@@ -56,7 +56,7 @@ class ClothesList extends ConsumerWidget {
                         ))),
                     color: vwvm.actualClothType == 4
                         ? tools.secondaryColor
-                        : tools.tetriaryColor,
+                        : tools.quinaryColor,
                   ),
                 ),
                 GestureDetector(
@@ -77,7 +77,7 @@ class ClothesList extends ConsumerWidget {
                           ))),
                       color: vwvm.actualClothType == 1
                           ? tools.secondaryColor
-                          : tools.tetriaryColor),
+                          : tools.quinaryColor),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -96,7 +96,7 @@ class ClothesList extends ConsumerWidget {
                         ))),
                     color: vwvm.actualClothType == 2
                         ? tools.secondaryColor
-                        : tools.tetriaryColor,
+                        : tools.quinaryColor,
                   ),
                 ),
                 GestureDetector(
@@ -116,7 +116,7 @@ class ClothesList extends ConsumerWidget {
                         ))),
                     color: vwvm.actualClothType == 3
                         ? tools.secondaryColor
-                        : tools.tetriaryColor,
+                        : tools.quinaryColor,
                   ),
                 ),
               ],

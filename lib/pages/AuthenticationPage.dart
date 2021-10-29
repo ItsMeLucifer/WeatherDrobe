@@ -11,8 +11,8 @@ class AuthenticationPage extends ConsumerWidget {
     passwordController.clear();
     final favm = watch(firebaseAuth);
     final tools = watch(toolsVM);
-    final Color backColor = tools.primaryColor;
-
+    final Color buttonColor = Color.fromRGBO(255, 255, 255, 0.2);
+    final Color disabledBorderColor = Color.fromRGBO(255, 255, 255, 0.5);
     return Scaffold(
         body: Container(
       decoration: BoxDecoration(
@@ -24,7 +24,7 @@ class AuthenticationPage extends ConsumerWidget {
       ),
       child: Center(
         child: Card(
-          color: backColor,
+          color: tools.primaryColor,
           child: Container(
             height: 210,
             width: 210,
@@ -45,8 +45,15 @@ class AuthenticationPage extends ConsumerWidget {
                             fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
                             hintText: 'E-mail',
+                            prefixIcon: new Icon(
+                              Icons.mail,
+                              color: tools.disabledText,
+                            ),
                             focusColor: tools.textColor,
-                            focusedBorder: UnderlineInputBorder(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 1, color: disabledBorderColor)),
+                            focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                     width: 1, color: tools.textColor)),
                             hintStyle: TextStyle(
@@ -56,6 +63,7 @@ class AuthenticationPage extends ConsumerWidget {
                             contentPadding:
                                 EdgeInsets.fromLTRB(20, 10, 20, 10)))),
               ),
+              SizedBox(height: 5),
               Container(
                   width: 200,
                   height: 50,
@@ -70,22 +78,34 @@ class AuthenticationPage extends ConsumerWidget {
                           fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
                           hintText: 'Password',
+                          prefixIcon: new Icon(
+                            Icons.vpn_key,
+                            color: tools.disabledText,
+                          ),
                           hintStyle: TextStyle(
                               color: tools.disabledText,
                               fontFamily: tools.fontFamily,
                               fontWeight: FontWeight.bold),
-                          focusedBorder: UnderlineInputBorder(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1, color: disabledBorderColor)),
+                          focusedBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(width: 1, color: tools.textColor)),
                           contentPadding:
                               EdgeInsets.fromLTRB(20, 10, 20, 10)))),
+              SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
                   favm.signIn(emailController.text, passwordController.text);
                 },
                 child: Container(
                     width: 200,
-                    height: 50,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: buttonColor,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
                     child: Center(
                       child: Text(
                         'Sign-in',
@@ -97,13 +117,18 @@ class AuthenticationPage extends ConsumerWidget {
                       ),
                     )),
               ),
+              SizedBox(height: 5),
               GestureDetector(
                 onTap: () {
                   favm.register(emailController.text, passwordController.text);
                 },
                 child: Container(
+                    decoration: BoxDecoration(
+                      color: buttonColor,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
                     width: 200,
-                    height: 50,
+                    height: 40,
                     child: Center(
                       child: Text(
                         'Register',
