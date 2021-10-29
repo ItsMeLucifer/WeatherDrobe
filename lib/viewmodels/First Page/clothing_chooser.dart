@@ -52,6 +52,16 @@ class ClothingChooser extends ChangeNotifier {
     notifyListeners();
   }
 
+  void restartAlgorithm() {
+    proposals = [];
+    _prefHeadwear = [];
+    _prefCostumes = [];
+    _prefFootwear = [];
+    _prefTops = [];
+    _prefBottoms = [];
+    _currentModelIndex = 0;
+  }
+
   Map<String, bool> _additionalConditions = {
     'Rain': false,
     'Snow': false,

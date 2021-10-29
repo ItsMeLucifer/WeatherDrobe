@@ -24,10 +24,9 @@ final settingsVM = ChangeNotifierProvider((_) => SettingsViewModel());
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(Phoenix(
-      child: ProviderScope(
-    child: MyApp(),
-  )));
+  runApp(ProviderScope(
+    child: Phoenix(child: MyApp()),
+  ));
 }
 
 class MyApp extends StatelessWidget {

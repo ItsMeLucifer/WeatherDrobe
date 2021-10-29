@@ -13,6 +13,13 @@ class HourlyForecastViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  int _numberOfHoursAnalysed = 15;
+  int get numberOfHoursAnalysed => _numberOfHoursAnalysed;
+  set numberOfHoursAnalysed(int value) {
+    _numberOfHoursAnalysed = value;
+    notifyListeners();
+  }
+
   List<String> _icons;
   List<String> get icons => _icons;
   set icons(List<String> value) {
@@ -64,11 +71,11 @@ class HourlyForecastViewModel extends ChangeNotifier {
 
   List<double> temperatures = [];
   List<double> weatherIds = [];
-  void getTemperaturesAndWeatherIds(int amount) {
+  void getTemperaturesAndWeatherIds() {
     int tempCounter = 0;
     hours.forEach((hour) => {
           tempCounter++,
-          if (tempCounter < amount)
+          if (tempCounter < numberOfHoursAnalysed)
             {
               temperatures.add(hour.temperature),
               weatherIds.add(hour.weatherId.toDouble())
@@ -100,13 +107,11 @@ class HourlyForecastViewModel extends ChangeNotifier {
   double get averageWindSpeed => _averageWindSpeed;
 
   void getFirstHourWithHighPropabilityOfPrecipitation() {
-    int amountOfHoursToCheck = 15;
     double probOfPrecip = 0;
     double sumOfTemperatures = 0;
     double sumOfWindSpeed = 0;
     bool test = true;
-    print("GETTING DATA FOR ACCESSORIES");
-    for (int i = 0; i < amountOfHoursToCheck; i++) {
+    for (int i = 0; i < numberOfHoursAnalysed; i++) {
       probOfPrecip += hours[i].propability;
       sumOfTemperatures += hours[i].temperature;
       sumOfWindSpeed += hours[i].windSpeed;
@@ -119,8 +124,8 @@ class HourlyForecastViewModel extends ChangeNotifier {
       if (hours[i].windSpeed > 10 && firstHourForScarf == null ||
           test && firstHourForScarf == null) _firstHourForScarf = hours[i];
     }
-    _averageProbabilityOfPrecipitation = probOfPrecip / amountOfHoursToCheck;
-    _averageTemperature = sumOfTemperatures / amountOfHoursToCheck;
-    _averageWindSpeed = sumOfWindSpeed / amountOfHoursToCheck;
+    _averageProbabilityOfPrecipitation = probOfPrecip / numberOfHoursAnalysed;
+    _averageTemperature = sumOfTemperatures / numberOfHoursAnalysed;
+    _averageWindSpeed = sumOfWindSpeed / numberOfHoursAnalysed;
   }
 }

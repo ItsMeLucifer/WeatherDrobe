@@ -134,12 +134,11 @@ class ClothesList extends ConsumerWidget {
 
 Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
     BuildContext context) {
-  const String fontFamily = 'Nexa';
   final vwvm = watch(virtualWardrobe);
   final favm = watch(firebaseAuth);
-  // final cc = watch(clothingChooser);
+  final cc = watch(clothingChooser);
   final tools = watch(toolsVM);
-  // final hfvm = watch(hourlyData);
+  final hfvm = watch(hourlyData);
 
   if (array != null || array.length != 0) {
     return GridView.builder(
@@ -250,23 +249,7 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
                                           array[index].id, favm.auth);
                                       vwvm.getGarments(favm.auth);
                                       vwvm.userCollections = null;
-                                      // cc.proposals = [];
-                                      // cc.chooseClothing(
-                                      //     vwvm.headwear,
-                                      //     vwvm.tops,
-                                      //     vwvm.bottoms,
-                                      //     vwvm.footwear,
-                                      //     vwvm.costumes,
-                                      //     10,
-                                      //     tools
-                                      //         .calculateTheMedian(
-                                      //             hfvm.weatherIds)
-                                      //         .toInt(),
-                                      //     false);
-
-                                      // Czasowe rozwiązanie, trzeba sprawić aby character model się update'ował po kliknięciu tego przycisku
-                                      //Phoenix.rebirth(context);
-
+                                      cc.restartAlgorithm();
                                       //DELETE CLOTHING FROM FIREBASE
                                     },
                                     child: Text(

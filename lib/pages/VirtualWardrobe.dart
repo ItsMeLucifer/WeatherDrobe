@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:weatherdrobe/main.dart';
 import 'package:weatherdrobe/widgets/Virtual Wardrobe Widgets/virtual_wardrobe_main_view.dart';
 
 class VirtualWardrobe extends StatefulWidget {
@@ -12,7 +13,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   void _onRefresh() async {
-    Phoenix.rebirth(context);
+    context.read(virtualWardrobe).userCollections = null;
     await Future.delayed(Duration(milliseconds: 1000));
 
     _refreshController.refreshCompleted();

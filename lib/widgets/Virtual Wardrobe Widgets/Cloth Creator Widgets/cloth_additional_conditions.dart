@@ -8,8 +8,7 @@ class ClothAdditionalConditions extends ConsumerWidget {
     final vwvm = watch(virtualWardrobe);
     final favm = watch(firebaseAuth);
     final tools = watch(toolsVM);
-    // Color primaryColor = Color.fromRGBO(72, 67, 73, 0.5);
-    // Color buttonTextColor = Colors.white;
+    final cc = watch(clothingChooser);
     double borderWidth = 3;
     return Scaffold(
       body: Column(children: [
@@ -180,7 +179,9 @@ class ClothAdditionalConditions extends ConsumerWidget {
           onTap: () {
             vwvm.saveCloth(favm.auth);
             vwvm.getGarments(favm.auth);
+            vwvm.userCollections = null;
             tools.controller.jumpToPage(0);
+            cc.restartAlgorithm();
             Navigator.pop(context);
           },
           child: Container(
