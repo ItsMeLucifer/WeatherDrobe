@@ -36,7 +36,7 @@ class HourlyForecastListDisplay extends ConsumerWidget {
                   //STWORZYC FUNKCJE, KTORA USTAWI DLUGOSC WEATHER DESCRIPTION ZAWSZENA TAKĄ SAMĄ(dodajac spacje i ewentualnie usuwajac slowa).
                   "" +
                       tools.unixToLocalTimeConverter(hour.time) +
-                      " 🕒    ${tools.fixTemperatureDisplay(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔${tools.setStringLengthToConstantValue(hour.description, 15)}",
+                      " 🕒    ${tools.fixTemperatureDisplay(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔${tools.setStringLengthToConstantValue(hour.description, 14)}",
                   style: TextStyle(fontSize: 14, color: tools.textColor)),
             ),
             color: tools.secondaryColor,
