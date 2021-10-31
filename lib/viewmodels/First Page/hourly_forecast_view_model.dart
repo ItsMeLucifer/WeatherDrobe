@@ -115,14 +115,14 @@ class HourlyForecastViewModel extends ChangeNotifier {
       probOfPrecip += hours[i].propability;
       sumOfTemperatures += hours[i].temperature;
       sumOfWindSpeed += hours[i].windSpeed;
-      if (hours[i].propability > 0.25 && firstHourWithRain == null ||
-          test && firstHourWithRain == null) _firstHourWithRain = hours[i];
-      if (hours[i].temperature < 10 && firstHourForHat == null ||
-          test && firstHourForHat == null) _firstHourForHat = hours[i];
-      if (hours[i].temperature < 0 && firstHourForGloves == null ||
-          test && firstHourForGloves == null) _firstHourForGloves = hours[i];
-      if (hours[i].windSpeed > 10 && firstHourForScarf == null ||
-          test && firstHourForScarf == null) _firstHourForScarf = hours[i];
+      if (hours[i].propability > 0.25 && firstHourWithRain == null || test)
+        _firstHourWithRain = hours[i];
+      if (hours[i].temperature < 10 && firstHourForHat == null || test)
+        _firstHourForHat = hours[i];
+      if (hours[i].temperature < 0 && firstHourForGloves == null || test)
+        _firstHourForGloves = hours[i];
+      if (hours[i].windSpeed > 10 && firstHourForScarf == null || test)
+        _firstHourForScarf = hours[i];
     }
     _averageProbabilityOfPrecipitation = probOfPrecip / numberOfHoursAnalysed;
     _averageTemperature = sumOfTemperatures / numberOfHoursAnalysed;

@@ -29,7 +29,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_colorpicker: ^0.3.5
-  flutter_phoenix: ^0.1.0
   flutter_riverpod: ^0.12.1
   geolocator: ^6.1.9
   http: ^0.12.2

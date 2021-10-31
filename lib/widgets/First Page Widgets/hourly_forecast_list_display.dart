@@ -12,7 +12,9 @@ class HourlyForecastListDisplay extends ConsumerWidget {
       child: ListView.builder(
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: hfvm.hours.length > 15 ? 15 : hfvm.hours.length,
+        itemCount: hfvm.hours.length > hfvm.numberOfHoursAnalysed
+            ? hfvm.numberOfHoursAnalysed
+            : hfvm.hours.length,
         itemBuilder: (context, index) {
           final hour = hfvm.hours[index];
           return Card(
@@ -32,12 +34,19 @@ class HourlyForecastListDisplay extends ConsumerWidget {
                       : Image(
                           image: NetworkImage(hfvm.icons[index] ??
                               "http://openweathermap.org/img/wn/03d.png"))),
-              title: Text(
-                  //STWORZYC FUNKCJE, KTORA USTAWI DLUGOSC WEATHER DESCRIPTION ZAWSZENA TAKĄ SAMĄ(dodajac spacje i ewentualnie usuwajac slowa).
-                  "" +
-                      tools.unixToLocalTimeConverter(hour.time) +
-                      " 🕒    ${tools.fixTemperatureDisplay(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔${tools.setStringLengthToConstantValue(hour.description, 14)}",
-                  style: TextStyle(fontSize: 14, color: tools.textColor)),
+              title: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(tools.unixToLocalTimeConverter(hour.time),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: tools.textColor)),
+                  Text(
+                      "    ${tools.fixTemperatureDisplay(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔  ${tools.setStringLengthToConstantValue(hour.description, 14)}",
+                      style: TextStyle(fontSize: 14, color: tools.textColor)),
+                ],
+              ),
             ),
             color: tools.secondaryColor,
           );

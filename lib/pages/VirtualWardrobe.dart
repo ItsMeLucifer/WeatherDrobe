@@ -14,6 +14,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
       RefreshController(initialRefresh: false);
   void _onRefresh() async {
     context.read(virtualWardrobe).userCollections = null;
+    context.read(virtualWardrobe).getGarments(context.read(firebaseAuth).auth);
     await Future.delayed(Duration(milliseconds: 1000));
 
     _refreshController.refreshCompleted();
