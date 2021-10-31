@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
+import 'package:weatherdrobe/widgets/Virtual Wardrobe Widgets/cloth_type_select_buttons.dart';
 
 class ClothTemplateChooser extends ConsumerWidget {
   @override
@@ -37,94 +38,7 @@ class ClothTemplateChooser extends ConsumerWidget {
             ),
           )),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20.0, left: 9),
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        vwvm.type = 0;
-                      },
-                      child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '👒',
-                              style: TextStyle(fontSize: iconSize),
-                            ),
-                          ),
-                          color: vwvm.type == 0
-                              ? tools.secondaryColor
-                              : tools.tetriaryColor)),
-                  GestureDetector(
-                      onTap: () {
-                        vwvm.type = 4;
-                      },
-                      child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '👗',
-                              style: TextStyle(fontSize: iconSize),
-                            ),
-                          ),
-                          color: vwvm.type == 4
-                              ? tools.secondaryColor
-                              : tools.tetriaryColor)),
-                  GestureDetector(
-                      onTap: () {
-                        vwvm.type = 1;
-                      },
-                      child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '👕',
-                              style: TextStyle(fontSize: iconSize),
-                            ),
-                          ),
-                          color: vwvm.type == 1
-                              ? tools.secondaryColor
-                              : tools.tetriaryColor)),
-                  GestureDetector(
-                      onTap: () {
-                        vwvm.type = 2;
-                      },
-                      child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '👖',
-                              style: TextStyle(fontSize: iconSize),
-                            ),
-                          ),
-                          color: vwvm.type == 2
-                              ? tools.secondaryColor
-                              : tools.tetriaryColor)),
-                  GestureDetector(
-                      onTap: () {
-                        vwvm.type = 3;
-                      },
-                      child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '👟',
-                              style: TextStyle(fontSize: iconSize),
-                            ),
-                          ),
-                          color: vwvm.type == 3
-                              ? tools.secondaryColor
-                              : tools.tetriaryColor)),
-                ],
-              ),
-            ),
-          ),
-        ),
+        ClothTypeSelectButtons(),
         SingleChildScrollView(
           child: Padding(
               padding: const EdgeInsets.only(top: 10),

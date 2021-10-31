@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:weatherdrobe/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:weatherdrobe/widgets/Virtual Wardrobe Widgets/cloth_type_select_buttons.dart';
 
 class ClothesList extends ConsumerWidget {
   @override
@@ -9,118 +10,17 @@ class ClothesList extends ConsumerWidget {
     final vwvm = watch(virtualWardrobe);
     final favm = watch(firebaseAuth);
     final tools = watch(toolsVM);
-    const double fontSize = 40;
-    const double talesWidth = 65;
     if (vwvm.userCollections != null && vwvm.userCollections.exists) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0, top: 10),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    vwvm.actualClothType = 0;
-                  },
-                  child: Card(
-                    child: Container(
-                        height: 50,
-                        width: talesWidth,
-                        child: Center(
-                            child: Text(
-                          '👒',
-                          style: TextStyle(
-                              fontFamily: tools.fontFamily, fontSize: fontSize),
-                          textAlign: TextAlign.center,
-                        ))),
-                    color: vwvm.actualClothType == 0
-                        ? tools.secondaryColor
-                        : tools.quinaryColor,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    vwvm.actualClothType = 4;
-                  },
-                  child: Card(
-                    child: Container(
-                        height: 50,
-                        width: talesWidth,
-                        child: Center(
-                            child: Text(
-                          '👗',
-                          style: TextStyle(
-                              fontFamily: tools.fontFamily, fontSize: fontSize),
-                          textAlign: TextAlign.center,
-                        ))),
-                    color: vwvm.actualClothType == 4
-                        ? tools.secondaryColor
-                        : tools.quinaryColor,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    vwvm.actualClothType = 1;
-                  },
-                  child: Card(
-                      child: Container(
-                          height: 50,
-                          width: talesWidth,
-                          child: Center(
-                              child: Text(
-                            '👕',
-                            style: TextStyle(
-                                fontFamily: tools.fontFamily,
-                                fontSize: fontSize),
-                            textAlign: TextAlign.center,
-                          ))),
-                      color: vwvm.actualClothType == 1
-                          ? tools.secondaryColor
-                          : tools.quinaryColor),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    vwvm.actualClothType = 2;
-                  },
-                  child: Card(
-                    child: Container(
-                        height: 50,
-                        width: talesWidth,
-                        child: Center(
-                            child: Text(
-                          '👖',
-                          style: TextStyle(
-                              fontFamily: tools.fontFamily, fontSize: fontSize),
-                          textAlign: TextAlign.center,
-                        ))),
-                    color: vwvm.actualClothType == 2
-                        ? tools.secondaryColor
-                        : tools.quinaryColor,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    vwvm.actualClothType = 3;
-                  },
-                  child: Card(
-                    child: Container(
-                        height: 50,
-                        width: talesWidth,
-                        child: Center(
-                            child: Text(
-                          '👟',
-                          style: TextStyle(
-                              fontFamily: tools.fontFamily, fontSize: fontSize),
-                          textAlign: TextAlign.center,
-                        ))),
-                    color: vwvm.actualClothType == 3
-                        ? tools.secondaryColor
-                        : tools.quinaryColor,
-                  ),
-                ),
-              ],
-            ),
+          ClothTypeSelectButtons(),
+          Divider(
+            height: 20,
+            thickness: 1,
+            indent: 30,
+            endIndent: 30,
+            color: tools.textColor,
           ),
           clothes(vwvm.getCurrentGarmentsList(), watch, context)
         ],
