@@ -8,7 +8,6 @@ class ClothTemplateChooser extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final vwvm = watch(virtualWardrobe);
     final tools = watch(toolsVM);
-    double iconSize = 40;
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [

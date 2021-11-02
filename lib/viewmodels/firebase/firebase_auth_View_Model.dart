@@ -17,6 +17,13 @@ class FireBaseAuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  String _exceptionMessage = "";
+  String get exceptionMessage => _exceptionMessage;
+  void resetExceptionMessage() {
+    _exceptionMessage = "";
+    notifyListeners();
+  }
+
   //User _user;
   Future<void> signIn(String email, String password) async {
     try {
@@ -25,8 +32,10 @@ class FireBaseAuthViewModel extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        _exceptionMessage = "No user found for that email.";
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+        _exceptionMessage = "Wrong password provided for that user.";
       }
     }
   }
@@ -48,8 +57,10 @@ class FireBaseAuthViewModel extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
+        _exceptionMessage = "The password provided is too weak.";
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
+        _exceptionMessage = "The account already exists for that email.";
       }
     } catch (e) {
       print(e);
@@ -57,6 +68,7 @@ class FireBaseAuthViewModel extends ChangeNotifier {
   }
 
   Future<void> signOut() async {
+    _exceptionMessage = "";
     await _auth.signOut();
   }
 }

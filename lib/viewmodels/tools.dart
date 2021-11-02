@@ -124,4 +124,11 @@ class Tools extends ChangeNotifier {
   final controller = PageController(
     initialPage: 0,
   );
+  //AUTH PAGE
+  bool _indicator = false;
+  bool get indicator => _indicator;
+  set indicator(bool value) {
+    _indicator = value;
+    notifyListeners();
+  }
 }

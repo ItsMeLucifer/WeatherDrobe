@@ -27,7 +27,12 @@ class ClothesList extends ConsumerWidget {
       );
     } else {
       vwvm.getGarments(favm.auth);
-      return CircularProgressIndicator();
+      return Padding(
+        padding:
+            const EdgeInsets.only(bottom: 50, top: 50.0, left: 175, right: 175),
+        child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(tools.textColor)),
+      );
     }
   }
 }
@@ -38,7 +43,6 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
   final favm = watch(firebaseAuth);
   final cc = watch(clothingChooser);
   final tools = watch(toolsVM);
-  final hfvm = watch(hourlyData);
 
   if (array != null || array.length != 0) {
     return GridView.builder(

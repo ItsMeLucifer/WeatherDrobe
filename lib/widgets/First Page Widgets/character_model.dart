@@ -38,7 +38,11 @@ class CharacterModel extends ConsumerWidget {
       return Padding(
         padding: const EdgeInsets.only(top: 215.0, right: 112.5, bottom: 215),
         child: Container(
-            width: 50, height: 50, child: CircularProgressIndicator()),
+            width: 50,
+            height: 50,
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(tools.textColor),
+            )),
       );
     }
   }

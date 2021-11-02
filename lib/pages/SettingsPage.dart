@@ -73,6 +73,8 @@ class Settings extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    tools.indicator =
+                        false; // STOP PROGRESS INDICATOR IN AUTH PAGE
                     favm.signOut();
                   },
                   child: Container(
