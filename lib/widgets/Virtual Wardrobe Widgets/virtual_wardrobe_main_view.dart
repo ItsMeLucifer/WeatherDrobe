@@ -13,7 +13,7 @@ class VirtualWardrobeMainView extends ConsumerWidget {
         child: Column(
           children: [
             Card(
-              color: tools.quaternaryColor,
+              color: tools.primaryColor,
               child: Column(
                 children: [
                   Padding(

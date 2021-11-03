@@ -22,7 +22,8 @@ class ClothesList extends ConsumerWidget {
             endIndent: 30,
             color: tools.textColor,
           ),
-          clothes(vwvm.getCurrentGarmentsList(), watch, context)
+          Container(
+              child: clothes(vwvm.getCurrentGarmentsList(), watch, context))
         ],
       );
     } else {

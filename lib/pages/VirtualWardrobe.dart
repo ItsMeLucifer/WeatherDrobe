@@ -42,7 +42,7 @@ class _VirtualWardrobe extends State<VirtualWardrobe> {
             _navigateToClothCreator(context);
           },
           child: const Icon(Icons.add),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.teal,
         ),
       ),
       backgroundColor: Color.fromRGBO(0, 0, 0, 0),

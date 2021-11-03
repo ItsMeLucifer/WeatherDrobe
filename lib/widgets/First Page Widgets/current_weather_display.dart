@@ -29,7 +29,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                     children: [
                       Column(children: [
                         Text(
-                          tools.firstCapital(Jiffy().format("EEEE").toString()),
+                          tools.firstCapital(Jiffy().format("E").toString()),
                           style: TextStyle(
                               color: tools.textColor,
                               fontSize: 25,
@@ -41,7 +41,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                           style: TextStyle(
                               color: tools.textColor,
                               fontSize: 30,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                               fontFamily: tools.fontFamily),
                         ),
                       ]),
@@ -55,7 +55,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                               style: TextStyle(
                                   color: tools.textColor,
                                   fontSize: 22,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: tools.fontFamily),
                             ),
                           ),
