@@ -36,15 +36,33 @@ class HourlyForecastListDisplay extends ConsumerWidget {
                               "http://openweathermap.org/img/wn/03d.png"))),
               title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(tools.unixToLocalTimeConverter(hour.time),
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: tools.textColor)),
-                  Text(
-                      "    ${tools.fixTemperatureDisplay(hour.temperature)}°C🌡️    ${tools.fixedPropPercents(hour.propability, true)}% ☔  ${tools.setStringLengthToConstantValue(hour.description, 14)}",
-                      style: TextStyle(fontSize: 14, color: tools.textColor)),
+                  Row(
+                    children: [
+                      Text(
+                          "${tools.fixTemperatureDisplay(hour.temperature)}°C🌡️  ",
+                          style:
+                              TextStyle(fontSize: 14, color: tools.textColor)),
+                      Text(
+                          "${tools.fixedPropPercents(hour.propability, true)}% ☔",
+                          style:
+                              TextStyle(fontSize: 14, color: tools.textColor)),
+                    ],
+                  ),
+                  Container(
+                    width: 100,
+                    child: Text(
+                      "${tools.setStringLengthToConstantValue(hour.description, 14)}",
+                      style: TextStyle(fontSize: 14, color: tools.textColor),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ],
               ),
             ),

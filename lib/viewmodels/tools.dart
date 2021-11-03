@@ -91,9 +91,9 @@ class Tools extends ChangeNotifier {
       s = splitted[splitted.length - 1];
     }
     s = firstCapital(s);
-    while (s.length <= constantValue) {
-      s = "  " + s;
-    }
+    // while (s.length <= constantValue) {
+    //   s = "  " + s;
+    // }
     return s;
   }
 

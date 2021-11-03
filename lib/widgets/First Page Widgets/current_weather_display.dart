@@ -25,13 +25,14 @@ class CurrentWeatherDisplay extends ConsumerWidget {
               Container(
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
                       Column(children: [
                         Text(
                           tools.firstCapital(Jiffy().format("EEEE").toString()),
                           style: TextStyle(
                               color: tools.textColor,
-                              fontSize: 30,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                               fontFamily: tools.fontFamily),
                         ),
@@ -39,13 +40,13 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                           Jiffy().format("d.MM").toString(),
                           style: TextStyle(
                               color: tools.textColor,
-                              fontSize: 27,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
                               fontFamily: tools.fontFamily),
                         ),
                       ]),
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
+                        padding: const EdgeInsets.only(top: 0.0),
                         child: Column(children: [
                           Container(
                             child: Text(
@@ -54,7 +55,7 @@ class CurrentWeatherDisplay extends ConsumerWidget {
                               style: TextStyle(
                                   color: tools.textColor,
                                   fontSize: 22,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w500,
                                   fontFamily: tools.fontFamily),
                             ),
                           ),
