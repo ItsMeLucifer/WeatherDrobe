@@ -36,6 +36,7 @@ dependencies:
   page_indicator: ^0.3.0
   path_provider: ^1.6.27
   pull_to_refresh: ^1.6.3
+  flutter_password_strength: ^0.1.5
 
 dev_dependencies:
   flutter_launcher_icons: ^0.8.1

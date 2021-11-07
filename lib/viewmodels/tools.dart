@@ -131,4 +131,14 @@ class Tools extends ChangeNotifier {
     _indicator = value;
     notifyListeners();
   }
+
+  bool _showPassword = false;
+  bool get showPassword => _showPassword;
+  set showPassword(bool value) {
+    _showPassword = value;
+    notifyListeners();
+  }
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 }

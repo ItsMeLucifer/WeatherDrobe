@@ -286,6 +286,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.1"
+  flutter_password_strength:
+    dependency: "direct main"
+    description:
+      name: flutter_password_strength
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   flutter_riverpod:
     dependency: "direct main"
     description:

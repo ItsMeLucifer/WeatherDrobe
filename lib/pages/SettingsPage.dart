@@ -75,6 +75,8 @@ class Settings extends ConsumerWidget {
                   onTap: () {
                     tools.indicator =
                         false; // STOP PROGRESS INDICATOR IN AUTH PAGE
+                    tools.emailController.clear(); //CLEAR DATA IN AUTH FIELDS
+                    tools.passwordController.clear();
                     favm.signOut();
                   },
                   child: Container(
