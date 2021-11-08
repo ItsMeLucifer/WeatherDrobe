@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-enum Status { Authenticated, Unauthenticated }
+enum Status { Authenticated, Unauthenticated, DuringAuthorization }
 
 class FireBaseAuthViewModel extends ChangeNotifier {
-  FirebaseAuth _auth;
+  FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseAuth get auth => _auth;
   UserCredential userCredential;
-  FireBaseAuthViewModel.instance() : _auth = FirebaseAuth.instance {
-    _auth.authStateChanges().listen(_onAuthStateChanged);
-  }
+  // FireBaseAuthViewModel.instance() : _auth = FirebaseAuth.instance {
+  //   _auth.authStateChanges().listen(_onAuthStateChanged);
+  // }
   Status _status = Status.Unauthenticated;
   Status get status => _status;
   set status(Status value) {
@@ -24,50 +24,63 @@ class FireBaseAuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addListenerToFirebaseAuth() {
+    _auth.authStateChanges().listen(_onAuthStateChanged);
+  }
+
   //User _user;
   Future<void> signIn(String email, String password) async {
+    status = Status.DuringAuthorization;
     try {
       userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
+      status = Status.Unauthenticated;
+      _exceptionMessage = "An undefined Error happened.";
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
         _exceptionMessage = "No user found for that email.";
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
         _exceptionMessage = "Wrong password provided for that user.";
+      } else if (e.code == 'invalid-email') {
+        _exceptionMessage = "Invalid email";
+      } else if (e.code == 'user-disabled') {
+        _exceptionMessage = "User disabled";
       }
+    } catch (e) {
+      print(e);
+    }
+    if (email == "" || password == "") {
+      _exceptionMessage = "At least one of the fields is empty.";
     }
   }
 
   Future<void> _onAuthStateChanged(User firebaseUser) async {
-    if (firebaseUser == null) {
-      status = Status.Unauthenticated;
-    } else {
-      //_user = firebaseUser;
-      status = Status.Authenticated;
-    }
-    notifyListeners();
+    if (firebaseUser != null) status = Status.Authenticated;
   }
 
   Future<void> register(String email, String password) async {
+    status = Status.DuringAuthorization;
     try {
       userCredential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
+      status = Status.Unauthenticated;
+      _exceptionMessage = "An undefined Error happened.";
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
         _exceptionMessage = "The password provided is too weak.";
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
         _exceptionMessage = "The account already exists for that email.";
       }
     } catch (e) {
       print(e);
     }
+    if (email == "" || password == "") {
+      _exceptionMessage = "At least one of the fields is empty.";
+    }
   }
 
   Future<void> signOut() async {
+    status = Status.Unauthenticated;
     _exceptionMessage = "";
     await _auth.signOut();
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_password_strength/flutter_password_strength.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weatherdrobe/main.dart';
+import 'package:weatherdrobe/viewmodels/Firebase/firebase_auth_View_Model.dart';
 
 class AuthenticationPage extends ConsumerWidget {
   @override
@@ -57,30 +58,34 @@ class AuthenticationPage extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: 220,
+                  width: 250,
                   child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // favm.exceptionMessage != ""
-                        //     ? Text(
-                        //         favm.exceptionMessage,
-                        //         style: TextStyle(
-                        //             fontFamily: tools.fontFamily,
-                        //             color: Colors.red),
-                        //         textAlign: TextAlign.center,
-                        //       )
-                        //     : Container(),
-                        //SizedBox(height: 5),
+                        favm.exceptionMessage != ""
+                            ? Column(
+                                children: [
+                                  Text(
+                                    favm.exceptionMessage,
+                                    style: TextStyle(
+                                        fontFamily: tools.fontFamily,
+                                        color: Colors.red),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(height: 5),
+                                ],
+                              )
+                            : Container(),
                         Container(
-                            width: 220,
+                            width: 250,
                             height: 50,
                             child: TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 autofocus: false,
                                 controller: tools.emailController,
                                 onChanged: (value) {
-                                  //favm.resetExceptionMessage();
+                                  favm.resetExceptionMessage();
                                 },
                                 style: TextStyle(
                                     color: tools.textColor,
@@ -108,14 +113,15 @@ class AuthenticationPage extends ConsumerWidget {
                                         EdgeInsets.fromLTRB(20, 10, 20, 10)))),
                         SizedBox(height: 5),
                         Container(
-                            width: 220,
+                            width: 250,
                             height: 50,
                             child: TextFormField(
                                 keyboardType: TextInputType.visiblePassword,
                                 autofocus: false,
+                                autocorrect: false,
                                 obscureText: !tools.showPassword,
                                 onChanged: (value) {
-                                  //favm.resetExceptionMessage();
+                                  favm.resetExceptionMessage();
                                 },
                                 controller: tools.passwordController,
                                 style: TextStyle(
@@ -157,7 +163,7 @@ class AuthenticationPage extends ConsumerWidget {
                           backgroundColor: tools.disabledText,
                         ),
                         SizedBox(height: 5),
-                        tools.indicator
+                        favm.status == Status.DuringAuthorization
                             ? CircularProgressIndicator(
                                 valueColor:
                                     AlwaysStoppedAnimation(tools.textColor))
@@ -165,12 +171,11 @@ class AuthenticationPage extends ConsumerWidget {
                         SizedBox(height: 5),
                         GestureDetector(
                           onTap: () {
-                            tools.indicator = true;
                             favm.signIn(tools.emailController.text,
                                 tools.passwordController.text);
                           },
                           child: Container(
-                              width: 220,
+                              width: 250,
                               height: 40,
                               decoration: BoxDecoration(
                                 color: buttonColor,
@@ -190,7 +195,6 @@ class AuthenticationPage extends ConsumerWidget {
                         SizedBox(height: 5),
                         GestureDetector(
                           onTap: () {
-                            tools.indicator = true;
                             favm.register(tools.emailController.text,
                                 tools.passwordController.text);
                           },
