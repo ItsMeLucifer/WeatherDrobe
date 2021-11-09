@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_password_strength/flutter_password_strength.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -253,6 +255,33 @@ class AuthenticationPage extends ConsumerWidget {
                         ),
                       ]),
                 ),
+              ),
+            ),
+            SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {
+                favm.signInAnonymously();
+              },
+              child: Stack(
+                children: [
+                  Text("Enter as guest",
+                      style: TextStyle(
+                          fontFamily: tools.fontFamily,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 4
+                            ..color = tools.textColor,
+                          decoration: TextDecoration.underline)),
+                  Text("Enter as guest",
+                      style: TextStyle(
+                          fontFamily: tools.fontFamily,
+                          color: tools.textBorderColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          decoration: TextDecoration.underline)),
+                ],
               ),
             ),
           ],

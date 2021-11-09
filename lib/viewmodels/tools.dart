@@ -27,6 +27,7 @@ class Tools extends ChangeNotifier {
   Color get disabledText => Color.fromRGBO(255, 255, 255, 0.5);
   Color get disabledColor => Color.fromRGBO(255, 200, 200, 0.5);
   Color get textColor => Colors.white;
+  Color get textBorderColor => Colors.black;
   Color get textSecondaryColor => Colors.black;
   String get fontFamily => 'Nexa';
   TextStyle get optionStyle => TextStyle(fontSize: 30);

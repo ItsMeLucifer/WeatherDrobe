@@ -93,7 +93,19 @@ class FireBaseAuthViewModel extends ChangeNotifier {
       userCredential = await _auth.signInWithCredential(credential);
     } catch (e) {
       status = Status.Unauthenticated;
-      _exceptionMessage = e.code;
+      _exceptionMessage = "Error with Google sign-in";
+      print(e);
+    }
+    checkIfUserDocumentWasCreated();
+  }
+
+  Future<void> signInAnonymously() async {
+    status = Status.DuringAuthorization;
+    try {
+      userCredential = await _auth.signInAnonymously();
+    } catch (e) {
+      status = Status.Unauthenticated;
+      _exceptionMessage = "Error with anonymously sign-in";
       print(e);
     }
     checkIfUserDocumentWasCreated();
@@ -101,6 +113,7 @@ class FireBaseAuthViewModel extends ChangeNotifier {
 
   Future<void> checkIfUserDocumentWasCreated() async {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
+    if (_auth.currentUser == null) return;
     var doc = await users.doc(_auth.currentUser.uid).get();
     if (!doc.exists) {
       users.doc(_auth.currentUser.uid).set(
