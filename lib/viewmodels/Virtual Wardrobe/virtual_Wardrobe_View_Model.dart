@@ -143,6 +143,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   void saveCloth(FirebaseAuth auth) {
+    if (auth.currentUser == null) return;
     users
         .doc(auth.currentUser.uid)
         .set({'email': auth.currentUser.email, 'userID': auth.currentUser.uid});
@@ -210,6 +211,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
   DocumentSnapshot userCollections;
   void getGarments(FirebaseAuth auth) async {
     List<QueryDocumentSnapshot> temp = [];
+    if (auth.currentUser == null) return;
     await users
         .doc(auth.currentUser.uid)
         .collection('headwear')
@@ -286,6 +288,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
 
   void deleteGarment(String documentId, FirebaseAuth auth) async {
     print("DocumentID: " + documentId);
+    if (auth.currentUser == null) return;
     await users
         .doc(auth.currentUser.uid)
         .collection(getClothTypeName)

@@ -45,7 +45,7 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
   final cc = watch(clothingChooser);
   final tools = watch(toolsVM);
 
-  if (array != null || array.length != 0) {
+  if (array != null && array.length != 0) {
     return GridView.builder(
         shrinkWrap: true,
         primary: false,
@@ -198,6 +198,15 @@ Widget clothes(List<QueryDocumentSnapshot> array, ScopedReader watch,
           );
         });
   } else {
-    return Container();
+    print("NO CLOTHES");
+    return Container(
+      height: 100,
+      child: Center(
+          child: Text("No clothes!",
+              style: TextStyle(
+                  fontFamily: tools.fontFamily,
+                  color: tools.textColor,
+                  fontSize: 20))),
+    );
   }
 }

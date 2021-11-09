@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 enum Status { Authenticated, Unauthenticated, DuringAuthorization }
 
@@ -76,6 +78,33 @@ class FireBaseAuthViewModel extends ChangeNotifier {
     }
     if (email == "" || password == "") {
       _exceptionMessage = "At least one of the fields is empty.";
+    }
+    checkIfUserDocumentWasCreated();
+  }
+
+  Future<void> signInWithGoogle() async {
+    status = Status.DuringAuthorization;
+    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+    try {
+      userCredential = await _auth.signInWithCredential(credential);
+    } catch (e) {
+      status = Status.Unauthenticated;
+      _exceptionMessage = e.code;
+      print(e);
+    }
+    checkIfUserDocumentWasCreated();
+  }
+
+  Future<void> checkIfUserDocumentWasCreated() async {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    var doc = await users.doc(_auth.currentUser.uid).get();
+    if (!doc.exists) {
+      users.doc(_auth.currentUser.uid).set(
+          {'email': auth.currentUser.email, 'userID': auth.currentUser.uid});
     }
   }
 

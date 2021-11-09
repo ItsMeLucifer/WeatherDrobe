@@ -70,7 +70,9 @@ class CharacterModel extends ConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    '${cc.currentModelIndex + 1}/${cc.proposals.length}',
+                    cc.proposals.length > 0
+                        ? '${cc.currentModelIndex + 1}/${cc.proposals.length}'
+                        : 'Not enough clothes',
                     style: TextStyle(
                         fontFamily: tools.fontFamily,
                         color: tools.textColor,

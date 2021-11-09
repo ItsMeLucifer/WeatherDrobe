@@ -44,15 +44,15 @@ class _BottomNaviBar extends State<BottomNaviBar> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Model ubioru',
+            label: 'Clothing model',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
-            label: 'Wirtualna Szafa',
+            label: 'Virtual Wardrobe',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Ustawienia',
+            label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,

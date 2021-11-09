@@ -140,7 +140,7 @@ class AuthenticationPage extends ConsumerWidget {
                                             !tools.showPassword;
                                       },
                                       child: Icon(
-                                          tools.showPassword
+                                          !tools.showPassword
                                               ? Icons.visibility_off
                                               : Icons.visibility,
                                           color: tools.disabledText),
@@ -203,7 +203,7 @@ class AuthenticationPage extends ConsumerWidget {
                                 color: buttonColor,
                                 borderRadius: BorderRadius.circular(3),
                               ),
-                              width: 220,
+                              width: 250,
                               height: 40,
                               child: Center(
                                 child: Text(
@@ -214,6 +214,41 @@ class AuthenticationPage extends ConsumerWidget {
                                       fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                                 ),
+                              )),
+                        ),
+                        SizedBox(height: 5),
+                        GestureDetector(
+                          onTap: () {
+                            //SIGN IN WITH GOOGLE
+                            favm.signInWithGoogle();
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              width: 250,
+                              height: 40,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 35,
+                                    child: Image(
+                                      image: NetworkImage(
+                                          "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhsdl.dk%2Fwp-content%2Fuploads%2F2019%2F12%2F66903-google-pay-gboard-platform-logo-cloud.png&f=1&nofb=1"),
+                                    ),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    'Sign-in with Google',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: tools.fontFamily,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
                               )),
                         ),
                       ]),
