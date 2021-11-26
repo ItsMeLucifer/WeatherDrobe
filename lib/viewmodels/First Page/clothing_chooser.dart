@@ -76,6 +76,7 @@ class ClothingChooser extends ChangeNotifier {
       List<QueryDocumentSnapshot> costumes,
       double allDayAverageTemperature,
       int additionalConditions,
+
       //rain snow wind sun
       bool getMoreModels) {
     if (!getMoreModels) {

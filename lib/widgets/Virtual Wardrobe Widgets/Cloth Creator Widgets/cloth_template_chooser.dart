@@ -45,21 +45,22 @@ class ClothTemplateChooser extends ConsumerWidget {
                   shrinkWrap: true,
                   primary: false,
                   padding: const EdgeInsets.all(10),
-                  itemCount: vwvm.templateNames[vwvm.type].length,
+                  itemCount: vwvm.templateNames[vwvm.actualClothType].length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4),
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         vwvm.isTemplateChosen = true;
-                        vwvm.dir = vwvm.templateNames[vwvm.type][index];
+                        vwvm.dir =
+                            vwvm.templateNames[vwvm.actualClothType][index];
                         tools.controller.nextPage(
                             duration: Duration(milliseconds: 400),
                             curve: Curves.easeIn);
                       },
                       child: Card(
                         child: Image.asset(
-                            'images/templates/${vwvm.clothTypeName}/${vwvm.templateNames[vwvm.type][index]}.png'),
+                            'images/templates/${vwvm.getClothTypeName}/${vwvm.templateNames[vwvm.actualClothType][index]}.png'),
                       ),
                     );
                   })),

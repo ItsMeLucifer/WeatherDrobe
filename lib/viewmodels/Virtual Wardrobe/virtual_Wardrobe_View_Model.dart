@@ -70,13 +70,6 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  int _type = 0;
-  int get type => _type;
-  set type(int value) {
-    _type = value;
-    notifyListeners();
-  }
-
   String _dir = '';
   String get dir => _dir;
   set dir(String value) {
@@ -90,11 +83,6 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     _isTemplateChosen = value;
     notifyListeners();
   }
-
-  String get clothTypeName => ClothType.values
-      .elementAt(type)
-      .toString()
-      .substring(10, ClothType.values.elementAt(type).toString().length);
 
   bool _showColorDialogBox = false;
   bool get showColorDialogBox => _showColorDialogBox;
@@ -147,7 +135,7 @@ class VirtualWardrobeViewModel extends ChangeNotifier {
     users
         .doc(auth.currentUser.uid)
         .set({'email': auth.currentUser.email, 'userID': auth.currentUser.uid});
-    users.doc(auth.currentUser.uid).collection(clothTypeName).add({
+    users.doc(auth.currentUser.uid).collection(getClothTypeName).add({
       'temperature': temperatureRating,
       'snow': snow,
       'rain': rain,
