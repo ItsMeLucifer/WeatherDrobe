@@ -46,8 +46,6 @@ class HourlyForecastViewModel extends ChangeNotifier {
         desiredAccuracy: LocationAccuracy.high);
     lat = _currentPosition.latitude;
     long = _currentPosition.longitude;
-    //lat = 54.519974;
-    //long = 18.551115;
     getHourlyData();
   }
 
@@ -110,7 +108,7 @@ class HourlyForecastViewModel extends ChangeNotifier {
     double probOfPrecip = 0;
     double sumOfTemperatures = 0;
     double sumOfWindSpeed = 0;
-    bool test = true;
+    bool test = false;
     for (int i = 0; i < numberOfHoursAnalysed; i++) {
       probOfPrecip += hours[i].propability;
       sumOfTemperatures += hours[i].temperature;

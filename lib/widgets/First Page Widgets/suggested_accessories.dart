@@ -10,11 +10,17 @@ class SuggestedAccessories extends ConsumerWidget {
     final tools = watch(toolsVM);
     final hfvm = watch(hourlyData);
     final Color tilesColor = tools.primaryColor;
+    // if (hfvm.firstHourWithRain == null ||
+    //     hfvm.firstHourForHat == null ||
+    //     hfvm.firstHourForGloves == null ||
+    //     hfvm.firstHourForScarf == null) return Container();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //UMBRELLA
-        hfvm.firstHourWithRain != null
+        hfvm.firstHourWithRain != null &&
+                hfvm.firstHourWithRain.time != null &&
+                hfvm.averageProbabilityOfPrecipitation != null
             ? Card(
                 child: Stack(children: [
                   Padding(
@@ -62,7 +68,7 @@ class SuggestedAccessories extends ConsumerWidget {
               )
             : Container(),
         //HAT
-        hfvm.firstHourForHat != null
+        hfvm.firstHourForHat != null && hfvm.firstHourForHat.time != null
             ? Card(
                 child: Stack(children: [
                   Padding(
@@ -85,7 +91,7 @@ class SuggestedAccessories extends ConsumerWidget {
                     child: Text(
                       tools.unixToLocalTimeConverter(
                               hfvm.firstHourForHat.time) +
-                          " - " +
+                          " : " +
                           (hfvm.firstHourForHat.temperature)
                               .toStringAsFixed(0) +
                           "°C",
@@ -114,15 +120,15 @@ class SuggestedAccessories extends ConsumerWidget {
               )
             : Container(),
         //GLOVES
-        hfvm.firstHourForGloves != null
+        hfvm.firstHourForGloves != null && hfvm.firstHourForGloves.time != null
             ? Card(
                 child: Stack(children: [
                   Container(
                     width: 100,
                     child: Text(
                       tools.unixToLocalTimeConverter(
-                              hfvm.firstHourForHat.time) +
-                          " - " +
+                              hfvm.firstHourForGloves.time) +
+                          " : " +
                           (hfvm.firstHourForGloves.temperature)
                               .toStringAsFixed(0) +
                           "°C",
@@ -150,7 +156,7 @@ class SuggestedAccessories extends ConsumerWidget {
               )
             : Container(),
         //SCARF
-        hfvm.firstHourForGloves != null
+        hfvm.firstHourForScarf != null && hfvm.firstHourForScarf.time != null
             ? Card(
                 child: Stack(children: [
                   Padding(

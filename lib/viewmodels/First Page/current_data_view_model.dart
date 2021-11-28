@@ -64,8 +64,6 @@ class CurrentDataViewModel extends ChangeNotifier {
         desiredAccuracy: LocationAccuracy.high);
     lat = _currentPosition.latitude;
     long = _currentPosition.longitude;
-    lat = 54.519974;
-    long = 18.551115;
     fetchCurrentData();
   }
 

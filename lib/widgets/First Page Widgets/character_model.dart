@@ -22,15 +22,8 @@ class CharacterModel extends ConsumerWidget {
               vwvm.costumes.isNotEmpty &&
               vwvm.footwear.isNotEmpty)) {
         hfvm.getTemperaturesAndWeatherIds();
-        cc.chooseClothing(
-            vwvm.headwear,
-            vwvm.tops,
-            vwvm.bottoms,
-            vwvm.footwear,
-            vwvm.costumes,
-            10,
-            tools.calculateTheMedian(hfvm.weatherIds).toInt(),
-            false);
+        cc.chooseClothing(vwvm.headwear, vwvm.tops, vwvm.bottoms, vwvm.footwear,
+            vwvm.costumes, 10, 300, false);
       }
       return model(tools, cc);
     } else {
